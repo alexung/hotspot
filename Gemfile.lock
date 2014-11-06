@@ -45,6 +45,8 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.2.2)
+    faker (1.4.3)
+      i18n (~> 0.5)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.5.0)
@@ -152,7 +154,11 @@ PLATFORMS
 DEPENDENCIES
   capybara
   coffee-rails (~> 4.0.0)
+<<<<<<< HEAD
+  faker
+=======
   factory_girl_rails
+>>>>>>> 529e53dee21785731c31f75cd4ca67141154a34f
   jbuilder (~> 2.0)
   jquery-rails
   pg
