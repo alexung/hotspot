@@ -48,6 +48,8 @@ GEM
       dotenv (= 1.0.2)
     erubis (2.7.0)
     execjs (2.2.2)
+    faker (1.4.3)
+      i18n (~> 0.5)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.5.0)
@@ -167,6 +169,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.0.0)
   dotenv-rails
+  faker
   factory_girl_rails
   jbuilder (~> 2.0)
   jquery-rails
