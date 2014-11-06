@@ -1,0 +1,6 @@
+<p>[All files within a repo]</p>
+
+<% @repository.docs.each do |doc| %>
+  <%= link_to "#{doc.name}", doc_path(id: doc.id) %>
+<% end %>
+
