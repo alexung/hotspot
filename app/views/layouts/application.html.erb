@@ -7,6 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header>
+    <%= link_to "Home", root_path %>
+    <%= link_to "All Repositories", repositories_path %>
+  </header>
 
 <%= yield %>
 

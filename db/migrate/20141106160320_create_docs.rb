@@ -1,6 +1,7 @@
-class CreateFiles < ActiveRecord::Migration
+class CreateDocs < ActiveRecord::Migration
   def change
-    create_table :files do |t|
+    create_table :docs do |t|
+      t.string :name
       t.string :url
       t.belongs_to :repository
 

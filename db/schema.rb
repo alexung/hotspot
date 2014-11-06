@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20141106154517) do
   enable_extension "plpgsql"
 
   create_table "files", force: true do |t|
+    t.string   "name"
     t.string   "url"
     t.integer  "repository_id"
     t.datetime "created_at"
@@ -24,6 +25,7 @@ ActiveRecord::Schema.define(version: 20141106154517) do
   end
 
   create_table "repositories", force: true do |t|
+    t.string   "name"
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
