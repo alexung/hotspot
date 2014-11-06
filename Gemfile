@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'unicorn'
 gem 'faker'
 # Travis CI
 gem 'travis-lint'
