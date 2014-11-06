@@ -1,6 +1,2 @@
 <p>[All files within a repo, ordered from greatest to least commits]</p>
-
-<% @repository.docs.each do |doc| %>
-  <%= link_to "#{doc.name}", doc_path(id: doc.id) %><br><br>
-<% end %>
-
+<%= render partial: 'repo_table', locals: {repository: @repository} %>
