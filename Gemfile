@@ -43,3 +43,4 @@ end
 
 gem "dotenv-rails"
 gem 'oauth2'
+gem 'pry'
