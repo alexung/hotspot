@@ -1,5 +1,5 @@
 class AddRepoUserIdCol < ActiveRecord::Migration
   def change
-  	add_column :repositories, :user, :belongs_to
+  	add_column :repositories, :user_id, :integer
   end
 end
