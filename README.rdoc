@@ -4,4 +4,4 @@ We aim to foster a one-stop shop for code reviewers to go to while looking over 
 
 We are using Ruby on Rails, Javascript, JQuery, AJAX, the Github API, and Omniauth.
 
-Link to our Trello: (https://trello.com/b/i85oXNEV/visualizr)
+Link to our Trello: (https://trello.com/b/i85oXNEV/hotspot)
