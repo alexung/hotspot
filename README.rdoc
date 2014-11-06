@@ -1,28 +1,7 @@
-== README
+== Hotspot
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+We aim to foster a one-stop shop for code reviewers to go to while looking over others' code.  We plan to create a page that displays the file path, the number of commits, and the users that have committed to that certain file.
 
-Things you may want to cover:
+We are using Ruby on Rails, Javascript, JQuery, AJAX, the Github API, and Omniauth.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Link to our [Trello](https://trello.com/b/i85oXNEV/visualizr)
