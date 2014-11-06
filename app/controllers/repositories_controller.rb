@@ -4,4 +4,8 @@ class RepositoriesController < ApplicationController
     @repositories = Repository.all
   end
 
+  def show
+    @repository = Repository.find(params[:id])
+  end
+
 end
