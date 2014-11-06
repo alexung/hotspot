@@ -23,4 +23,10 @@ class RepositoriesController < ApplicationController
   	end
   end
 
+  private
+
+  def repository_params
+  	params.require(:repository).permit(:url, :name, :user_id)
+  end
+
 end
