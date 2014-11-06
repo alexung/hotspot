@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+gem 'faker'
 # Travis CI
 gem 'travis-lint'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
