@@ -42,4 +42,5 @@ group :production do
 end
 
 gem "dotenv-rails"
+gem 'omniauth-github'
 gem 'oauth2'
