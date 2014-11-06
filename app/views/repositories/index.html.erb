@@ -2,6 +2,6 @@ All repositories that belong to a certain user
 
 <% @repositories.each do |repository| %>
   <br>
-  <%= repository.name %>
+  <%= link_to "#{repository.name}", repository_path(id: repository.id) %>
   <br>
 <% end %>

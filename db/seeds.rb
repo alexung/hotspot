@@ -3,6 +3,6 @@
 end
 
 50.times do
-  File.create(name:Faker::Lorem.word, url: Faker::Internet.url)
+  Doc.create(name:Faker::Lorem.word, url: Faker::Internet.url, repository_id: (1..10).to_a.sample)
 end
 
