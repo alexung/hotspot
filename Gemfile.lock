@@ -154,11 +154,8 @@ PLATFORMS
 DEPENDENCIES
   capybara
   coffee-rails (~> 4.0.0)
-<<<<<<< HEAD
   faker
-=======
   factory_girl_rails
->>>>>>> 529e53dee21785731c31f75cd4ca67141154a34f
   jbuilder (~> 2.0)
   jquery-rails
   pg
