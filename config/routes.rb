@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :users
-  resources :repositories, except: [:edit, :update]
+  resources :repositories
   resources :docs
 
   root "users#index"
