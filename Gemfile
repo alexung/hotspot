@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 
-gem 'faker'
 # Travis CI
 gem 'travis-lint'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -35,9 +34,12 @@ group :test do
 	gem "factory_girl_rails"
 	gem "capybara"
 	gem 'shoulda-matchers', require: false
+	gem 'faker'
 end
 
 group :production do
 	gem 'rails_12factor'
 end
 
+gem "dotenv-rails"
+gem 'oauth2'
