@@ -16,4 +16,4 @@
 /tmp
 
 # Ignore .env
-.env
+/.env
