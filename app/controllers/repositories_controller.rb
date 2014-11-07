@@ -3,7 +3,7 @@ require 'json'
 
   def index
     @user = params[:keyword]
-    @repos = `curl https://api.github.com/users/#{@user}/repos?client_id=891ce1a4c1d52b232e3d&f216b8fad1efd3cddc36f8fe7831c7aadbb9e4fd`
+    @repos = `curl https://api.github.com/users/#{@user}/repos?client_id=#{ENV['GITHUB_KEY']}&client_secret=#{ENV['GITHUB_SECRET']}`
     @repositories = JSON.parse(@repos)
   end
 
