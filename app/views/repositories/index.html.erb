@@ -1,10 +1,2 @@
-<p>[All repositories that belong to a certain user]</p>
-<%= @stuff %>
-
-<% @repositories.each do |repository| %>
-  <br>
-  <%= link_to "#{repository.name}", repository_path(id: repository.id) %>
-  <br>
-<% end %>
-
-	
+<h1>REPOS</h1>
+<%= @repositories %>
