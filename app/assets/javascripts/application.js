@@ -14,3 +14,29 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$( document ).ready(function() {
+    $('#search_repo').submit(function(event) {
+    event.preventDefault()
+
+    $.ajax({
+      type: "GET",
+      url: '/search',
+      data: "keyword"
+    })
+    .done(function(response) {
+    	console.log(response)
+        $('#content').append(response)
+      }
+    )
+  })
+});
+
+
+
+
+
+
+
+
+

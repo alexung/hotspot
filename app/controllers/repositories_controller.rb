@@ -1,12 +1,6 @@
 class RepositoriesController < ApplicationController
 require 'json'
 
-  def index
-    user_name = params["user_name"]
-    repos = `curl https://api.github.com/users/#{user_name}/repos`
-    @repositories = JSON.parse(repos)
-  end
-
   def show
     repo_name = params["name"]
     owner = current_user.username
@@ -31,9 +25,10 @@ require 'json'
 
   def search
     @user = params[:keyword]
-    @repos = `curl -i https://api.github.com/users/"#{@user}"/repos`
-    redirect_to '/'
-    # redirect_to repositories_path
+    repos = `curl -i https://api.github.com/users/"#{@user}"/repos`
+    @repositories = JSON.parse(repos)
+    # redirect_to '/'
+    redirect_to repositories_path
   end
 
   private
