@@ -2,7 +2,6 @@
 <ul>
 <% @repositories.each do |repository| %>
 <li><%= link_to "#{repository["name"]}", repository["svn_url"] %>
-  <%#= repository["name"] %>
 </li>
 <% end %>
 <ul>
