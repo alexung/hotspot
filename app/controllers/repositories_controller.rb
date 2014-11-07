@@ -1,6 +1,6 @@
 class RepositoriesController < ApplicationController
 require 'json'
-  
+
   def index
     y = `curl https://api.github.com/repos/alexung/embark/commits`
     @repositories = JSON.parse(y)
@@ -26,8 +26,8 @@ require 'json'
   end
 
   def search
-    @user = params[:search]
-    redirect_to '/'
+    @user = params[:keyword]
+    redirect_to repositories_path
   end
 
   private
