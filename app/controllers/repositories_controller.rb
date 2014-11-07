@@ -2,12 +2,16 @@ class RepositoriesController < ApplicationController
 require 'json'
 
   def index
-    y = `curl https://api.github.com/repos/alexung/embark/commits`
-    @repositories = JSON.parse(y)
+    user_name = params["user_name"]
+    repos = `curl https://api.github.com/users/#{user_name}/repos`
+    @repositories = JSON.parse(repos)
   end
 
   def show
-    @repository = Repository.find(params[:id])
+    repo_name = params["name"]
+    owner = current_user.username
+    repo_commits = `curl https://api.github.com/repos/#{owner}/#{repo_name}/commits`
+    @commits = JSON.parse(repo_commits)
   end
 
   def new
