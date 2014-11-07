@@ -31,7 +31,9 @@ require 'json'
 
   def search
     @user = params[:keyword]
-    redirect_to repositories_path
+    @repos = `curl -i https://api.github.com/users/"#{@user}"/repos`
+    redirect_to '/'
+    # redirect_to repositories_path
   end
 
   private
