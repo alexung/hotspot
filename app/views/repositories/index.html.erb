@@ -1,7 +1,9 @@
 <h1>REPOS</h1>
 <ul>
 <% @repositories.each do |repository| %>
-<li><%= link_to "#{repository["name"]}", repository["svn_url"] %>
+
+<li>
+	<a href="/code_review?username=<%=@user%>&repo=<%=repository["name"]%>"><%= repository["name"] %></a>
 </li>
 <% end %>
 <ul>
