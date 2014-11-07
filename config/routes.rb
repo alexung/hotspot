@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :docs
 
   root "users#index"
-  
+
   get '/search', :to => 'repositories#search'
 
   # Github Callback
