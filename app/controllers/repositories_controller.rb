@@ -3,7 +3,6 @@ require 'json'
   def index
     y = `curl -i https://api.github.com/repos/alexung/dine-with-me/commits`
     @stuff = JSON.parse(y)
-    binding.pry
   end
 
   def show
@@ -26,8 +25,8 @@ require 'json'
   end
 
   def search
-    @user = params[:search]
-    redirect_to '/'
+    @user = params[:keyword]
+    redirect_to repositories_path
   end
 
   private
