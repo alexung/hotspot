@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   get 'search/show'
 
   resources :users
-  resources :repositories, except: [:edit, :update]
+  resources :repositories, except: [:edit, :update] do
+    resources :commits, only: [:show, :index]
+  end
   resources :docs
 
   root "users#index"
