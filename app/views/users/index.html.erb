@@ -3,3 +3,6 @@
 
 <h1>Hello Mars</h1>
 <%= render partial: 'search' %>
+<% unless current_user.nil? %>
+<%= User.find(current_user.id) %>
+<% end %>
