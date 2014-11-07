@@ -1,5 +1,5 @@
 class RepositoriesController < ApplicationController
-require 'json'
+  require 'json'
 
   def index
     @user = params[:keyword]
@@ -12,6 +12,11 @@ require 'json'
     owner = current_user.username
     repo_commits = `curl https://api.github.com/repos/#{owner}/#{repo_name}/commits?client_id=#{ENV['GITHUB_KEY']}&#{ENV['GITHUB_SECRET']}`
     @commits = JSON.parse(repo_commits)
+  end
+
+  def show_lynxshare
+    @rows = LynxShare.new.rows
+    render :show
   end
 
   def new
