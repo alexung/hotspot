@@ -1,5 +1,12 @@
 source 'https://rubygems.org'
 
+# Github api
+gem 'omniauth-github'
+gem 'github_api'
+
+# Keep api keys secure
+gem 'dotenv-rails'
+
 gem 'unicorn'
 gem 'faker'
 # Travis CI
@@ -41,6 +48,3 @@ group :production do
 	gem 'rails_12factor'
 end
 
-gem "dotenv-rails"
-gem 'omniauth-github'
-gem 'oauth2'

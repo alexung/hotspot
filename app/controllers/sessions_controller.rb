@@ -1,19 +1,15 @@
 class SessionsController < ApplicationController
 
 	def create
-		if user = User.find(params[session_params])
-			session[:user_id] = user.id
-			flash[:success]
-			redirect_to user_path(user)
-		else
-			flash[:error]
-			redirect_to root_path
-		end
+		auth = env['omniauth.auth']
+		user = User.find_or_create_by(email: auth[:info][:email].first)
+		session[:user_id] = user.id
+		redirect_to root_url, :notice => ""
 	end
 
 	def destroy
 		session[:user_id] = nil
-		redirect_to root_path
+		redirect_to root_url, :notice => ""
 	end
 
 end

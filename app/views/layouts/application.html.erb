@@ -8,12 +8,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <header>
-    <%= link_to "Home", root_path %>
-    <%= link_to "All Repositories", repositories_path %>
-  </header>
+	<header>
+		<%= link_to "Home", root_path %>
+		<%= link_to "All Repositories", repositories_path %>
+		<% if session[:user_id] %>
+		<li><%= link_to 'log out', logout_path %></li>
+		<% else %>
+		<li><%= link_to 'log in', '/auth/github/' %></li>
+		<% end %>
+	</header>
 
-<%= yield %>
+	<%= yield %>
 
 </body>
 </html>
