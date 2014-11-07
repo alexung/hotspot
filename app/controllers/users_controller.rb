@@ -7,12 +7,6 @@ class UsersController < ApplicationController
 		@user = User.find(current_user)
 	end
 
-  def search
-  	@user = params[:keyword]
-  	puts "-----------------------------------------"
-  	puts @user
-  end
-
 	def self.create_with_omniauth(auth)
 		create do |user|
 			user.uid = auth["uid"]
