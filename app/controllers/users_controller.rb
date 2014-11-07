@@ -7,4 +7,10 @@ class UsersController < ApplicationController
   	@user = User.find(current_user)
   end
 
+  def search
+  	@user = params[:keyword]
+  	puts "-----------------------------------------"
+  	puts @user
+  end
+
 end
