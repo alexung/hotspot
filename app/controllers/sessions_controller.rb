@@ -2,9 +2,14 @@ class SessionsController < ApplicationController
 
 	def create
 		auth = env['omniauth.auth']
-		user = User.find_or_create_by(email: auth[:info][:email].first)
-		session[:user_id] = user.id
-		redirect_to root_url, :notice => ""
+		if user = User.find_by_github_uid(auth["uid"])
+			session[:user_id]
+			redirect_to user_path(user)
+		else
+			user = User.create_with_omniauth(auth)
+			session[:user_id] = user.id
+			redirect_to root_url, :notice => ""
+		end
 	end
 
 	def destroy
