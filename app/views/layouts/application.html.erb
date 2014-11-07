@@ -10,7 +10,7 @@
 <body>
 	<header>
 		<%= link_to "Home", root_path %>
-		<%= link_to "All Repositories", repositories_path %>
+		<%#= link_to "All Repositories", repositories_path %>
 		<% if session[:user_id] %>
 		<li><%= link_to 'log out', logout_path %></li>
 		<% else %>

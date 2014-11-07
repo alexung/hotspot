@@ -1,8 +1,8 @@
 <h1>REPOS</h1>
 <ul>
-<% @repos.each do |repository| %>
-<li><%#= link_to "#{repository["name"]}", repository["svn_url"] %>
-  <%= repository["name"] %>
+<% @repositories.each do |repository| %>
+<li><%= link_to "#{repository["name"]}", repository["svn_url"] %>
+  <%#= repository["name"] %>
 </li>
 <% end %>
 <ul>
