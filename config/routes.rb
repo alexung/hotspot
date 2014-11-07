@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   root "users#index"
 
+  get '/lynxshare', :to => 'repositories#show_lynxshare'
+
   get '/search', :to => 'repositories#search'
 
   # Github Callback
