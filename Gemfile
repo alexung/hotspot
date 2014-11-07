@@ -7,6 +7,9 @@ gem 'github_api'
 # Keep api keys secure
 gem 'dotenv-rails'
 
+# Pry
+gem 'pry'
+
 gem 'unicorn'
 gem 'faker'
 # Travis CI
