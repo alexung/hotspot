@@ -1,0 +1,722 @@
+diff --git a/.gitignore b/.gitignore
+index 6a502e9..420deaf 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -14,3 +14,6 @@
+ # Ignore all logfiles and tempfiles.
+ /log/*.log
+ /tmp
++
++# Ignore .env
++/.env
+diff --git a/Gemfile b/Gemfile
+index 5108cf1..957634b 100644
+--- a/Gemfile
++++ b/Gemfile
+@@ -1,6 +1,9 @@
+ source 'https://rubygems.org'
+ 
+-
++gem 'unicorn'
++gem 'faker'
++# Travis CI
++gem 'travis-lint'
+ # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+ gem 'rails', '4.1.6'
+ # Use postgresql as the database for Active Record
+@@ -26,15 +29,17 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
+ # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+ gem 'spring',        group: :development
+ 
+-# Use ActiveModel has_secure_password
+-# gem 'bcrypt', '~> 3.1.7'
+-
+-# Use unicorn as the app server
+-# gem 'unicorn'
+-
+-# Use Capistrano for deployment
+-# gem 'capistrano-rails', group: :development
++# Test group
++group :test do
++	gem "rspec-rails"
++	gem "factory_girl_rails"
++	gem "capybara"
++	gem 'shoulda-matchers', require: false
++end
+ 
+-# Use debugger
+-# gem 'debugger', group: [:development, :test]
++group :production do
++	gem 'rails_12factor'
++end
+ 
++gem "dotenv-rails"
++gem 'oauth2'
+diff --git a/Gemfile.lock b/Gemfile.lock
+index 4979974..a7b7fc6 100644
+--- a/Gemfile.lock
++++ b/Gemfile.lock
+@@ -29,6 +29,12 @@ GEM
+       tzinfo (~> 1.1)
+     arel (5.0.1.20140414130214)
+     builder (3.2.2)
++    capybara (2.4.4)
++      mime-types (>= 1.16)
++      nokogiri (>= 1.3.3)
++      rack (>= 1.0.0)
++      rack-test (>= 0.5.4)
++      xpath (~> 2.0)
+     coffee-rails (4.0.1)
+       coffee-script (>= 2.2.0)
+       railties (>= 4.0.0, < 5.0)
+@@ -36,8 +42,21 @@ GEM
+       coffee-script-source
+       execjs
+     coffee-script-source (1.8.0)
++    diff-lcs (1.2.5)
++    dotenv (1.0.2)
++    dotenv-rails (1.0.2)
++      dotenv (= 1.0.2)
+     erubis (2.7.0)
+     execjs (2.2.2)
++    factory_girl (4.5.0)
++      activesupport (>= 3.0.0)
++    factory_girl_rails (4.5.0)
++      factory_girl (~> 4.5.0)
++      railties (>= 3.0.0)
++    faker (1.4.3)
++      i18n (~> 0.5)
++    faraday (0.9.0)
++      multipart-post (>= 1.2, < 3)
+     hike (1.2.3)
+     i18n (0.6.11)
+     jbuilder (2.2.4)
+@@ -47,11 +66,24 @@ GEM
+       railties (>= 3.0, < 5.0)
+       thor (>= 0.14, < 2.0)
+     json (1.8.1)
++    jwt (1.0.0)
++    kgio (2.9.2)
+     mail (2.6.3)
+       mime-types (>= 1.16, < 3)
+     mime-types (2.4.3)
++    mini_portile (0.6.0)
+     minitest (5.4.2)
+     multi_json (1.10.1)
++    multi_xml (0.5.5)
++    multipart-post (2.0.0)
++    nokogiri (1.6.3.1)
++      mini_portile (= 0.6.0)
++    oauth2 (1.0.0)
++      faraday (>= 0.8, < 0.10)
++      jwt (~> 1.0)
++      multi_json (~> 1.3)
++      multi_xml (~> 0.5)
++      rack (~> 1.2)
+     pg (0.17.1)
+     rack (1.5.2)
+     rack-test (0.6.2)
+@@ -66,14 +98,36 @@ GEM
+       bundler (>= 1.3.0, < 2.0)
+       railties (= 4.1.6)
+       sprockets-rails (~> 2.0)
++    rails_12factor (0.0.3)
++      rails_serve_static_assets
++      rails_stdout_logging
++    rails_serve_static_assets (0.0.2)
++    rails_stdout_logging (0.0.3)
+     railties (4.1.6)
+       actionpack (= 4.1.6)
+       activesupport (= 4.1.6)
+       rake (>= 0.8.7)
+       thor (>= 0.18.1, < 2.0)
++    raindrops (0.13.0)
+     rake (10.3.2)
+     rdoc (4.1.2)
+       json (~> 1.4)
++    rspec-core (3.1.7)
++      rspec-support (~> 3.1.0)
++    rspec-expectations (3.1.2)
++      diff-lcs (>= 1.2.0, < 2.0)
++      rspec-support (~> 3.1.0)
++    rspec-mocks (3.1.3)
++      rspec-support (~> 3.1.0)
++    rspec-rails (3.1.0)
++      actionpack (>= 3.0)
++      activesupport (>= 3.0)
++      railties (>= 3.0)
++      rspec-core (~> 3.1.0)
++      rspec-expectations (~> 3.1.0)
++      rspec-mocks (~> 3.1.0)
++      rspec-support (~> 3.1.0)
++    rspec-support (3.1.2)
+     sass (3.2.19)
+     sass-rails (4.0.4)
+       railties (>= 4.0.0, < 5.0)
+@@ -83,6 +137,8 @@ GEM
+     sdoc (0.4.1)
+       json (~> 1.7, >= 1.7.7)
+       rdoc (~> 4.0)
++    shoulda-matchers (2.7.0)
++      activesupport (>= 3.0.0)
+     spring (1.1.3)
+     sprockets (2.11.3)
+       hike (~> 1.2)
+@@ -96,6 +152,8 @@ GEM
+     thor (0.19.1)
+     thread_safe (0.3.4)
+     tilt (1.4.1)
++    travis-lint (2.0.0)
++      json
+     turbolinks (2.5.1)
+       coffee-rails
+     tzinfo (1.2.2)
+@@ -103,18 +161,34 @@ GEM
+     uglifier (2.5.3)
+       execjs (>= 0.3.0)
+       json (>= 1.8.0)
++    unicorn (4.8.3)
++      kgio (~> 2.6)
++      rack
++      raindrops (~> 0.7)
++    xpath (2.0.0)
++      nokogiri (~> 1.3)
+ 
+ PLATFORMS
+   ruby
+ 
+ DEPENDENCIES
++  capybara
+   coffee-rails (~> 4.0.0)
++  dotenv-rails
++  factory_girl_rails
++  faker
+   jbuilder (~> 2.0)
+   jquery-rails
++  oauth2
+   pg
+   rails (= 4.1.6)
++  rails_12factor
++  rspec-rails
+   sass-rails (~> 4.0.3)
+   sdoc (~> 0.4.0)
++  shoulda-matchers
+   spring
++  travis-lint
+   turbolinks
+   uglifier (>= 1.3.0)
++  unicorn
+diff --git a/Procfile b/Procfile
+new file mode 100644
+index 0000000..5784a17
+--- /dev/null
++++ b/Procfile
+@@ -0,0 +1 @@
++web: bundle exec unicorn -p $PORT
+diff --git a/README.rdoc b/README.rdoc
+index dd4e97e..57206f6 100644
+--- a/README.rdoc
++++ b/README.rdoc
+@@ -1,28 +1,7 @@
+-== README
++== Hotspot
+ 
+-This README would normally document whatever steps are necessary to get the
+-application up and running.
++We aim to foster a one-stop shop for code reviewers to go to while looking over others' code.  We plan to create a page that displays the file path, the number of commits, and the users that have committed to that certain file.
+ 
+-Things you may want to cover:
++We are using Ruby on Rails, Javascript, JQuery, AJAX, the Github API, and Omniauth.
+ 
+-* Ruby version
+-
+-* System dependencies
+-
+-* Configuration
+-
+-* Database creation
+-
+-* Database initialization
+-
+-* How to run the test suite
+-
+-* Services (job queues, cache servers, search engines, etc.)
+-
+-* Deployment instructions
+-
+-* ...
+-
+-
+-Please feel free to use a different markup language if you do not plan to run
+-<tt>rake doc:app</tt>.
++Link to our Trello: (https://trello.com/b/i85oXNEV/hotspot)
+diff --git a/app/controllers/application_controller.rb b/app/controllers/application_controller.rb
+index d83690e..2ec37e2 100644
+--- a/app/controllers/application_controller.rb
++++ b/app/controllers/application_controller.rb
+@@ -2,4 +2,5 @@ class ApplicationController < ActionController::Base
+   # Prevent CSRF attacks by raising an exception.
+   # For APIs, you may want to use :null_session instead.
+   protect_from_forgery with: :exception
++
+ end
+diff --git a/app/controllers/docs_controller.rb b/app/controllers/docs_controller.rb
+new file mode 100644
+index 0000000..8b8a024
+--- /dev/null
++++ b/app/controllers/docs_controller.rb
+@@ -0,0 +1,7 @@
++class DocsController < ApplicationController
++
++  def show
++    @doc = Doc.find(params[:id])
++  end
++
++end
+diff --git a/app/controllers/repositories_controller.rb b/app/controllers/repositories_controller.rb
+new file mode 100644
+index 0000000..9c04b84
+--- /dev/null
++++ b/app/controllers/repositories_controller.rb
+@@ -0,0 +1,32 @@
++class RepositoriesController < ApplicationController
++
++  def index
++    @repositories = Repository.all
++  end
++
++  def show
++    @repository = Repository.find(params[:id])
++  end
++
++  def new
++  	@repository = Repository.new
++  end
++
++  def create
++  	@repository = Repository.new(repository_params)
++  	if @repository.save
++  		flash[:success]
++  		redirect_to @repository
++  	else
++  		flash[:error]
++  		redirect_to 'new'
++  	end
++  end
++
++  private
++
++  def repository_params
++  	params.require(:repository).permit(:url, :name, :user_id)
++  end
++
++end
+diff --git a/app/controllers/sessions_controller.rb b/app/controllers/sessions_controller.rb
+new file mode 100644
+index 0000000..52c2711
+--- /dev/null
++++ b/app/controllers/sessions_controller.rb
+@@ -0,0 +1,19 @@
++class SessionsController < ApplicationController
++
++	def create
++		if user = User.find(params[session_params])
++			session[:user_id] = user.id
++			flash[:success]
++			redirect_to user_path(user)
++		else
++			flash[:error]
++			redirect_to root_path
++		end
++	end
++
++	def destroy
++		session[:user_id] = nil
++		redirect_to root_path
++	end
++
++end
+diff --git a/app/controllers/users_controller.rb b/app/controllers/users_controller.rb
+new file mode 100644
+index 0000000..cad3733
+--- /dev/null
++++ b/app/controllers/users_controller.rb
+@@ -0,0 +1,10 @@
++class UsersController < ApplicationController
++
++  def index
++  end
++
++  def show
++  	@user = User.find(current_user)
++  end
++
++end
+diff --git a/app/helpers/application_helper.rb b/app/helpers/application_helper.rb
+index de6be79..cf153eb 100644
+--- a/app/helpers/application_helper.rb
++++ b/app/helpers/application_helper.rb
+@@ -1,2 +1,13 @@
+ module ApplicationHelper
+-end
++
++  CLIENT_ID = ENV['CLIENT_ID']
++  CLIENT_SECRET = ENV['CLIENT_SECRET']
++
++  def client
++    client ||= OAuth2::Client.new(CLIENT_ID, CLIENT_SECRET, {
++              :site => 'https://github.com/login/oauth/authorize',
++              :authorize_url => "/o/oauth2/auth",
++              :token_url => "/o/oauth2/token"
++            })
++  end
++end
+\ No newline at end of file
+diff --git a/app/helpers/session_helper.rb b/app/helpers/session_helper.rb
+new file mode 100644
+index 0000000..007efff
+--- /dev/null
++++ b/app/helpers/session_helper.rb
+@@ -0,0 +1,7 @@
++module SessionHelper
++
++	def current_user
++		@current_user ||= User.find(session[:user_id]) if session[:user_id]
++	end
++	
++end
+diff --git a/app/models/doc.rb b/app/models/doc.rb
+new file mode 100644
+index 0000000..e0193cd
+--- /dev/null
++++ b/app/models/doc.rb
+@@ -0,0 +1,3 @@
++class Doc < ActiveRecord::Base
++  belongs_to :repository
++end
+diff --git a/app/models/repository.rb b/app/models/repository.rb
+new file mode 100644
+index 0000000..6667995
+--- /dev/null
++++ b/app/models/repository.rb
+@@ -0,0 +1,4 @@
++class Repository < ActiveRecord::Base
++  has_many :docs
++	belongs_to :user
++end
+diff --git a/app/models/user.rb b/app/models/user.rb
+new file mode 100644
+index 0000000..914e917
+--- /dev/null
++++ b/app/models/user.rb
+@@ -0,0 +1,4 @@
++class User < ActiveRecord::Base
++	has_many :repositories
++	has_many :docs, through: :repositories
++end
+diff --git a/app/views/docs/show.html.erb b/app/views/docs/show.html.erb
+new file mode 100644
+index 0000000..7281ba3
+--- /dev/null
++++ b/app/views/docs/show.html.erb
+@@ -0,0 +1,3 @@
++<p>[Link to individual doc?]</p>
++
++<%= link_to "#{@doc.name}", "#{@doc.url}" %>
+diff --git a/app/views/layouts/application.html.erb b/app/views/layouts/application.html.erb
+index a5792b0..7e4a782 100644
+--- a/app/views/layouts/application.html.erb
++++ b/app/views/layouts/application.html.erb
+@@ -7,6 +7,10 @@
+   <%= csrf_meta_tags %>
+ </head>
+ <body>
++  <header>
++    <%= link_to "Home", root_path %>
++    <%= link_to "All Repositories", repositories_path %>
++  </header>
+ 
+ <%= yield %>
+ 
+diff --git a/app/views/repositories/_save_repo_button.html.erb b/app/views/repositories/_save_repo_button.html.erb
+new file mode 100644
+index 0000000..d0bbc14
+--- /dev/null
++++ b/app/views/repositories/_save_repo_button.html.erb
+@@ -0,0 +1,3 @@
++<%= form_for @repostitory do |f| %>
++<%= f.submit %>
++<% end %>
+\ No newline at end of file
+diff --git a/app/views/repositories/index.html.erb b/app/views/repositories/index.html.erb
+new file mode 100644
+index 0000000..533ca87
+--- /dev/null
++++ b/app/views/repositories/index.html.erb
+@@ -0,0 +1,7 @@
++<p>[All repositories that belong to a certain user]</p>
++
++<% @repositories.each do |repository| %>
++  <br>
++  <%= link_to "#{repository.name}", repository_path(id: repository.id) %>
++  <br>
++<% end %>
+diff --git a/app/views/repositories/show.html.erb b/app/views/repositories/show.html.erb
+new file mode 100644
+index 0000000..a6ba8cd
+--- /dev/null
++++ b/app/views/repositories/show.html.erb
+@@ -0,0 +1,6 @@
++<p>[All files within a repo, ordered from greatest to least commits]</p>
++
++<% @repository.docs.each do |doc| %>
++  <%= link_to "#{doc.name}", doc_path(id: doc.id) %><br><br>
++<% end %>
++
+diff --git a/app/views/users/index.html.erb b/app/views/users/index.html.erb
+new file mode 100644
+index 0000000..749dbf6
+--- /dev/null
++++ b/app/views/users/index.html.erb
+@@ -0,0 +1,4 @@
++<p>[Login for users above]</p>
++<p>[Search bar for users]</p>
++
++<h1>Hello World</h1>
+\ No newline at end of file
+diff --git a/app/views/users/show.html.erb b/app/views/users/show.html.erb
+new file mode 100644
+index 0000000..05e4a76
+--- /dev/null
++++ b/app/views/users/show.html.erb
+@@ -0,0 +1,11 @@
++<h1>User Show</h1>
++<% if @user.repositories %>
++<ul>
++	<% @user.repositories.each do |repo| %>
++		<li><%= link_to '#{repo.name}', repository_path(repo) %><li>
++	<% end %>
++<ul>
++<% else %>
++<h3>This is where the repos you are reviewing would live if you had any...</h3>
++<% end %>	
++
+diff --git a/config/application.rb b/config/application.rb
+index bf27661..9f49160 100644
+--- a/config/application.rb
++++ b/config/application.rb
+@@ -1,4 +1,5 @@
+ require File.expand_path('../boot', __FILE__)
++require 'dotenv'
+ 
+ # Pick the frameworks you want:
+ require "active_model/railtie"
+diff --git a/config/routes.rb b/config/routes.rb
+index 3f66539..e436d9d 100644
+--- a/config/routes.rb
++++ b/config/routes.rb
+@@ -1,56 +1,7 @@
+ Rails.application.routes.draw do
+-  # The priority is based upon order of creation: first created -> highest priority.
+-  # See how all your routes lay out with "rake routes".
++  resources :users
++  resources :repositories, except: [:edit, :update]
++  resources :docs
+ 
+-  # You can have the root of your site routed with "root"
+-  # root 'welcome#index'
+-
+-  # Example of regular route:
+-  #   get 'products/:id' => 'catalog#view'
+-
+-  # Example of named route that can be invoked with purchase_url(id: product.id)
+-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+-
+-  # Example resource route (maps HTTP verbs to controller actions automatically):
+-  #   resources :products
+-
+-  # Example resource route with options:
+-  #   resources :products do
+-  #     member do
+-  #       get 'short'
+-  #       post 'toggle'
+-  #     end
+-  #
+-  #     collection do
+-  #       get 'sold'
+-  #     end
+-  #   end
+-
+-  # Example resource route with sub-resources:
+-  #   resources :products do
+-  #     resources :comments, :sales
+-  #     resource :seller
+-  #   end
+-
+-  # Example resource route with more complex sub-resources:
+-  #   resources :products do
+-  #     resources :comments
+-  #     resources :sales do
+-  #       get 'recent', on: :collection
+-  #     end
+-  #   end
+-
+-  # Example resource route with concerns:
+-  #   concern :toggleable do
+-  #     post 'toggle'
+-  #   end
+-  #   resources :posts, concerns: :toggleable
+-  #   resources :photos, concerns: :toggleable
+-
+-  # Example resource route within a namespace:
+-  #   namespace :admin do
+-  #     # Directs /admin/products/* to Admin::ProductsController
+-  #     # (app/controllers/admin/products_controller.rb)
+-  #     resources :products
+-  #   end
++  root "users#index"
+ end
+diff --git a/db/migrate/20141106153915_create_users.rb b/db/migrate/20141106153915_create_users.rb
+new file mode 100644
+index 0000000..491bc06
+--- /dev/null
++++ b/db/migrate/20141106153915_create_users.rb
+@@ -0,0 +1,11 @@
++class CreateUsers < ActiveRecord::Migration
++  def change
++    create_table :users do |t|
++      t.string :name
++      t.string :email
++      t.string :password_digest
++
++      t.timestamps
++    end
++  end
++end
+diff --git a/db/migrate/20141106154323_add_o_auth_token_to_users.rb b/db/migrate/20141106154323_add_o_auth_token_to_users.rb
+new file mode 100644
+index 0000000..643a34e
+--- /dev/null
++++ b/db/migrate/20141106154323_add_o_auth_token_to_users.rb
+@@ -0,0 +1,6 @@
++class AddOAuthTokenToUsers < ActiveRecord::Migration
++  def change
++    add_column :users, :oauthtoken, :string
++    add_column :users, :oauthrefresh, :string
++  end
++end
+diff --git a/db/migrate/20141106154512_create_repositories.rb b/db/migrate/20141106154512_create_repositories.rb
+new file mode 100644
+index 0000000..589b0f3
+--- /dev/null
++++ b/db/migrate/20141106154512_create_repositories.rb
+@@ -0,0 +1,10 @@
++class CreateRepositories < ActiveRecord::Migration
++  def change
++    create_table :repositories do |t|
++      t.string :name
++      t.string :url
++
++      t.timestamps
++    end
++  end
++end
+diff --git a/db/migrate/20141106160320_create_docs.rb b/db/migrate/20141106160320_create_docs.rb
+new file mode 100644
+index 0000000..5f1bbaf
+--- /dev/null
++++ b/db/migrate/20141106160320_create_docs.rb
+@@ -0,0 +1,11 @@
++class CreateDocs < ActiveRecord::Migration
++  def change
++    create_table :docs do |t|
++      t.string :name
++      t.string :url
++      t.belongs_to :repository
++
++      t.timestamps
++    end
++  end
++end
+diff --git a/db/migrate/20141106163956_add_repo_user_id_col.rb b/db/migrate/20141106163956_add_repo_user_id_col.rb
+new file mode 100644
+index 0000000..f9d65db
+--- /dev/null
++++ b/db/migrate/20141106163956_add_repo_user_id_col.rb
+@@ -0,0 +1,5 @@
++class AddRepoUserIdCol < ActiveRecord::Migration
++  def change
++  	add_column :repositories, :user_id, :integer
++  end
++end
+diff --git a/db/schema.rb b/db/schema.rb
+new file mode 100644
+index 0000000..9e7845d
+--- /dev/null
++++ b/db/schema.rb
+@@ -0,0 +1,45 @@
++# encoding: UTF-8
++# This file is auto-generated from the current state of the database. Instead
++# of editing this file, please use the migrations feature of Active Record to
++# incrementally modify your database, and then regenerate this schema definition.
++#
++# Note that this schema.rb definition is the authoritative source for your
++# database schema. If you need to create the application database on another
++# system, you should be using db:schema:load, not running all the migrations
++# from scratch. The latter is a flawed and unsustainable approach (the more migrations
++# you'll amass, the slower it'll run and the greater likelihood for issues).
++#
++# It's strongly recommended that you check this file into your version control system.
++
++ActiveRecord::Schema.define(version: 20141106163956) do
++
++  # These are extensions that must be enabled in order to support this database
++  enable_extension "plpgsql"
++
++  create_table "docs", force: true do |t|
++    t.string   "name"
++    t.string   "url"
++    t.integer  "repository_id"
++    t.datetime "created_at"
++    t.datetime "updated_at"
++  end
++
++  create_table "repositories", force: true do |t|
++    t.string   "name"
++    t.string   "url"
++    t.datetime "created_at"
++    t.datetime "updated_at"
++    t.integer  "user_id"
++  end
++
++  create_table "users", force: true do |t|
++    t.string   "name"
++    t.string   "email"
++    t.string   "password_digest"
++    t.datetime "created_at"
++    t.datetime "updated_at"
++    t.string   "oauthtoken"
++    t.string   "oauthrefresh"
++  end
++
++end
+diff --git a/db/seeds.rb b/db/seeds.rb
+index 4edb1e8..f1423b1 100644
+--- a/db/seeds.rb
++++ b/db/seeds.rb
+@@ -1,7 +1,8 @@
+-# This file should contain all the record creation needed to seed the database with its default values.
+-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+-#
+-# Examples:
+-#
+-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+-#   Mayor.create(name: 'Emanuel', city: cities.first)
++10.times do
++  Repository.create(name:Faker::Lorem.word, url: Faker::Internet.url)
++end
++
++50.times do
++  Doc.create(name:Faker::Lorem.word, url: Faker::Internet.url, repository_id: (1..10).to_a.sample)
++end
++

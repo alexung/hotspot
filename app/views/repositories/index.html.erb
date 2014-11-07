@@ -1,10 +1,7 @@
-<p>[All repositories that belong to a certain user]</p>
-<%= @stuff %>
-
+<h1>REPOS</h1>
+<ul>
 <% @repositories.each do |repository| %>
-  <br>
-  <%= link_to "#{repository.name}", repository_path(id: repository.id) %>
-  <br>
+<li><%= link_to "#{repository["name"]}", repository["svn_url"] %>
+</li>
 <% end %>
-
-	
+<ul>
