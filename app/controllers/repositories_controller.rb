@@ -7,7 +7,10 @@ require 'json'
   end
 
   def show
-   
+    repo_name = params["name"]
+    owner = current_user.username
+    repo_commits = `curl https://api.github.com/repos/#{owner}/#{repo_name}/commits`
+    @commits = JSON.parse(repo_commits)
   end
 
   def new
