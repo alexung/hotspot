@@ -1,9 +1,9 @@
 class RepositoriesController < ApplicationController
 require 'json'
+  
   def index
-    y = `curl -i https://api.github.com/repos/alexung/dine-with-me/commits`
-    @stuff = JSON.parse(y)
-    binding.pry
+    y = `curl https://api.github.com/repos/alexung/embark/commits`
+    @repositories = JSON.parse(y)
   end
 
   def show
