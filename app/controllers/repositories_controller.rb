@@ -25,6 +25,11 @@ require 'json'
   	end
   end
 
+  def search
+    @user = params[:search]
+    redirect_to '/'
+  end
+
   private
 
   def repository_params
