@@ -2,7 +2,8 @@ class RepositoriesController < ApplicationController
 require 'json'
   
   def index
-    repos = `curl https://api.github.com/users/alexung/repos`
+    user_name = params["user_name"]
+    repos = `curl https://api.github.com/users/#{user_name}/repos`
     @repositories = JSON.parse(repos)
   end
 
