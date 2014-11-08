@@ -5,7 +5,6 @@ class CreateUsers < ActiveRecord::Migration
       t.string :github_username
       t.string :github_uid
       t.string :email
-      t.string :password_digest
       t.string :avatar_url
 
       t.timestamps
