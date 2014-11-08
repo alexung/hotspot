@@ -20,6 +20,8 @@ class RepositoriesController < ApplicationController
     @rows_to_parse.map do |path|
       RepositoryFile.create(
                             github_url: "http://github.com/#{@username}/#{@repository}/blob/master/#{path[:file_path]}",
+                            repository_id: @repository_to_database.id,
+                            name: @repository_to_database.name,
                             commits: path[:commits],
                             contributers: path[:contributers].to_s,
                             insertions: path[:insertions],
@@ -28,8 +30,6 @@ class RepositoriesController < ApplicationController
     end
 
     @rows = CodeReview.new(@repository, @username).rows.sort_by{|row_arr| -row_arr[:commits]}
-
-    render :show
   end
 
   private
