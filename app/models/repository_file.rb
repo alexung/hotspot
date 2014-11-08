@@ -1,3 +1,3 @@
-class ProjectFile < ActiveRecord::Base
+class RepositoryFile < ActiveRecord::Base
   belongs_to :repository
 end

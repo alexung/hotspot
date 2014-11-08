@@ -1,2 +1,2 @@
-class ProjectFiles < ApplicationController
+class RepositoryFiles < ApplicationController
 end
