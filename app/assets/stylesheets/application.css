@@ -17,3 +17,10 @@
 	text-align: center;
 	margin-bottom: 20px;
 }
+
+.start-code-review-button {
+  border: solid;
+  margin:.1%;
+  padding: 1%;
+
+}
