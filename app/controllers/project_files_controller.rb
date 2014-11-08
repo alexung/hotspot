@@ -1,2 +1,0 @@
-class ProjectFiles < ApplicationController
-end
