@@ -1,0 +1,2 @@
+class ProjectFiles < ApplicationController
+end
