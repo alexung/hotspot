@@ -9,6 +9,7 @@ class RepositoriesController < ApplicationController
   def show
     @repository = params[:repo]
     @username = params[:username]
+    @contributers = fetch_gh_contributors(@username, @repository)
     
 
     #success! saving repo to database
