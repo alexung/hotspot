@@ -15,7 +15,7 @@ class RepositoriesController < ApplicationController
     @repository_to_database = Repository.new(user_id: 1, name: params[:repo], url: "http://www.github.com/#{@username}/#{@repository}")
     @repository_to_database.save
 
-    #success! Saving repofile to database
+    #success! Saving repofiles to database
     @rows_to_parse = CodeReview.new(@repository, @username).rows
     @rows_to_parse.map do |path|
       RepositoryFile.create(
@@ -31,22 +31,6 @@ class RepositoriesController < ApplicationController
 
     render :show
   end
-
-  # def new
-  # 	@repository = Repository.new
-  # end
-
-  # def create
-  # 	@repository = Repository.new(repository_params)
-  #   @repository.user = session.user_id
-  # 	if @repository.save
-  # 		flash[:success]
-  # 		redirect_to @repository
-  # 	else
-  # 		flash[:error]
-  # 		redirect_to 'new'
-  # 	end
-  # end
 
   private
 
