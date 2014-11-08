@@ -10,7 +10,7 @@ class RepositoriesController < ApplicationController
   def show
     @repository = params[:repo]
     @username = params[:username]
-    @rows = CodeReview.new(@repository, @username).rows
+    @rows = CodeReview.new(@repository, @username).rows.sort_by{|row_arr| -row_arr[:commits]}
     render :show
   end
 
