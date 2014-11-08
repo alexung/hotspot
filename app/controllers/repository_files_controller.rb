@@ -1,0 +1,2 @@
+class RepositoryFilesController < ApplicationController
+end
