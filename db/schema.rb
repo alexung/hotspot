@@ -27,6 +27,18 @@ ActiveRecord::Schema.define(version: 20141108004634) do
     t.datetime "updated_at"
   end
 
+  create_table "repository_files", force: true do |t|
+    t.string   "github_url"
+    t.string   "name"
+    t.integer  "repository_id"
+    t.integer  "insertions"
+    t.integer  "deletions"
+    t.string   "contributers"
+    t.integer  "commits"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "github_username"
