@@ -4,17 +4,13 @@ class RepositoriesController < ApplicationController
     @user = params[:username]
 
     @repositories = fetch_gh_repos({:user => @user})
-
-    p "*"*50
-    p @repositories["message"]
-    p "*"*50
-
-    if @repositories["message"] != "Not Found"
-      render :index
-    rescue
-      render :error
+    @repositories.class
+    if @repositories.class == Array
+     render :index
+    else
+      flash[:error] = "No user was found with that username."
+      redirect_to root_path
     end
-
   end
 
   def show
