@@ -15,13 +15,18 @@ class RepositoriesController < ApplicationController
     @repository_to_database = Repository.new(user_id: 1, name: params[:repo], url: "http://www.github.com/#{@username}/#{@repository}")
     @repository_to_database.save
 
-    #interpolate some each statement here
-    @rows.map do |path|
-    RepositoryFile.create(github_url: "http://github.com/#{@username}/#{@repository}/blob/master/#{CodeReview.rows.file_path}", commits: CodeReview.commits, contributors: CodeReview.contributors, insertions: CodeReview.insertions, deletions: CodeReview.deletions)
-  end
-    #@repository_file_to_database.save
-
+    #success! Saving repofile to database
     @rows = CodeReview.new(@repository, @username).rows
+    @rows.map do |path|
+      RepositoryFile.create(
+                            github_url: "http://github.com/#{@username}/#{@repository}/blob/master/#{path[:file_path]}",
+                            commits: path[:commits],
+                            contributers: path[:contributers].to_s,
+                            insertions: path[:insertions],
+                            deletions: path[:deletions]
+                            )
+    end
+
     render :show
   end
 
