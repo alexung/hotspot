@@ -15,11 +15,13 @@ class RepositoriesController < ApplicationController
     @repository_to_database = Repository.new(user_id: 1, name: params[:repo], url: "http://www.github.com/#{@username}/#{@repository}")
     @repository_to_database.save
 
-    #success! Saving repofile to database
+    #success! Saving repofiles to database
     @rows_to_parse = CodeReview.new(@repository, @username).rows
     @rows_to_parse.map do |path|
       RepositoryFile.create(
                             github_url: "http://github.com/#{@username}/#{@repository}/blob/master/#{path[:file_path]}",
+                            repository_id: @repository_to_database.id,
+                            name: @repository_to_database.name,
                             commits: path[:commits],
                             contributers: path[:contributers].to_s,
                             insertions: path[:insertions],
@@ -28,25 +30,7 @@ class RepositoriesController < ApplicationController
     end
 
     @rows = CodeReview.new(@repository, @username).rows.sort_by{|row_arr| -row_arr[:commits]}
-
-    redirect_to root_path
   end
-
-  # def new
-  # 	@repository = Repository.new
-  # end
-
-  # def create
-  # 	@repository = Repository.new(repository_params)
-  #   @repository.user = session.user_id
-  # 	if @repository.save
-  # 		flash[:success]
-  # 		redirect_to @repository
-  # 	else
-  # 		flash[:error]
-  # 		redirect_to 'new'
-  # 	end
-  # end
 
   private
 
