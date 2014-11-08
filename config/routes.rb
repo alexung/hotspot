@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'search/index'
-
-  get 'search/show'
-
   resources :users
   resources :repositories, except: [:edit, :update]
   resources :commits, only: [:show, :index]
@@ -13,7 +9,9 @@ Rails.application.routes.draw do
 
   get '/lynxshare', :to => 'repositories#show_lynxshare'
 
-  get '/search', :to => 'repositories#search'
+  get '/search', :to => 'repositories#index'
+
+  get '/code_review', :to => 'repositories#show'
 
   # Github Callback
   get '/auth/github/callback', to: 'sessions#create'
