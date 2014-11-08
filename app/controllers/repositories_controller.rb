@@ -16,8 +16,8 @@ class RepositoriesController < ApplicationController
     @repository_to_database.save
 
     #success! Saving repofile to database
-    @rows = CodeReview.new(@repository, @username).rows
-    @rows.map do |path|
+    @rows_to_parse = CodeReview.new(@repository, @username).rows
+    @rows_to_parse.map do |path|
       RepositoryFile.create(
                             github_url: "http://github.com/#{@username}/#{@repository}/blob/master/#{path[:file_path]}",
                             commits: path[:commits],
@@ -26,6 +26,8 @@ class RepositoriesController < ApplicationController
                             deletions: path[:deletions]
                             )
     end
+
+    @rows = CodeReview.new(@repository, @username).rows.sort_by{|row_arr| -row_arr[:commits]}
 
     render :show
   end

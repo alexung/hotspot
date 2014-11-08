@@ -10,15 +10,26 @@
 <body>
 	<header>
 		<nav class="navbar navbar-default" role="navigation">
-				<%#= link_to "All Repositories", repositories_path %>
-				<ul class="nav navbar-nav">
-				<li><%= link_to "Home", root_path %></li>
-				<% if session[:user_id] %>
-				<li><%= link_to 'Logout', logout_path %></li>
-				<% else %>
-				<li><%= link_to 'Login', '/auth/github/' %></li>
-				<% end %>
-			</ul>
+			<section class="container-fluid">
+				<section class="row">
+					<%#= link_to "All Repositories", repositories_path %>
+					<ul class="nav navbar-nav col-md-3">
+						<li><%= link_to "Home", root_path %></li>
+						<% if session[:user_id] %>
+						<li><%= link_to 'Logout', logout_path %></li>
+						<% else %>
+						<li><%= link_to 'Login', '/auth/github/' %></li>
+						<% end %>
+					</ul>
+					<section class="col-md-6"></section>
+					<section class="col-md-3">
+						<form class="navbar-form navbar-right" action="/search" method="get">
+							<input class="form-control" name="username" placeholder="search">
+							<input class="form-control" type="submit" label="submit">
+						</form>
+					</section>
+				</section>
+			</section>
 		</nav>
 	</header>
 	<section class="container-fluid">
