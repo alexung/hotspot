@@ -1,9 +1,8 @@
 <h1>REPOS</h1>
 <ul>
 <% @repositories.each do |repository| %>
-
-<li>
-	<a href="/code_review?username=<%=@user%>&repo=<%=repository["name"]%>"><%= repository["name"] %></a>
-</li>
+	<li>
+		<a href="/code_review?username=<%=@user%>&repo=<%=repository["name"]%>><%= repository["name"] %></a>
+	</li>
 <% end %>
 <ul>
