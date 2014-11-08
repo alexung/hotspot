@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 	has_many :repositories
-	has_many :docs, through: :repositories
+	has_many :repository_files, through: :repositories
+	has_many :notes
 
 	def self.create_with_omniauth(auth)
 		create do |user|
