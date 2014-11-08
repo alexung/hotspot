@@ -31,23 +31,7 @@ class RepositoriesController < ApplicationController
 
     render :show
   end
-
-  # def new
-  # 	@repository = Repository.new
-  # end
-
-  # def create
-  # 	@repository = Repository.new(repository_params)
-  #   @repository.user = session.user_id
-  # 	if @repository.save
-  # 		flash[:success]
-  # 		redirect_to @repository
-  # 	else
-  # 		flash[:error]
-  # 		redirect_to 'new'
-  # 	end
-  # end
-
+  
   private
 
   def repository_params
