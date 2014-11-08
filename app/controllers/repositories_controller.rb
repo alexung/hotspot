@@ -1,10 +1,20 @@
 class RepositoriesController < ApplicationController
-  require 'json'
-
+  include GithubHelper
   def index
     @user = params[:username]
-    @repos = `curl https://api.github.com/users/#{@user}/repos?client_id=#{ENV['GITHUB_KEY']}&client_secret=#{ENV['GITHUB_SECRET']}`
-    @repositories = JSON.parse(@repos)
+
+    @repositories = fetch_gh_repos({:user => @user})
+
+    p "*"*50
+    p @repositories["message"]
+    p "*"*50
+
+    if @repositories["message"] != "Not Found"
+      render :index
+    rescue
+      render :error
+    end
+
   end
 
   def show
