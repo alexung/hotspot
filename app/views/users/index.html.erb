@@ -1,2 +1,5 @@
-<%= render partial: 'splash'%>
+<% if user_logged_in? %>
 <%= render partial: 'dashboard'%>
+<% else %>
+<%= render partial: 'splash'%>
+<% end %>
