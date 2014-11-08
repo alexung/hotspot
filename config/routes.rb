@@ -1,8 +1,10 @@
 	Rails.application.routes.draw do
+  get 'welcome/index'
+
   resources :users, only: [:show, :index]
   resources :repositories, except: [:edit, :update]
 
-  root "users#index"
+  root "welcome#index"
 
   get '/search', :to => 'repositories#index'
 

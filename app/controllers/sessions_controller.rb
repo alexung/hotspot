@@ -4,11 +4,11 @@ class SessionsController < ApplicationController
 		auth = env['omniauth.auth']
 		if user = User.where(email: auth["info"]["email"]).first
 		session[:user_id] = user.id
-		redirect_to user_path(user)
+		redirect_to root_path
 		else
 			user = User.create_with_omniauth(auth)
 			session[:user_id] = user.id
-			redirect_to user_path(user)
+			redirect_to root_path
 		end
 	end
 
