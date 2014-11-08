@@ -16,22 +16,13 @@ ActiveRecord::Schema.define(version: 20141108004634) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "project_files", force: true do |t|
+  end
+
   create_table "repositories", force: true do |t|
     t.string   "name"
     t.string   "url"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "repository_files", force: true do |t|
-    t.string   "github_url"
-    t.string   "name"
-    t.integer  "repository_id"
-    t.integer  "insertions"
-    t.integer  "deletions"
-    t.string   "contributors"
-    t.integer  "commits"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
