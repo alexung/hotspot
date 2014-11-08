@@ -8,3 +8,10 @@
 	<p class="col-md-6 page_titles">(This is the logged in users dashboard)</p>
 	<section class="col-md-3"></section>
 </section>
+<% @repositories.each do |repo| %>
+	<section class="row">
+		<section class="col-md-3"></section>
+		<a href="#" class="col-md-6 page_titles"><%= repo.name %></a>
+		<section class="col-md-3"></section>
+	</section>
+<% end %>
