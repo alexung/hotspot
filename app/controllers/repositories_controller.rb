@@ -29,7 +29,7 @@ class RepositoriesController < ApplicationController
 
     @rows = CodeReview.new(@repository, @username).rows.sort_by{|row_arr| -row_arr[:commits]}
 
-    render :show
+    redirect_to root_path
   end
 
   # def new

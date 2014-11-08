@@ -16,9 +16,6 @@ ActiveRecord::Schema.define(version: 20141108004634) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "project_files", force: true do |t|
-  end
-
   create_table "repositories", force: true do |t|
     t.string   "name"
     t.string   "url"
