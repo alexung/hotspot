@@ -3,12 +3,13 @@ class RepositoriesController < ApplicationController
 
   def index
     @user = params[:username]
-    @repositories = fetch_gh_repos(:user => @user)
+    @repositories = fetch_gh_repos(@user)
   end
 
   def show
     @repository = params[:repo]
     @username = params[:username]
+    
 
     #success! saving repo to database
     @repository_to_database = Repository.new(user_id: 1, name: params[:repo], url: "http://www.github.com/#{@username}/#{@repository}")
