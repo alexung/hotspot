@@ -18,6 +18,12 @@ module GithubHelper
   	fetch_gh(path)
   end
 
+  def fetch_user_email
+  	self.map do |contributor|
+  		contributor["login"]
+  	end
+  end
+
   def fetch_contributor_avatar
   	self.map do |contributor|
   		contributor["avatar_url"]
