@@ -1,18 +1,19 @@
-<section class="container">
-	<section class="row">
-		<section class="col-md-12">
-			<table class="table table-bordered">
-				<tr>
-					<th>File Path</th>
-					<th>Commits</th>
-					<th>Contributers</th>
-					<th>Insertions</th>
-					<th>Deletions</th>
-				</tr>
-				<% @rows.each do |row| %>
-				<%= render partial: 'file_path_row', locals: row %>
-				<% end %>
-			</table>
-		</section>
-	</section>
+<section class="row">
+	<section class="col-md-3"></section>
+	<h3 class="col-md-6 page_titles">Files In Repo</h3>
+	<section class="col-md-3"></section>
+</section>
+<section class="container-fluid">
+	<table class="table table-bordered">
+		<tr>
+			<th>File Path</th>
+			<th>Commits</th>
+			<th>Contributers</th>
+			<th>Insertions</th>
+			<th>Deletions</th>
+		</tr>
+		<% @rows.each do |row| %>
+		<%= render partial: 'file_path_row', locals: row %>
+		<% end %>
+	</table>
 </section>
