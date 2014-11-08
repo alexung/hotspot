@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.1.2"
+#ruby "2.1.2"
 # Github api
 gem 'omniauth-github'
 gem 'github_api'

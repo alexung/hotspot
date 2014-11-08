@@ -2,7 +2,8 @@
 <ul>
 <% @repositories.each do |repository| %>
 	<li>
-		<a href="/code_review?username=<%=@user%>&repo=<%=repository["name"]%>"><%= repository["name"] %></a>
+		<a href="/code-review?username=<%=@user%>&repo=<%=repository["name"]%>"><%= repository["name"] %></a>
+    <%= render "save_repo_button" %>
 	</li>
 <% end %>
 <ul>

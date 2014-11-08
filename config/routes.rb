@@ -1,12 +1,13 @@
 	Rails.application.routes.draw do
   resources :users, only: [:show, :index]
   resources :repositories, except: [:edit, :update]
-  
+
   root "users#index"
 
   get '/search', :to => 'repositories#index'
 
-  get '/code_review', :to => 'repositories#show'
+  get '/code-review', :to => 'repositories#show'
+
 
   # Github Callback
   get '/auth/github/callback', to: 'sessions#create'

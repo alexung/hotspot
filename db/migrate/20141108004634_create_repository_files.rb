@@ -3,7 +3,7 @@ class CreateRepositoryFiles < ActiveRecord::Migration
     create_table :repository_files do |t|
     	t.string 			:github_url
     	t.string 			:name
-    	t.belongs_to 	:repository
+    	t.belongs_to 	    :repository
     	t.integer			:insertions
     	t.integer			:deletions
     	t.string			:contributors
