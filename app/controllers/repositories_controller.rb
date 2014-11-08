@@ -1,10 +1,9 @@
 class RepositoriesController < ApplicationController
-  require 'json'
+  include GithubHelper
 
   def index
     @user = params[:username]
-    @repos = `curl https://api.github.com/users/#{@user}/repos?client_id=#{ENV['GITHUB_KEY']}&client_secret=#{ENV['GITHUB_SECRET']}`
-    @repositories = JSON.parse(@repos)
+    @repositories = fetch_gh_repos(:user => @user)
   end
 
   def show
@@ -31,7 +30,7 @@ class RepositoriesController < ApplicationController
 
     render :show
   end
-  
+
   private
 
   def repository_params
