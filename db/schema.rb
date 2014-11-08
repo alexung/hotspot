@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20141108004634) do
     t.integer  "repository_id"
     t.integer  "insertions"
     t.integer  "deletions"
-    t.string   "contributors"
+    t.string   "contributers"
     t.integer  "commits"
     t.datetime "created_at"
     t.datetime "updated_at"

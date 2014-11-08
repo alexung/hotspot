@@ -10,24 +10,43 @@ class RepositoriesController < ApplicationController
   def show
     @repository = params[:repo]
     @username = params[:username]
+
+    #success! saving repo to database
+    @repository_to_database = Repository.new(user_id: 1, name: params[:repo], url: "http://www.github.com/#{@username}/#{@repository}")
+    @repository_to_database.save
+
+    #success! Saving repofile to database
+    @rows_to_parse = CodeReview.new(@repository, @username).rows
+    @rows_to_parse.map do |path|
+      RepositoryFile.create(
+                            github_url: "http://github.com/#{@username}/#{@repository}/blob/master/#{path[:file_path]}",
+                            commits: path[:commits],
+                            contributers: path[:contributers].to_s,
+                            insertions: path[:insertions],
+                            deletions: path[:deletions]
+                            )
+    end
+
     @rows = CodeReview.new(@repository, @username).rows.sort_by{|row_arr| -row_arr[:commits]}
+
     render :show
   end
 
-  def new
-  	@repository = Repository.new
-  end
+  # def new
+  # 	@repository = Repository.new
+  # end
 
-  def create
-  	@repository = Repository.new(repository_params)
-  	if @repository.save
-  		flash[:success]
-  		redirect_to @repository
-  	else
-  		flash[:error]
-  		redirect_to 'new'
-  	end
-  end
+  # def create
+  # 	@repository = Repository.new(repository_params)
+  #   @repository.user = session.user_id
+  # 	if @repository.save
+  # 		flash[:success]
+  # 		redirect_to @repository
+  # 	else
+  # 		flash[:error]
+  # 		redirect_to 'new'
+  # 	end
+  # end
 
   private
 
