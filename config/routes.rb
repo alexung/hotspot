@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
-  resources :users
+  resources :users, only: [:show, :index]
   resources :repositories, except: [:edit, :update]
-  resources :commits, only: [:show, :index]
   
-  resources :docs
-
   root "users#index"
 
   get '/search', :to => 'repositories#index'

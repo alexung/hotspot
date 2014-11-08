@@ -11,51 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141107043951) do
+ActiveRecord::Schema.define(version: 20141108004634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "commits", force: true do |t|
-    t.string  "sha"
-    t.string  "path"
-    t.string  "author"
-    t.string  "since"
-    t.string  "until"
-    t.string  "message"
-    t.integer "additions"
-    t.integer "deletions"
-    t.integer "total"
-    t.integer "repository_id"
-  end
-
-  create_table "docs", force: true do |t|
-    t.string   "name"
-    t.string   "url"
-    t.integer  "repository_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "project_files", force: true do |t|
   end
 
   create_table "repositories", force: true do |t|
     t.string   "name"
     t.string   "url"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
   end
 
   create_table "users", force: true do |t|
     t.string   "name"
+    t.string   "github_username"
+    t.string   "github_uid"
     t.string   "email"
     t.string   "password_digest"
+    t.string   "avatar_url"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "oauthtoken"
-    t.string   "oauthrefresh"
-    t.string   "github_uid"
-    t.string   "username"
-    t.string   "avatar_url"
   end
 
 end
