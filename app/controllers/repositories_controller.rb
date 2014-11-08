@@ -9,7 +9,6 @@ class RepositoriesController < ApplicationController
   def show
     @repository = params[:repo]
     @username = params[:username]
-    @contributers = fetch_gh_contributors(@username, @repository).fetch_contributor_username
 
     #success! saving repo to database
     @repository_to_database = Repository.new(user_id: 1, name: params[:repo], url: "http://www.github.com/#{@username}/#{@repository}")
