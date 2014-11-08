@@ -14,17 +14,6 @@ class RepositoriesController < ApplicationController
     render :show
   end
 
-  # def show_lynxshare
-  #   @rows = LynxShare.new.rows
-  #   render :show
-  # end
-
-  # def get_code_review
-  #   repository = params[:repo_name]
-  #   @rows = CodeReview.new(repository).rows
-  #   render :show
-  # end
-
   def new
   	@repository = Repository.new
   end
@@ -40,18 +29,9 @@ class RepositoriesController < ApplicationController
   	end
   end
 
-  def search
-    @user = params[:username]
-    # @repos = `curl -i https://api.github.com/users/"#{@user}"/repos`
-    # redirect_to '/'
-    # @repositories = JSON.parse(@repos)
-    redirect_to :controller => 'repositories', action: 'index', username: params[:username]
-  end
-
   private
 
   def repository_params
-  	params.require(:repository).permit(:url, :name, :user_id)
+  	params.require(:repository).permit(:url, :name)
   end
-
 end

@@ -1,10 +1,2 @@
-<h1>User Show</h1>
-<% if @user.repositories %>
-<ul>
-	<% @user.repositories.each do |repo| %>
-		<li><%= link_to '#{repo.name}', repository_path(repo) %><li>
-	<% end %>
-<ul>
-<% else %>
-<h3>This is where the repos you are reviewing would live if you had any...</h3>
-<% end %>	
+<h3>User Dashboard</h3>
+<p><i>...code reviewers dashboard...</i></p>

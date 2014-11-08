@@ -7,7 +7,6 @@ class CodeReview
 	def rows
 		file_paths.map do |path|
 			{
-	 	# git log --numstat --format=%h README.md | grep README.md
     	file_path: path, 
     	commits: commits_for(path), 
     	contributers: contributors_to(path), 
@@ -50,5 +49,4 @@ class CodeReview
 			insertion_and_deletion[1].to_i
 		end.reduce(:+)
 	end
-
 end
