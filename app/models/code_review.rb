@@ -13,7 +13,7 @@ class CodeReview
     	insertions: insertions_to(path), 
     	deletions: deletions_of(path)
     }
-		end    
+		end   
 	end
 
 	def clone_repo(repo_name, username)
