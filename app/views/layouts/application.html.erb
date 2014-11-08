@@ -17,6 +17,7 @@
 						<li><%= link_to "Home", root_path %></li>
 						<% if session[:user_id] %>
 						<li><%= link_to 'Logout', logout_path %></li>
+						<li><a href="http://github.com/<%= User.find(session[:user_id]).github_username %>"><img src="<%=User.find(session[:user_id]).avatar_url%>" width="24" height="24"></a></li>
 						<% else %>
 						<li><%= link_to 'Login', '/auth/github/' %></li>
 						<% end %>

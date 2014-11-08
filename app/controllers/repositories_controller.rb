@@ -1,9 +1,10 @@
 class RepositoriesController < ApplicationController
   include GithubHelper
+
   def index
     @user = params[:username]
 
-    @repositories = fetch_gh_repos({:user => @user})
+    @repositories = fetch_gh_repos(@user)
     @repositories.class
     if @repositories.class == Array
      render :index
