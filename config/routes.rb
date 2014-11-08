@@ -7,8 +7,6 @@ Rails.application.routes.draw do
 
   root "users#index"
 
-  get '/lynxshare', :to => 'repositories#show_lynxshare'
-
   get '/search', :to => 'repositories#index'
 
   get '/code_review', :to => 'repositories#show'
