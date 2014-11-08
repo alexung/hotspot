@@ -1,4 +1,6 @@
 class CodeReview
+	include GithubHelper
+	
 	def initialize(repo, username)
 		@repo = repo
 		clone_repo(repo, username)
