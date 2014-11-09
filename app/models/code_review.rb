@@ -1,9 +1,11 @@
 class CodeReview
 	include GithubHelper
+	attr_reader :repo, :branch, :username
 
 	def initialize(repo, username, branch = "")
 		@repo = repo
 		@branch = branch
+		@username = username
 		clone_repo(repo, username)
 		@starting_index = index_value
 	end
@@ -55,6 +57,7 @@ class CodeReview
 	end
 
 	def insertions_to(path)
+
 		insertions_and_deletions(path).map do |insertion_and_deletion|
 			insertion_and_deletion[0].to_i
 		end.reduce(:+)
@@ -65,4 +68,14 @@ class CodeReview
 			insertion_and_deletion[1].to_i
 		end.reduce(:+)
 	end
+<<<<<<< HEAD
 end
+=======
+
+ 	def checkout_and_review_branch
+
+ 		` cd /tmp/#{@repo} && git checkout #{@branch} `
+ 	end
+
+end
+>>>>>>> origin/master
