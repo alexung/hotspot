@@ -1,5 +1,6 @@
 class RepositoriesController < ApplicationController
   include GithubHelper
+  include ApplicationHelper
 
   def index
     @user = params[:username]
@@ -7,7 +8,7 @@ class RepositoriesController < ApplicationController
     @repositories = fetch_gh_repos(@user)
     @repositories.class
     if @repositories.class == Array
-     render :index
+      render :index
     else
       flash[:error] = "No user was found with that username."
       redirect_to root_path
@@ -18,9 +19,9 @@ class RepositoriesController < ApplicationController
     @repository = params[:repo]
     @username = params[:username]
 
-    if repository_exists?
+    if repository_exists?(@repository, @username)
       repository = Repository.find_by(name: @repository)
-      @repo_uid = repository.repo_uid
+      # @repo_uid = repository.repo_uid ##this doesnt exist yet, but we will need it shortly for the notes.
       repository.destroy
     end
 
