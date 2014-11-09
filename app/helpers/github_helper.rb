@@ -18,8 +18,8 @@ module GithubHelper
 		fetch_gh(path)
 	end
 
-	def fetch_contributor_username
-		self.map do |contributor|
+	def fetch_contributor_username(contributor_arr)
+		contributor_arr.map do |contributor|
 			contributor["login"]
 		end
 	end	
@@ -30,8 +30,8 @@ module GithubHelper
 	end
 
 	def contributor_hash_builder(repo_user, repo_name)
-		usernames = fetch_gh_contributors(repo_user, repo_name).fetch_contributor_username
-		usernames.map do |username|
+		contributors_arr = fetch_gh_contributors(repo_user, repo_name)
+		fetch_contributor_username(contributors_arr).map do |username|
 			{ fetch_contributor_email(username) => username }
 		end
 	end
