@@ -1,8 +1,9 @@
 class CodeReview
 	include GithubHelper
 
-	def initialize(repo, username)
+	def initialize(repo, username, branch = nil)
 		@repo = repo
+		@branch = branch
 		clone_repo(repo, username)
 	end
 
@@ -51,4 +52,12 @@ class CodeReview
 			insertion_and_deletion[1].to_i
 		end.reduce(:+)
 	end
+
+  # def self.branch_review(repo, username, branch)
+  # 	CodeReview.new(repo, username, branch)
+  # end
+
+ 	# def checkout_and_review_branch
+ 	# 	` cd /tmp/#{@repo} && git checkout -b #{@branch} `
+ 	# end
 end
