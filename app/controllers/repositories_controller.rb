@@ -19,7 +19,7 @@ class RepositoriesController < ApplicationController
     @username = params[:username]
 
     #success! saving repo to database
-    @repository_to_database = Repository.new(user_id: 1, name: params[:repo], url: "http://www.github.com/#{@username}/#{@repository}")
+    @repository_to_database = Repository.new(user_id: 1, name: params[:repo], url: "http://www.github.com/#{@username}/#{@repository}", repo_owner: @username)
     @repository_to_database.save
 
     #success! Saving repofiles to database
