@@ -5,6 +5,15 @@
 </section>
 <section class="container-fluid">
 	<table class="table table-bordered">
+<!-- Start branch selection -->
+	<form action="">
+		<select>
+		<% @branches.each do |branch| %>
+			<option><%= branch %></option>
+			<% end %>
+		</select>
+		</form>
+<!-- End branch selection -->
 		<tr>
 			<th>File Path</th>
 			<th>Commits</th>

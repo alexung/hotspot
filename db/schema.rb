@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20141108230351) do
   create_table "repositories", force: true do |t|
     t.string   "name"
     t.string   "url"
+    t.string   "repo_owner"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

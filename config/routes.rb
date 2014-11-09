@@ -1,7 +1,7 @@
 	Rails.application.routes.draw do
   get 'welcome/index'
 
-  resources :users, only: [:show, :index]
+  resources :users, only: [:show]
   resources :repositories, except: [:edit, :update]
 
   root "welcome#index"
