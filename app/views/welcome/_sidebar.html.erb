@@ -1,7 +1,12 @@
-<div class="sidebar">
+<div class="sidebar-homepage">
+
+<% if @home_banner %>
+  <%= render partial: "all_saved_repositories" %>
+<% else %>
 
   <%= render partial: "note_box" %>
 
   <%= render partial: "notes" %>
+<% end %>
 
 </div>

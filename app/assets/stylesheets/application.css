@@ -24,3 +24,10 @@
   padding: 1%;
 
 }
+
+.sidebar {
+  position: fixed;
+  margin-right: 80%;
+  border: solid;
+  padding: 1%;
+}
