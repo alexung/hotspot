@@ -21,4 +21,3 @@
     "http://gravatar.com/avatar/#{gravatar_id}.png?s=30&d=#{CGI.escape(default_url)}"
   end
 end
-

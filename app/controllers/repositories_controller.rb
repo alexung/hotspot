@@ -57,6 +57,11 @@ class RepositoriesController < ApplicationController
 
   def change_branch
     @branch = params[:branch]
+    @repository = params[:repo]
+    @branches = list_branches(@repository)
+    @username = params[:user]
+    @rows = CodeReview.new(@repository, @username, @branch).rows.sort_by{|row_arr| -row_arr[:commits]}
+    render :show
   end
 
   private
