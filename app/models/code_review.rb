@@ -1,5 +1,6 @@
 class CodeReview
 	include GithubHelper
+	include ApplicationHelper
 	attr_reader :repo, :branch, :username
 
 	def initialize(repo, username, branch = "")
@@ -47,7 +48,8 @@ class CodeReview
 	end
 
 	def contributors_to(path)
-		` cd /tmp/#{@repo} && git checkout #{@branch} && git log --format=%ae #{path} | sort | uniq `.split("\n")[@starting_index..-1]
+		contributor_arr = ` cd /tmp/#{@repo} && git checkout #{@branch} && git log --format=%ae #{path} | sort | uniq `.split("\n")[@starting_index..-1]
+		contributor_arr.map{ |email| avatar_url(email) }
 	end
 
 	def insertions_and_deletions(path)
