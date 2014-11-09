@@ -1,5 +1,6 @@
 class RepositoriesController < ApplicationController
   include GithubHelper
+  include RepositoryHelper
 
   def index
     @user = params[:username]
@@ -16,6 +17,7 @@ class RepositoriesController < ApplicationController
 
   def show
     @repository = params[:repo]
+    @branches = list_branches(@repository)
     @username = params[:username]
 
     #success! saving repo to database
