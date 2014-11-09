@@ -29,9 +29,4 @@ module GithubHelper
 		fetch_gh(path)["email"]
 	end
 
-	def fetch_contributor_avatar
-		self.map do |contributor|
-			contributor["avatar_url"]
-		end
-	end
 end
