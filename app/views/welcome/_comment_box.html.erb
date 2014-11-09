@@ -1,0 +1,20 @@
+<div class="comment-box">
+
+<%= form_for :comments, url: root_path, method: :post do |f| %>
+
+  <div>
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+  </div>
+
+  <% hidden_field(:user_id, :repository_id) %>
+
+  <div>
+    <%= f.submit "Submit your comment" %>
+  </div>
+
+<% end %>
+
+</div>
+
+
