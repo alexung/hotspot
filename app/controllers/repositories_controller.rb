@@ -6,7 +6,6 @@ class RepositoriesController < ApplicationController
     @user = params[:username]
 
     @repositories = fetch_gh_repos(@user)
-    @repositories.class
     if @repositories.class == Array
      render :index
     else
@@ -39,6 +38,10 @@ class RepositoriesController < ApplicationController
     end
 
     @rows = CodeReview.new(@repository, @username).rows.sort_by{|row_arr| -row_arr[:commits]}
+  end
+
+  def change_branch
+    @branch = params[:branch]
   end
 
   private
