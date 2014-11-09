@@ -29,4 +29,10 @@ module GithubHelper
 		fetch_gh(path)["email"]
 	end
 
+	def contributor_hash_builder(repo_user, repo_name)
+		usernames = fetch_gh_contributors(repo_user, repo_name).fetch_contributor_username
+		usernames.map do |username|
+			{ fetch_contributor_email(username) => username }
+		end
+	end
 end
