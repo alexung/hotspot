@@ -1,7 +1,10 @@
 <tr>
 	<td><a href="http://github.com/<%= @username %>/<%= @repository %>/blob/master/<%= file_path %>"><%= file_path %></a></td>
 	<td><%= commits %></td>
-	<td><%= contributers %></td>
+	<td><% contributers.each do |avatar| %>
+	<img src="<%= avatar %>">
+	<% end %>
+	</td>
 	<td><%= insertions %></td>
 	<td><%= deletions %></td>
 </tr>

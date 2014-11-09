@@ -6,7 +6,7 @@ class CreateRepositoryFiles < ActiveRecord::Migration
     	t.belongs_to 	    :repository
     	t.integer			:insertions
     	t.integer			:deletions
-    	t.string			:contributers
+    	t.text     			:contributers
     	t.integer			:commits
 
     	t.timestamps
