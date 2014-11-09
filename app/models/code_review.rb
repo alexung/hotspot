@@ -9,6 +9,7 @@ class CodeReview
 		@username = username
 		clone_repo(repo, username)
 		@starting_index = index_value
+		@contributor_hash = contributor_hash_builder(@username, @repo)
 	end
 
  	def index_value
