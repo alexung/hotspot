@@ -1,6 +1,7 @@
 class RepositoriesController < ApplicationController
   include GithubHelper
   include ApplicationHelper
+  include RepositoryHelper
 
   def index
     @user = params[:username]
@@ -17,6 +18,7 @@ class RepositoriesController < ApplicationController
 
   def show
     @repository = params[:repo]
+    @branches = list_branches(@repository)
     @username = params[:username]
 
     if repository_exists?(@repository, @username)
