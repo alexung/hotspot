@@ -1,10 +1,17 @@
 class RepositoriesController < ApplicationController
-  require 'json'
+  include GithubHelper
 
   def index
     @user = params[:username]
-    @repos = `curl https://api.github.com/users/#{@user}/repos?client_id=#{ENV['GITHUB_KEY']}&client_secret=#{ENV['GITHUB_SECRET']}`
-    @repositories = JSON.parse(@repos)
+
+    @repositories = fetch_gh_repos(@user)
+    @repositories.class
+    if @repositories.class == Array
+     render :index
+    else
+      flash[:error] = "No user was found with that username."
+      redirect_to root_path
+    end
   end
 
   def show
