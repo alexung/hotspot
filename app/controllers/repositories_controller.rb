@@ -18,6 +18,12 @@ class RepositoriesController < ApplicationController
     @repository = params[:repo]
     @username = params[:username]
 
+    if repository_exists?
+      repository = Repository.find_by(name: @repository)
+      @repo_uid = repository.repo_uid
+      repository.destroy
+    end
+
     #success! saving repo to database
     @repository_to_database = Repository.new(user_id: 1, name: params[:repo], url: "http://www.github.com/#{@username}/#{@repository}")
     @repository_to_database.save
