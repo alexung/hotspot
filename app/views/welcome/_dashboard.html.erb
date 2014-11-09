@@ -8,10 +8,10 @@
 	<p class="col-md-6 page_titles">(This is the logged in users dashboard)</p>
 	<section class="col-md-3"></section>
 </section>
-<% @repositories.each do |repo| %>
+<% @repositories.each do |repository| %>
 	<section class="row">
-		<section class="col-md-3"></section>
-		<a href="#" class="col-md-6 page_titles"><%= repo.name %></a>
-		<section class="col-md-3"></section>
+		<section class="col-md-5"></section>
+		<a href="/code-review?username=<%=repository['repo_owner']%>&repo=<%=repository['name']%>" class="col-md-2 page_titles"><%= repository.name %></a>
+		<section class="col-md-5"></section>
 	</section>
 <% end %>
