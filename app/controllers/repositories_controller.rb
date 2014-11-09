@@ -20,15 +20,18 @@ class RepositoriesController < ApplicationController
     @repository = params[:repo]
     @branches = list_branches(@repository)
     @username = params[:username]
+    @repo_uid = `curl -i https://api.github.com/repos/#{@username}/#{@repository}`
+    puts "-------------------------------------------------------------"
+    puts @repo_uid
 
     if repository_exists?(@repository, @username)
       repository = Repository.find_by(name: @repository)
-      # @repo_uid = repository.repo_uid ##this doesnt exist yet, but we will need it shortly for the notes.
+      @repo_uid = repository.repo_uid #this keeps track of the repo_uid for later use when we recreate the repository below.
       repository.destroy
     end
 
     #success! saving repo to database
-    @repository_to_database = Repository.new(user_id: 1, name: params[:repo], url: "http://www.github.com/#{@username}/#{@repository}", repo_owner: @username)
+    @repository_to_database = Repository.new(user_id: 1, name: params[:repo], url: "http://www.github.com/#{@username}/#{@repository}", repo_owner: @username, repo_uid: @repo_uid)
     @repository_to_database.save
 
     #success! Saving repofiles to database
