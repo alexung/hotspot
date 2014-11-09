@@ -5,6 +5,7 @@ class CodeReview
 		@repo = repo
 		@branch = branch
 		clone_repo(repo, username)
+		@starting_index = index_value
 	end
 
 	def rows
@@ -24,27 +25,19 @@ class CodeReview
 	end
 
 	def file_paths
-		` cd /tmp/#{@repo} 
-		&& git checkout #{@branch} 
-		&& git ls-files `.split("\n")
+		` cd /tmp/#{@repo} && git checkout #{@branch} && git ls-files `.split("\n")[@starting_index..-1]
 	end
 
 	def commits_for(path)
-		` cd /tmp/#{@repo} 
-		&& git checkout #{@branch} 
-		&& git log --format=%H #{path} | wc -l `.to_i
+		` cd /tmp/#{@repo} && git checkout #{@branch} && git log --format=%H #{path} | wc -l `.split("\n")[@starting_index].to_i	
 	end
 
 	def contributors_to(path)
-		` cd /tmp/#{@repo} 
-		&& git checkout #{@branch} 
-		&& git log --format=%ae #{path} | sort | uniq `.split("\n")
+		` cd /tmp/#{@repo} && git checkout #{@branch} && git log --format=%ae #{path} | sort | uniq `.split("\n")[@starting_index..-1]
 	end
 
 	def insertions_and_deletions(path)
-		` cd /tmp/#{@repo} 
-		&& git checkout #{@branch} 
-		&& git log --numstat --format=%h #{path} | grep #{path} `.split("\n").map do |line|
+		` cd /tmp/#{@repo} && git checkout #{@branch} && git log --numstat --format=%h #{path} | grep #{path} `.split("\n")[@starting_index..-1].map do |line|
 			line.split(" ")
 		end
 	end
@@ -63,5 +56,17 @@ class CodeReview
 
  	def checkout_and_review_branch
  		` cd /tmp/#{@repo} && git checkout #{@branch} `
+ 	end
+
+ 	def index_value
+ 		if new_branch?
+ 			return 2
+ 		else
+ 			1
+ 		end
+ 	end
+
+ 	def new_branch?
+ 		@branch != ""
  	end
 end
