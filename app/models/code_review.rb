@@ -68,9 +68,6 @@ class CodeReview
 			insertion_and_deletion[1].to_i
 		end.reduce(:+)
 	end
-<<<<<<< HEAD
-end
-=======
 
  	def checkout_and_review_branch
 
@@ -78,4 +75,3 @@ end
  	end
 
 end
->>>>>>> origin/master
