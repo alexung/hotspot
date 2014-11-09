@@ -3,7 +3,7 @@ class RepositoriesController < ApplicationController
   include RepositoryHelper
 
   def index
-    @home_banner = false
+    @saved_repositories_banner = true
     @notes = Note.all
     @user = params[:username]
 
@@ -18,7 +18,8 @@ class RepositoriesController < ApplicationController
   end
 
   def show
-    @home_banner = false
+    #@saved_repositories_banner = false
+    @individual_repo_banner = true
     @notes = Note.all
     @repository = params[:repo]
     @branches = list_branches(@repository)

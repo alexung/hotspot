@@ -1,0 +1,10 @@
+<div class="all-saved-repositories">
+  <h3>Saved Repositories</h3>
+
+  <% @repositories.each do |repository| %>
+    <a href='/code-review/?username=<%=@user%>&repo=<%=repository["name"]%>'><%=repository["name"]%></a>
+    <br><br>
+  <% end %>
+
+
+</div>

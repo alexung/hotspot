@@ -1,7 +1,14 @@
 <div class="sidebar">
 
+<% if @saved_repositories_banner %>
+
+  <%= render partial: "all_saved_repositories" %>
+
+<% elsif @individual_repo_banner %>
+
   <%= render partial: "note_box" %>
 
   <%= render partial: "notes" %>
+<% end %>
 
 </div>

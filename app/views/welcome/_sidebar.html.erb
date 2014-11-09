@@ -1,8 +1,8 @@
 <div class="sidebar-homepage">
 
-<% if @home_banner %>
+<% if @saved_repositories_banner %>
   <%= render partial: "all_saved_repositories" %>
-<% else %>
+<% elsif @individual_repo_banner %>
 
   <%= render partial: "note_box" %>
 
