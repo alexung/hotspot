@@ -1,9 +1,11 @@
 class CodeReview
 	include GithubHelper
+	attr_reader :repo, :branch, :username
 
 	def initialize(repo, username, branch = "")
 		@repo = repo
 		@branch = branch
+		@username = username
 		clone_repo(repo, username)
 	end
 
@@ -24,32 +26,25 @@ class CodeReview
 	end
 
 	def file_paths
-		` cd /tmp/#{@repo} 
-		&& git checkout #{@branch} 
-		&& git ls-files `.split("\n")
+		` cd /tmp/#{@repo} && git checkout #{@branch} && git ls-files `.split("\n")
 	end
 
 	def commits_for(path)
-		` cd /tmp/#{@repo} 
-		&& git checkout #{@branch} 
-		&& git log --format=%H #{path} | wc -l `.to_i
+		` cd /tmp/#{@repo} && git checkout #{@branch} && git log --format=%H #{path} | wc -l `.to_i
 	end
 
 	def contributors_to(path)
-		` cd /tmp/#{@repo} 
-		&& git checkout #{@branch} 
-		&& git log --format=%ae #{path} | sort | uniq `.split("\n")
+		` cd /tmp/#{@repo} && git checkout #{@branch} && git log --format=%ae #{path} | sort | uniq `.split("\n")
 	end
 
 	def insertions_and_deletions(path)
-		` cd /tmp/#{@repo} 
-		&& git checkout #{@branch} 
-		&& git log --numstat --format=%h #{path} | grep #{path} `.split("\n").map do |line|
+		` cd /tmp/#{@repo} && git checkout #{@branch} && git log --numstat --format=%h #{path} | grep #{path} `.split("\n").map do |line|
 			line.split(" ")
 		end
 	end
 
 	def insertions_to(path)
+
 		insertions_and_deletions(path).map do |insertion_and_deletion|
 			insertion_and_deletion[0].to_i
 		end.reduce(:+)
@@ -62,6 +57,7 @@ class CodeReview
 	end
 
  	def checkout_and_review_branch
+
  		` cd /tmp/#{@repo} && git checkout #{@branch} `
  	end
 end
