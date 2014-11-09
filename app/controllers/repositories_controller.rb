@@ -12,7 +12,7 @@ class RepositoriesController < ApplicationController
       render :index
     else
       flash[:error] = "No user was found with that username."
-      redirect_to root_path
+      redirect_to user_path(User.find(session[:user_id].id))
     end
   end
 

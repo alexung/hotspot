@@ -14,16 +14,3 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-
-
-$( document ).ready(function() {
-  $("#column").on('click', function() {
-    $.ajax({
-      url: '/sort',
-      type: 'GET',
-    })
-    .success(function() {
-      console.log("success");
-    });
-  })
-});
