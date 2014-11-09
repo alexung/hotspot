@@ -3,6 +3,8 @@
 
   resources :users, only: [:show]
   resources :repositories, except: [:edit, :update]
+  resources :notes, only: [:new, :create]
+
 
   root "welcome#index"
 

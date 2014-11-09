@@ -1,0 +1,18 @@
+<div class="note-box">
+
+<%= form_for :note, url: notes_path, method: :post do |f| %>
+
+  <div>
+    <%= f.label :content, "Notes" %>
+    <%= f.text_area :content %>
+  </div>
+
+  <% hidden_field(:user_id, :repository_id) %>
+
+  <div>
+    <%= f.submit "Add Note" %>
+  </div>
+
+<% end %>
+
+</div>

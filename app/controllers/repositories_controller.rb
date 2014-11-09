@@ -3,6 +3,7 @@ class RepositoriesController < ApplicationController
   include RepositoryHelper
 
   def index
+    @notes = Note.all
     @user = params[:username]
 
     @repositories = fetch_gh_repos(@user)
@@ -16,12 +17,13 @@ class RepositoriesController < ApplicationController
   end
 
   def show
+    @notes = Note.all
     @repository = params[:repo]
     @branches = list_branches(@repository)
     @username = params[:username]
 
     #success! saving repo to database
-    @repository_to_database = Repository.new(user_id: 1, name: params[:repo], url: "http://www.github.com/#{@username}/#{@repository}", repo_owner: @username)
+    @repository_to_database = Repository.new(user_id: session[:user_id], name: params[:repo], url: "http://www.github.com/#{@username}/#{@repository}", repo_owner: @username)
     @repository_to_database.save
 
     #success! Saving repofiles to database
