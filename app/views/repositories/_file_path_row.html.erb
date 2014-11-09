@@ -2,7 +2,7 @@
 	<td><a href="http://github.com/<%= @username %>/<%= @repository %>/blob/master/<%= file_path %>"><%= file_path %></a></td>
 	<td><%= commits %></td>
 	<td><% contributers.each do |avatar| %>
-	<img src="<%= avatar %>">
+	<a href=""><img src="<%= avatar %>"></a>
 	<% end %>
 	</td>
 	<td><%= insertions %></td>
