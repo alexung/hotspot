@@ -4,6 +4,7 @@ class CreateRepositories < ActiveRecord::Migration
       t.string :name
       t.string :url
       t.string :repo_owner
+      t.integer :repo_uid
       t.belongs_to :user
 
       t.timestamps
