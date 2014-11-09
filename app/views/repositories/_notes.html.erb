@@ -1,5 +1,6 @@
 <div class="notes">
-  <% @notes.each do |note| %>
+<!--   Need to make this display notes for this particular repo -->
+  <% Repository.find(1).notes.each do |note| %>
     <%= note.content %><br><br>
   <% end %>
 </div>
