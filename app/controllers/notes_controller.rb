@@ -5,10 +5,16 @@ class NotesController < ApplicationController
   end
 
   def create
+    p params
+    #u = request.original_url
+    #p = CGI.parse(u.query)
+    @username = params["note"]["user_id"]
+    @repository = params["note"]["repository_id"]
+    @repo = Repository.find_by(name: params["note"]["repository_id"])
     @note = Note.new(notes_params)
     @note.user_id = session[:user_id]
     @note.save
-      redirect_to root_path
+      redirect_to "/code-review?username=#{@username}&repo=#{@repository}"
   end
 
   private

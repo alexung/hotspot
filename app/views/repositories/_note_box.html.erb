@@ -7,7 +7,9 @@
     <%= f.text_area :content %>
   </div>
 
-  <% hidden_field(:user_id, :repository_id) %>
+  <%= f.hidden_field :user_id, value: "#{@username}" %>
+
+  <%= f.hidden_field :repository_id, value: "#{ @repository}" %>
 
   <div>
     <%= f.submit "Add Note" %>
