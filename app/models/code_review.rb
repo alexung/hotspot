@@ -8,6 +8,18 @@ class CodeReview
 		@starting_index = index_value
 	end
 
+ 	def index_value
+ 		if new_branch?
+ 			return 2
+ 		else
+ 			1
+ 		end
+ 	end
+
+ 	def new_branch?
+ 		@branch != ""
+ 	end
+
 	def rows
 		file_paths.map do |path|
 			{
@@ -58,15 +70,4 @@ class CodeReview
  		` cd /tmp/#{@repo} && git checkout #{@branch} `
  	end
 
- 	def index_value
- 		if new_branch?
- 			return 2
- 		else
- 			1
- 		end
- 	end
-
- 	def new_branch?
- 		@branch != ""
- 	end
 end
