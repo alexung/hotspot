@@ -24,12 +24,11 @@ class RepositoriesController < ApplicationController
     @username = params[:username]
     @repository = params[:repo]
     @branches = list_branches(@repository)
-    repo_uid = fetch_repo_uid(@username, @repository)
+    repo_uid = params[:uid]
 
     @rows = CodeReview.new(@repository, @username).rows
 
     saved_repository = save_repository_to_db(@username, @repository, repo_uid)
-    
     @rows.map do |repo_file|
       RepositoryFile.create_repo_files(repo_file, @username, saved_repository)
     end
@@ -68,6 +67,6 @@ class RepositoriesController < ApplicationController
   private
 
   def repository_params
-   params.require(:repository).permit(:url, :name)
+   params.require(:repository).permit(:user_id, :name, :url, :repo_owner, :repo_uid)
   end
 end

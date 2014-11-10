@@ -10,6 +10,7 @@ module RepositoryHelper
 
   def save_repository_to_db(username, repository, repo_uid)
   	repository_to_database = Repository.new(user_id: session[:user_id], name: params[:repo], url: "http://www.github.com/#{username}/#{repository}", repo_owner: username, repo_uid: repo_uid)
+    binding.pry
     repository_to_database.save
   end
 end
