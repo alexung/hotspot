@@ -14,7 +14,7 @@ class RepositoriesController < ApplicationController
       render :index
     else
       flash[:error] = "No user was found with that username."
-      redirect_to user_path(User.find(session[:user_id].id))
+      redirect_to user_path(User.find(session[:user_id]))
     end
   end
 
@@ -36,7 +36,7 @@ class RepositoriesController < ApplicationController
     end
 
     #success! saving repo to database
-    @repository_to_database = Repository.new(user_id: session[:user_id, name: params[:repo], url: "http://www.github.com/#{@username}/#{@repository}", repo_owner: @username, repo_uid: @repo_uid)
+    @repository_to_database = Repository.new(user_id: session[:user_id], name: params[:repo], url: "http://www.github.com/#{@username}/#{@repository}", repo_owner: @username, repo_uid: @repo_uid)
     @repository_to_database.save
 
     delete_repo(@repository)
