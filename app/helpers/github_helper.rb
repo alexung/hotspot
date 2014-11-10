@@ -20,6 +20,7 @@ module GithubHelper
 
 	def fetch_contributor_username(contributor_arr)
 		contributor_arr.map do |contributor|
+			binding.pry
 			contributor["login"]
 		end
 	end	
