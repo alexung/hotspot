@@ -23,7 +23,11 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
+					<% if session[:user_id] %>
+					<%= link_to "Home", user_path(User.find(session[:user_id])), :class => "navbar-brand" %>
+					<% else %>
 					<%= link_to "Home", root_path, :class => "navbar-brand" %>
+					<% end %>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
