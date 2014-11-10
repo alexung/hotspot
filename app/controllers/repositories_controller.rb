@@ -37,11 +37,7 @@ class RepositoriesController < ApplicationController
     @repository_to_database.save
 
     delete_repo(@repository)
-p "*"*1000
     @rows = CodeReview.new(@repository, @username).rows
-    p @rows
-p "*"*1000
-
     @rows.map do |path|
       RepositoryFile.create_repo_files(path, @username, @repository_to_database)
     end
