@@ -21,30 +21,39 @@ class RepositoriesController < ApplicationController
   def show
     @individual_repo_banner = true
     @notes = Note.all
+    @username = params[:username]
     @repository = params[:repo]
     @branches = list_branches(@repository)
-    @username = params[:username]
-    repo_uid = fetch_repo_uid(username, repository)
+    repo_uid = fetch_repo_uid(@username, @repository)
 
     @rows = CodeReview.new(@repository, @username).rows
 
-    save_repository_to_db(@username, @repository, repo_uid)
+    saved_repository = save_repository_to_db(@username, @repository, repo_uid)
     
-    @rows.map do |path|
-      RepositoryFile.create_repo_files(path, @username, repository_to_database)
+    @rows.map do |repo_file|
+      RepositoryFile.create_repo_files(repo_file, @username, saved_repository)
     end
     @rows.sort_by{|row_arr| -row_arr[:commits]}
   end
 
   def update
-    if repository_exists?(repo_uid)
-      repository = Repository.find_by(repo_uid: repo_uid)
-      repository.destroy
+      # repository = Repository.find_by(repo_uid: repo_uid)
+    username = params[:username]
+    repository = Repository.find_by(name: params[:repository], owner_name: username)
+    @rows = CodeReview.new(repository, username).rows
+
+    @rows.each do |repo_file|
+      if file = repository.repository_files.find_by(name: repo_file.name)
+        file.update(params)
+      else 
+        repository.repository_files.create(params)
+          # FIGURE OUT DELETE of old/deleted files from repo
+      end
     end
-    
   end
 
   def destroy
+    repository.destroy
   end
 
   def change_branch
@@ -59,6 +68,6 @@ class RepositoriesController < ApplicationController
   private
 
   def repository_params
-  	params.require(:repository).permit(:url, :name)
+   params.require(:repository).permit(:url, :name)
   end
 end
