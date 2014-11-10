@@ -28,7 +28,7 @@ class RepositoriesController < ApplicationController
 
     @rows = CodeReview.new(@repository, @username).rows
 
-    saved_repository = save_repository_to_db(@username, @repository, repo_uid)
+    saved_repository = Repository.save_repository_to_db(@username, @repository, repo_uid, session[:user_id])
     @rows.map do |repo_file|
       RepositoryFile.create_repo_files(repo_file, @username, saved_repository)
     end
@@ -67,6 +67,6 @@ class RepositoriesController < ApplicationController
   private
 
   def repository_params
-   params.require(:repository).permit(:user_id, :name, :url, :repo_owner, :repo_uid)
+   params.require(:repository).permit()
   end
 end
