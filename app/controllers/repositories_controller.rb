@@ -27,7 +27,7 @@ class RepositoriesController < ApplicationController
     repo = JSON.parse(`curl https://api.github.com/repos/#{@username}/#{@repository}`)
     @repo_uid = repo["id"]
 
-    if repository_exists?(@repository.repo_uid)
+    if repository_exists?(@repo_uid)
       repository = Repository.find_by(repo_uid: @repo_uid)
       @repo_uid = repository.repo_uid #this keeps track of the repo_uid for later use when we recreate the repository below.
       repository.destroy
@@ -38,6 +38,7 @@ class RepositoriesController < ApplicationController
 
     delete_repo(@repository)
     @rows = CodeReview.new(@repository, @username).rows
+
     @rows.map do |path|
       RepositoryFile.create_repo_files(path, @username, @repository_to_database)
     end
