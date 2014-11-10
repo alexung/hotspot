@@ -1,0 +1,8 @@
+<div class="notes">
+<!--   Need to make this display notes for this particular repo -->
+  <% if Repository.find_by(name: params["repo"]).notes %>
+    <% Repository.find_by(name: params["repo"]).notes.each do |note| %>
+      <%= note.content %><br><br>
+    <% end %>
+  <% end %>
+</div>
