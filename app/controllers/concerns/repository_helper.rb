@@ -1,5 +1,7 @@
 module RepositoryHelper
 
+  extend ActiveSupport::Concern
+
 	def list_branches(repo)
 		` cd /tmp/#{repo} && git branch -r`.split("\n").map!{|x| x.gsub(/origin\//, "")}
 	end
@@ -8,3 +10,4 @@ module RepositoryHelper
   	Repository.find_by(repo_uid: repo_uid)
   end
 end
+
