@@ -7,6 +7,8 @@
 	<table class="table table-bordered">
 <!-- Start branch selection -->
 	<form action="/branch" method="GET">
+		<input type="hidden" name="user" value="<%= @username %>">
+		<input type="hidden" name="repo" value="<%= @repository %>">
 		<select>
 		<% @branches.each do |branch| %>
 			<option><%= branch %></option>
