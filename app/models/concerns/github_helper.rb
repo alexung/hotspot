@@ -1,6 +1,6 @@
 module GithubHelper
   extend ActiveSupport::Concern
-
+# Methods related to making api calls
   included do
     require 'json'
     BASE_URI = "https://api.github.com"
@@ -44,7 +44,7 @@ module GithubHelper
       { fetch_contributor_email(username) => username }
     end
   end
-
+# Methods pertaining to making a new code review
   def clone_repo(repo_name, username)
     ` git clone http://github.com/#{username}/#{repo_name}.git /tmp/#{repo_name} `
   end
@@ -77,9 +77,4 @@ module GithubHelper
       insertion_and_deletion[1].to_i
     end.reduce(:+)
   end
-
-  def checkout_and_review_branch
-    ` cd /tmp/#{@repo} && git checkout #{@branch} `
-  end
-
 end

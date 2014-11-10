@@ -2,13 +2,13 @@
   get 'welcome/index'
 
   resources :users, only: [:show]
-  resources :repositories, except: [:edit, :update]
+  resources :repositories, except: [:update]
   resources :notes
 
 
   root "welcome#index"
 
-  get '/search', :to => 'repositories#index'
+  get '/search', :to => 'searches#index'
 
   get '/code-review', :to => 'repositories#new_code_review'
 
