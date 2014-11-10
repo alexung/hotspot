@@ -5,6 +5,8 @@ class RepositoriesController < ApplicationController
   require 'json'
 
   def index
+    @saved_repositories_banner = true
+    @notes = Note.all
     @user = params[:username]
 
     @repositories = fetch_gh_repos(@user)
@@ -12,11 +14,14 @@ class RepositoriesController < ApplicationController
       render :index
     else
       flash[:error] = "No user was found with that username."
-      redirect_to user_path(User.find(session[:user_id].id))
+      redirect_to user_path(User.find(session[:user_id]))
     end
   end
 
   def show
+    #@saved_repositories_banner = false
+    @individual_repo_banner = true
+    @notes = Note.all
     @repository = params[:repo]
     @branches = list_branches(@repository)
     @username = params[:username]
@@ -31,7 +36,7 @@ class RepositoriesController < ApplicationController
     end
 
     #success! saving repo to database
-    @repository_to_database = Repository.new(user_id: 1, name: params[:repo], url: "http://www.github.com/#{@username}/#{@repository}", repo_owner: @username, repo_uid: @repo_uid)
+    @repository_to_database = Repository.new(user_id: session[:user_id], name: params[:repo], url: "http://www.github.com/#{@username}/#{@repository}", repo_owner: @username, repo_uid: @repo_uid)
     @repository_to_database.save
 
     delete_repo(@repository)
@@ -57,6 +62,11 @@ class RepositoriesController < ApplicationController
 
   def change_branch
     @branch = params[:branch]
+    @repository = params[:repo]
+    @branches = list_branches(@repository)
+    @username = params[:user]
+    @rows = CodeReview.new(@repository, @username, @branch).rows.sort_by{|row_arr| -row_arr[:commits]}
+    render :show
   end
 
   private
