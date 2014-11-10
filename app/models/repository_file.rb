@@ -4,7 +4,6 @@ class RepositoryFile < ActiveRecord::Base
 	def self.create_repo_files(path, username, repository)
 		create(
 			github_url: "http://github.com/#{username}/#{repository}/blob/master/#{path[:file_path]}",
-			binding.pry
 			repository_id: Repository.find_by(name: repository, repo_owner: username).id,
 			name: repository,
 			commits: path[:commits],

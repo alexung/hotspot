@@ -28,6 +28,7 @@
 }
 
 .sidebar {
+	display: none;
   position: fixed;
   width: 20%;
   border: 1px solid #e1e1e8;
@@ -52,6 +53,9 @@
 	margin: 10px 10px 0;
 }
 
+.activated {
+	display: block;
+}
 
 
 

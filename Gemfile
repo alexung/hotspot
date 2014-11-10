@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-ruby "2.1.2"
-# ruby "2.0.0"
+# ruby "2.1.2"
+ruby "2.0.0"
 
 group :development do
 	gem 'byebug'
@@ -15,7 +15,7 @@ gem 'omniauth-github'
 gem 'github_api'
 
 # Record API for mock
-gem 'vcr'
+# gem 'vcr'
 
 gem 'unicorn'
 # Travis CI
