@@ -2,14 +2,13 @@ class RepositoriesController < ApplicationController
   include GithubHelper
   include ApplicationHelper
   include RepositoryHelper
-  require 'json'
 
   def index
     @saved_repositories_banner = true
     @notes = Note.all
     @user = params[:username]
-
     @repositories = fetch_gh_repos(@user)
+
     if @repositories.class == Array
       render :index
     else
@@ -27,8 +26,9 @@ class RepositoriesController < ApplicationController
     @username = params[:username]
     @repository = params[:repo]
     @branches = list_branches(@repository)
+    @username = params[:username]
+    repo = fetch_gh_repo(@username, @repository)
     repo_uid = params[:uid]
-
     @rows = CodeReview.new(@repository, @username).rows
 
     saved_repository = Repository.save_repository_to_db(@username, @repository, repo_uid, session[:user_id])

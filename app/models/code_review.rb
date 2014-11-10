@@ -31,42 +31,4 @@ class CodeReview
     }
 		end
 	end
-
-	def clone_repo(repo_name, username)
-		` git clone http://github.com/#{username}/#{repo_name}.git /tmp/#{repo_name} `
-	end
-
-	def file_paths
-		` cd /tmp/#{@repo} && git checkout #{@branch} && git ls-files `.split("\n")[@starting_index..-1]
-	end
-
-	def commits_for(path)
-		` cd /tmp/#{@repo} && git checkout #{@branch} && git log --format=%H #{path} | wc -l `.split("\n")[@starting_index].to_i	
-	end
-
-	def contributors_to(path)
-		contributor_arr = ` cd /tmp/#{@repo} && git checkout #{@branch} && git log --format=%ae #{path} | sort | uniq `.split("\n")[@starting_index..-1]
-		contributor_arr.map{ |email| "<a href='http://github.com/#{@contributor_hash[email]}'>" + "<img src='"+ avatar_url(email) + "'>" + "</a>" }
-	end
-
-	def insertions_and_deletions(path)
-		` cd /tmp/#{@repo} && git checkout #{@branch} && git log --numstat --format=%h #{path} | grep #{path} `.split("\n")[@starting_index..-1].map{|line| line.split(" ")}
-	end
-
-	def insertions_to(path)
-		insertions_and_deletions(path).map do |insertion_and_deletion|
-			insertion_and_deletion[0].to_i
-		end.reduce(:+)
-	end
-
-	def deletions_of(path)
-		insertions_and_deletions(path).map do |insertion_and_deletion|
-			insertion_and_deletion[1].to_i
-		end.reduce(:+)
-	end
-
- 	def checkout_and_review_branch
- 		` cd /tmp/#{@repo} && git checkout #{@branch} `
- 	end
-
 end
