@@ -19,10 +19,12 @@
 }
 
 .start-code-review-button {
-  border: solid;
-  margin:.1%;
-  padding: 1%;
+  display: block;
+  float: right;
+}
 
+.start-code-review-button button {
+  font-size: .8em;
 }
 
 .sidebar {
