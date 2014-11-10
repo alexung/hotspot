@@ -13,11 +13,7 @@ class CodeReview
 	end
 
  	def index_value
- 		if new_branch?
- 			return 2
- 		else
- 			1
- 		end
+ 		new_branch? ? 2 : 1
  	end
 
  	def new_branch?
@@ -54,13 +50,10 @@ class CodeReview
 	end
 
 	def insertions_and_deletions(path)
-		` cd /tmp/#{@repo} && git checkout #{@branch} && git log --numstat --format=%h #{path} | grep #{path} `.split("\n")[@starting_index..-1].map do |line|
-			line.split(" ")
-		end
+		` cd /tmp/#{@repo} && git checkout #{@branch} && git log --numstat --format=%h #{path} | grep #{path} `.split("\n")[@starting_index..-1].map{|line| line.split(" ")}
 	end
 
 	def insertions_to(path)
-
 		insertions_and_deletions(path).map do |insertion_and_deletion|
 			insertion_and_deletion[0].to_i
 		end.reduce(:+)
@@ -73,7 +66,6 @@ class CodeReview
 	end
 
  	def checkout_and_review_branch
-
  		` cd /tmp/#{@repo} && git checkout #{@branch} `
  	end
 

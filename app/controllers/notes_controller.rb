@@ -12,7 +12,6 @@ class NotesController < ApplicationController
     @note.user_id = session[:user_id]
     @note.repository_id = @repo.id
     @note.save
-    binding.pry
       redirect_to "/code-review?username=#{@username}&repo=#{@repository}"
   end
 

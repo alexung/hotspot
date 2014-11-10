@@ -1,22 +1,21 @@
 source 'https://rubygems.org'
 
-#ruby "2.1.2"
-ruby "2.0.0"
+ruby "2.1.2"
+# ruby "2.0.0"
 
 #group :development do
 	gem 'byebug'
 	gem 'pry'
-	gem 'dotenv-rails'
 	gem 'faker'
 #end
 
-# Github api
+gem 'dotenv-rails'
+# Github API
 gem 'omniauth-github'
 gem 'github_api'
 
-# Keep api keys secure
-
-# Pry
+# Record API for mock
+gem 'vcr'
 
 gem 'unicorn'
 # Travis CI

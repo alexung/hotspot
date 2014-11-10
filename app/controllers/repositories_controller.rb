@@ -19,47 +19,23 @@ class RepositoriesController < ApplicationController
   end
 
   def show
-    #@saved_repositories_banner = false
     @individual_repo_banner = true
     @notes = Note.all
+    @username = params[:username]
     @repository = params[:repo]
     @branches = list_branches(@repository)
-    @username = params[:username]
-    repo = JSON.parse(`curl https://api.github.com/repos/#{@username}/#{@repository}?client_id=#{ENV['GITHUB_KEY']}&client_secret=#{ENV['GITHUB_SECRET']}`)
-    @repo_uid = repo["id"]
+    repo_uid = params[:uid]
 
-    if repository_exists?(@repository, @username)
-      repository = Repository.find_by(repo_uid: @repo_uid)
-      @repo_uid = repository.repo_uid #this keeps track of the repo_uid for later use when we recreate the repository below.
-      # binding.pry
-      repository.destroy
+    @rows = CodeReview.new(@repository, @username).rows
+
+    saved_repository = Repository.save_repository_to_db(@username, @repository, repo_uid, session[:user_id])
+    @rows.map do |repo_file|
+      RepositoryFile.create_repo_files(repo_file, @username, saved_repository)
     end
-
-    #success! saving repo to database
-    @repository_to_database = Repository.new(user_id: session[:user_id], name: params[:repo], url: "http://www.github.com/#{@username}/#{@repository}", repo_owner: @username, repo_uid: @repo_uid)
-    @repository_to_database.save
-
-    delete_repo(@repository)
-
-    #success! Saving repofiles to database
-    @rows_to_parse = CodeReview.new(@repository, @username)
-
-    @rows_to_parse.rows.map do |path|
-      RepositoryFile.create(
-                            github_url: "http://github.com/#{@username}/#{@repository}/blob/master/#{path[:file_path]}",
-                            repository_id: @repository_to_database.id,
-                            name: @repository_to_database.name,
-                            commits: path[:commits],
-                            contributers: path[:contributers].to_s,
-                            insertions: path[:insertions],
-                            deletions: path[:deletions]
-                            )
-    end
-
-    @rows = CodeReview.new(@repository, @username).rows.sort_by{|row_arr| -row_arr[:commits]}
+    @rows.sort_by{|row_arr| -row_arr[:commits]}
   end
 
- def update
+  def update
       # repository = Repository.find_by(repo_uid: repo_uid)
     username = params[:username]
     repository = Repository.find_by(name: params[:repository], owner_name: username)
@@ -91,6 +67,6 @@ class RepositoriesController < ApplicationController
   private
 
   def repository_params
-  	params.require(:repository).permit(:url, :name)
+   params.require(:repository).permit()
   end
 end
