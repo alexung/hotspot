@@ -5,6 +5,8 @@ class RepositoriesController < ApplicationController
   require 'json'
 
   def index
+    @saved_repositories_banner = true
+    @notes = Note.all
     @user = params[:username]
 
     @repositories = fetch_gh_repos(@user)
@@ -17,6 +19,9 @@ class RepositoriesController < ApplicationController
   end
 
   def show
+    #@saved_repositories_banner = false
+    @individual_repo_banner = true
+    @notes = Note.all
     @repository = params[:repo]
     @branches = list_branches(@repository)
     @username = params[:username]
@@ -31,7 +36,7 @@ class RepositoriesController < ApplicationController
     end
 
     #success! saving repo to database
-    @repository_to_database = Repository.new(user_id: 1, name: params[:repo], url: "http://www.github.com/#{@username}/#{@repository}", repo_owner: @username, repo_uid: @repo_uid)
+    @repository_to_database = Repository.new(user_id: session[:user_id, name: params[:repo], url: "http://www.github.com/#{@username}/#{@repository}", repo_owner: @username, repo_uid: @repo_uid)
     @repository_to_database.save
 
     delete_repo(@repository)
