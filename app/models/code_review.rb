@@ -9,7 +9,7 @@ class CodeReview
 		@username = username
 		clone_repo(repo, username)
 		@starting_index = index_value
-		@contributor_hash = contributor_hash_builder(@username, @repo)
+		@contributor_hash = contributor_hash_builder(@username, @repo).first
 	end
 
  	def index_value
@@ -50,7 +50,7 @@ class CodeReview
 
 	def contributors_to(path)
 		contributor_arr = ` cd /tmp/#{@repo} && git checkout #{@branch} && git log --format=%ae #{path} | sort | uniq `.split("\n")[@starting_index..-1]
-		contributor_arr.map{ |email| avatar_url(email) }
+		contributor_arr.map{ |email| "<a href='http://github.com/#{@contributor_hash[email]}'>" + "<img src='"+ avatar_url(email) + "'>" + "</a>" }
 	end
 
 	def insertions_and_deletions(path)
