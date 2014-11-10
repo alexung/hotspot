@@ -5,7 +5,7 @@ class RepositoryFile < ActiveRecord::Base
 		create(
 			github_url: "http://github.com/#{username}/#{repository}/blob/master/#{path[:file_path]}",
 			repository_id: repository.id,
-			name: repository.name,
+			name: path[:file_path],
 			commits: path[:commits],
 			contributors: path[:contributors].join(","),
 			insertions: path[:insertions],
