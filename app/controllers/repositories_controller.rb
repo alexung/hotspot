@@ -23,7 +23,7 @@ class RepositoriesController < ApplicationController
     @repository = params[:repo]
     @branches = list_branches(@repository)
     @username = params[:username]
-    repo = JSON.parse(`curl https://api.github.com/repos/#{@username}/#{@repository}`)
+    repo = fetch_gh_repo(@username, @repository)
     @repo_uid = repo["id"]
 
     if repository_exists?(@repo_uid)
