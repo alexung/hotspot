@@ -9,25 +9,6 @@ class RepositoriesController < ApplicationController
     @rows = @repository.repository_files
   end
 
-  def new_code_review
-    @individual_repo_banner = true
-    @notes = Note.all
-    @username = params[:username]
-    @repository = params[:repo]
-    @branches = list_branches(@repository)
-    @username = params[:username]
-    repo = fetch_gh_repo(@username, @repository)
-    repo_uid = params[:uid]
-    @rows = CodeReview.new(@repository, @username).rows
-
-    saved_repository = Repository.save_repository_to_db(@username, @repository, repo_uid, session[:user_id])
-    @rows.map do |repo_file|
-      RepositoryFile.create_repo_files(repo_file, @username, saved_repository)
-    end
-    @rows.sort_by{|row_arr| -row_arr[:commits]}
-    render :show
-  end
-
   def update
       # repository = Repository.find_by(repo_uid: repo_uid)
     username = params[:username]
@@ -50,15 +31,6 @@ class RepositoriesController < ApplicationController
     delete_repo(repository.name)
     repository.destroy
     redirect_to user_path(User.find(session[:user_id]))
-  end
-
-  def change_branch
-    @branch = params[:branch]
-    @repository = params[:repo]
-    @branches = list_branches(@repository)
-    @username = params[:user]
-    @rows = CodeReview.new(@repository, @username, @branch).rows.sort_by{|row_arr| -row_arr[:commits]}
-    render :show
   end
 
   private

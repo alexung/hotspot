@@ -25,7 +25,7 @@ class CodeReview
 			{
     	file_path: path,
     	commits: commits_for(path),
-    	contributers: contributors_to(path),
+    	contributors: contributors_to(path),
     	insertions: insertions_to(path),
     	deletions: deletions_of(path)
     }

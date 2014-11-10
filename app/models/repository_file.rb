@@ -7,7 +7,7 @@ class RepositoryFile < ActiveRecord::Base
 			repository_id: repository.id,
 			name: repository.name,
 			commits: path[:commits],
-			contributers: path[:contributers].join(","),
+			contributors: path[:contributors].join(","),
 			insertions: path[:insertions],
 			deletions: path[:deletions]
 			)

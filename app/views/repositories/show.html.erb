@@ -1,4 +1,4 @@
-<%= render partial: 'sidebar' %>
+<%= render partial: 'shared/sidebar' %>
 <section class="row">
 	<section class="col-md-3"></section>
 	<h3 class="col-md-6 page_titles"><%= @repository %></h3>
@@ -21,12 +21,12 @@
 		<tr>
 			<a href="" id="column"><th>File Path</th></a>
 			<th>Commits</th>
-			<th>Contributers</th>
+			<th>Contributors</th>
 			<th>Insertions</th>
 			<th>Deletions</th>
 		</tr>
 		<% @rows.each do |row| %>
-		<%= render partial: 'file_path_row', locals: row %>
+		<%= render partial: 'repositories/file_path_row', locals: row %>
 		<% end %>
 	</table>
 </section>
