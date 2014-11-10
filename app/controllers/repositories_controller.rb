@@ -48,7 +48,7 @@ class RepositoriesController < ApplicationController
     @rows.each do |repo_file|
       if file = repository.repository_files.find_by(name: repo_file.name)
         file.update(params)
-      else 
+      else
         repository.repository_files.create(params)
           # FIGURE OUT DELETE of old/deleted files from repo
       end
