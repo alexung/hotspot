@@ -10,27 +10,38 @@
 <body>
 	<header>
 		<nav class="navbar navbar-default" role="navigation">
-			<section class="container-fluid">
-				<section class="row">
-					<%#= link_to "All Repositories", repositories_path %>
-					<ul class="nav navbar-nav col-md-3">
-						<li><%= link_to "Home", root_path %></li>
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="/">Home</a>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse col-sm-8 col-md-8" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
 						<% if current_user %>
-						<li><%= link_to 'Logout', logout_path %></li>
-						<li><a href="http://github.com/<%= current_user.github_username %>"><img src="<%= current_user.avatar_url%>" width="24" height="24"></a></li>
+							<li><a href="/sessions/destroy">Logout</a></li>
+							<li><a href="http://github.com/<%= current_user.github_username %>"><img src="<%= current_user.avatar_url%>" width="24" height="24"></a></li>
 						<% else %>
-						<li><%= link_to 'Login', '/auth/github/' %></li>
+							<li><a href="/auth/github/">Login</a></li>
 						<% end %>
 					</ul>
-					<section class="col-md-6"></section>
-					<section class="col-md-3">
-						<form class="navbar-form navbar-right" action="/search" method="get">
-							<input class="form-control" name="username" placeholder="search">
-							<input class="form-control" type="submit" label="submit">
-						</form>
-					</section>
-				</section>
-			</section>
+				</div>
+
+				<form class="nav navbar-form navbar-right" action="/search" role="search" method="get">
+					<div class="form-group">
+						<input class="form-control" name="username" placeholder="search">
+					</div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
+
+			</div>
 		</nav>
 	</header>
 	<section class="container-fluid">
