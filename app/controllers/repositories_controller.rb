@@ -19,6 +19,9 @@ class RepositoriesController < ApplicationController
   end
 
   def show
+  end
+
+  def new_code_review
     @individual_repo_banner = true
     @notes = Note.all
     @username = params[:username]
@@ -33,6 +36,7 @@ class RepositoriesController < ApplicationController
       RepositoryFile.create_repo_files(repo_file, @username, saved_repository)
     end
     @rows.sort_by{|row_arr| -row_arr[:commits]}
+    render :show
   end
 
   def update

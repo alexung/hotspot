@@ -10,7 +10,7 @@
 
   get '/search', :to => 'repositories#index'
 
-  get '/code-review', :to => 'repositories#show'
+  get '/code-review', :to => 'repositories#new_code_review'
 
   get '/branch', :to => 'repositories#change_branch'
 
