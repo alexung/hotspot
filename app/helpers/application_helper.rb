@@ -7,8 +7,8 @@
     current_user
   end
 
-  def repository_exists?(repository_name, repo_owner_name)
-  	Repository.find_by(name: repository_name, repo_owner: repo_owner_name)
+  def repository_exists?(repo_uid)
+  	Repository.find_by(repo_uid: repo_uid)
   end
 
   def delete_repo(repo_name)
