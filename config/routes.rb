@@ -8,7 +8,7 @@
 
   root "welcome#index"
 
-  get '/search', :to => 'repositories#index'
+  get '/search', :to => 'searches#index'
 
   get '/code-review', :to => 'repositories#new_code_review'
 
