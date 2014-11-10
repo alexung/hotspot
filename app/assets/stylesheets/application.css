@@ -29,7 +29,32 @@
 
 .sidebar {
   position: fixed;
-  margin-right: 80%;
-  border: solid;
-  padding: 1%;
+  width: 20%;
+  border: 1px solid #e1e1e8;
+  border-radius: 3px;
+  background: #f7f7f9;
 }
+
+.all-saved-repositories {
+	margin: 0 0 0 20px;
+}
+
+.notes_textarea_div {
+	margin: 0 10px;
+}
+
+.notes_button {
+	width: 100px;
+	margin: 10px;
+}
+
+.notes_label {
+	margin: 10px 10px 0;
+}
+
+
+
+
+
+
+
