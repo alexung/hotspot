@@ -9,7 +9,9 @@ group :development do
 	gem 'faker'
 end
 
+# .ENV
 gem 'dotenv-rails'
+
 # Github API
 gem 'omniauth-github'
 gem 'github_api'
