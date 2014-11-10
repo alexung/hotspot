@@ -6,10 +6,10 @@ ruby "2.1.2"
 group :development do
 	gem 'byebug'
 	gem 'pry'
-	gem 'dotenv-rails'
 	gem 'faker'
 end
 
+gem 'dotenv-rails'
 # Github API
 gem 'omniauth-github'
 gem 'github_api'
