@@ -7,10 +7,6 @@
     current_user
   end
 
-  def repository_exists?(repo_uid)
-  	Repository.find_by(repo_uid: repo_uid)
-  end
-
   def delete_repo(repo_name)
     `cd /tmp && rm -rf #{repo_name}`
   end
