@@ -2,14 +2,13 @@ class RepositoriesController < ApplicationController
   include GithubHelper
   include ApplicationHelper
   include RepositoryHelper
-  require 'json'
 
   def index
     @saved_repositories_banner = true
     @notes = Note.all
     @user = params[:username]
-
     @repositories = fetch_gh_repos(@user)
+
     if @repositories.class == Array
       render :index
     else
