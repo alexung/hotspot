@@ -53,6 +53,8 @@ class RepositoriesController < ApplicationController
 
   def destroy
     repository = Repository.find(params[:id])
+    # delete from /tmp
+    delete_repo(repository.name)
     repository.destroy
     redirect_to user_path(User.find(session[:user_id]))
   end
