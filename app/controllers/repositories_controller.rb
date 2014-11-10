@@ -19,6 +19,9 @@ class RepositoriesController < ApplicationController
   end
 
   def show
+    @repository = Repository.find(params[:id])
+    #@branches = list_branches(@repository)
+    #@rows = @repository.repository_files
   end
 
   def new_code_review
@@ -40,7 +43,7 @@ class RepositoriesController < ApplicationController
   end
 
   def update
-      # repository = Repository.find_by(repo_uid: repo_uid)
+   # repository = Repository.find_by(repo_uid: repo_uid)
     username = params[:username]
     repository = Repository.find_by(name: params[:repository], owner_name: username)
     @rows = CodeReview.new(repository, username).rows
