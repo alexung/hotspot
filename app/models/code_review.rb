@@ -1,9 +1,12 @@
 class CodeReview
 	include GithubHelper
+	include ApplicationHelper
+	attr_reader :repo, :branch, :username
 
 	def initialize(repo, username, branch = "")
 		@repo = repo
 		@branch = branch
+		@username = username
 		clone_repo(repo, username)
 		@starting_index = index_value
 	end
@@ -45,7 +48,8 @@ class CodeReview
 	end
 
 	def contributors_to(path)
-		` cd /tmp/#{@repo} && git checkout #{@branch} && git log --format=%ae #{path} | sort | uniq `.split("\n")[@starting_index..-1]
+		contributor_arr = ` cd /tmp/#{@repo} && git checkout #{@branch} && git log --format=%ae #{path} | sort | uniq `.split("\n")[@starting_index..-1]
+		contributor_arr.map{ |email| avatar_url(email) }
 	end
 
 	def insertions_and_deletions(path)
@@ -55,6 +59,7 @@ class CodeReview
 	end
 
 	def insertions_to(path)
+
 		insertions_and_deletions(path).map do |insertion_and_deletion|
 			insertion_and_deletion[0].to_i
 		end.reduce(:+)
@@ -67,6 +72,7 @@ class CodeReview
 	end
 
  	def checkout_and_review_branch
+
  		` cd /tmp/#{@repo} && git checkout #{@branch} `
  	end
 

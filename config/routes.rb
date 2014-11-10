@@ -12,6 +12,7 @@
 
   get '/code-review', :to => 'repositories#show'
 
+  get '/branch', :to => 'repositories#change_branch'
 
   # Github Callback
   get '/auth/github/callback', to: 'sessions#create'

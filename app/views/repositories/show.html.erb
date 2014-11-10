@@ -6,16 +6,17 @@
 <section class="container-fluid">
 	<table class="table table-bordered">
 <!-- Start branch selection -->
-	<form action="">
+	<form action="/branch" method="GET">
 		<select>
 		<% @branches.each do |branch| %>
 			<option><%= branch %></option>
 			<% end %>
 		</select>
-		</form>
+		<input type="submit" value="Submit">
+	</form>
 <!-- End branch selection -->
 		<tr>
-			<th>File Path</th>
+			<a href="" id="column"><th>File Path</th></a>
 			<th>Commits</th>
 			<th>Contributers</th>
 			<th>Insertions</th>
