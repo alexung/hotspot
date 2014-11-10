@@ -5,7 +5,6 @@ module GithubHelper
 	CREDENTIALS = "\\?client_id\\=#{ENV['GITHUB_KEY']}\\&client_secret\\=#{ENV['GITHUB_SECRET']}"
 
 	def fetch_gh(path)
-		puts "#{BASE_URI}/#{path}#{CREDENTIALS}"
 		JSON.parse (`curl #{BASE_URI}/#{path}#{CREDENTIALS}`)
 	end
 
