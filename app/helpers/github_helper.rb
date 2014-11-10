@@ -29,6 +29,11 @@ module GithubHelper
 		fetch_gh(path)["email"]
 	end
 
+	def fetch_repo_uid(username, repository)
+		path = "/repos/#{username}/#{repository}"
+    fetch_gh(path)["id"]
+	end
+
 	def contributor_hash_builder(repo_user, repo_name)
 		contributors_arr = fetch_gh_contributors(repo_user, repo_name)
 		fetch_contributor_username(contributors_arr).map do |username|
