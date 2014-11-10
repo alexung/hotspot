@@ -33,14 +33,14 @@ class RepositoriesController < ApplicationController
       repository.destroy
     end
 
-    @repository_to_database = Repository.new(user_id: session[:user_id], name: params[:repo], url: "http://www.github.com/#{@username}/#{@repository}", repo_owner: @username, repo_uid: @repo_uid)
-    @repository_to_database.save
+    repository_to_database = Repository.new(user_id: session[:user_id], name: params[:repo], url: "http://www.github.com/#{@username}/#{@repository}", repo_owner: @username, repo_uid: @repo_uid)
+    repository_to_database.save
 
     delete_repo(@repository)
     @rows = CodeReview.new(@repository, @username).rows
 
     @rows.map do |path|
-      RepositoryFile.create_repo_files(path, @username, @repository_to_database)
+      RepositoryFile.create_repo_files(path, @username, repository_to_database)
     end
 
     @rows.sort_by{|row_arr| -row_arr[:commits]}
