@@ -19,6 +19,9 @@ class RepositoriesController < ApplicationController
   end
 
   def show
+    @repository = Repository.find(params[:id])
+    @branches = list_branches(@repository.name)
+    @rows = @repository.repository_files
   end
 
   def new_code_review

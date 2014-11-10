@@ -2,7 +2,7 @@
   get 'welcome/index'
 
   resources :users, only: [:show]
-  resources :repositories, except: [:edit, :update]
+  resources :repositories, except: [:update]
   resources :notes
 
 
