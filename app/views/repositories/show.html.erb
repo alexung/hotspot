@@ -7,16 +7,16 @@
 <section class="container-fluid">
 	<table class="table table-bordered">
 <!-- Start branch selection -->
-	<form action="/branch" method="GET">
-		<input type="hidden" name="user" value="<%= @username %>">
-		<input type="hidden" name="repo" value="<%= @repository %>">
-		<select>
-		<% @branches.each do |branch| %>
-			<option><%= branch %></option>
-			<% end %>
-		</select>
-		<input type="submit" value="Submit">
-	</form>
+		<form action="/branch" method="GET">
+			<input type="hidden" name="user" value="<%= @username %>">
+			<input type="hidden" name="repo" value="<%= @repository %>">
+			<select>
+				<% @branches.each do |branch| %>
+				<option><%= branch %></option>
+				<% end %>
+			</select>
+			<input type="submit" value="Submit">
+		</form>
 <!-- End branch selection -->
 		<tr>
 			<a href="" id="column"><th>File Path</th></a>
