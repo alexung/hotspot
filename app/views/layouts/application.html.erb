@@ -3,45 +3,61 @@
 <head>
   <title>Hotspot</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 	<header>
+
 		<nav class="navbar navbar-default" role="navigation">
-			<section class="container-fluid">
-				<section class="row">
-					<%#= link_to "All Repositories", repositories_path %>
-					<ul class="nav navbar-nav col-md-3">
-						<li><%= link_to "Home", root_path %></li>
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<%= link_to "Home", root_path, :class => "navbar-brand" %>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
 						<% if current_user %>
-						<li><%= link_to 'Logout', logout_path %></li>
-						<li><a href="http://github.com/<%= current_user.github_username %>"><img src="<%= current_user.avatar_url%>" width="24" height="24"></a></li>
+							<li><a href="/sessions/destroy">Logout</a></li>
+							<li><a href="http://github.com/<%= current_user.github_username %>"><img src="<%= current_user.avatar_url%>" width="24" height="24"></a></li>
 						<% else %>
-						<li><%= link_to 'Login', '/auth/github/' %></li>
+							<li><a href="/auth/github/">Login</a></li>
 						<% end %>
 					</ul>
-					<section class="col-md-6"></section>
-					<section class="col-md-3">
-						<form class="navbar-form navbar-right" action="/search" method="get">
-							<input class="form-control" name="username" placeholder="search">
-							<input class="form-control" type="submit" label="submit">
-						</form>
-					</section>
-				</section>
-			</section>
+
+				<form class="nav navbar-form navbar-right" action="/search" role="search" method="get">
+					<div class="form-group">
+						<input class="form-control" name="username" placeholder="search">
+					</div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
+
+				</div>
+			</div>
 		</nav>
+
 	</header>
 	<section class="container-fluid">
 		<section class="row">
 			<section class="col-md-12">
 
-	<% if flash[:error] %>
-		<%= flash[:error] %>
-	<% end %>
+			<% if flash[:error] %>
+				<%= flash[:error] %>
+			<% end %>
 
-	<%= yield %>
+			<%= yield %>
 
 			</section>
 	</section>
