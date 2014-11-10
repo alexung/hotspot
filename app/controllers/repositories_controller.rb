@@ -25,7 +25,7 @@ class RepositoriesController < ApplicationController
     @repository = params[:repo]
     @branches = list_branches(@repository)
     @username = params[:username]
-    repo = JSON.parse(`curl https://api.github.com/repos/#{@username}/#{@repository}`)
+    repo = JSON.parse(`curl https://api.github.com/repos/#{@username}/#{@repository}?client_id=#{ENV['GITHUB_KEY']}&client_secret=#{ENV['GITHUB_SECRET']}`)
     @repo_uid = repo["id"]
 
     if repository_exists?(@repository, @username)
@@ -43,8 +43,7 @@ class RepositoriesController < ApplicationController
 
     #success! Saving repofiles to database
     @rows_to_parse = CodeReview.new(@repository, @username)
-    # @rows_to_parse.rows
-    # binding.pry
+
     @rows_to_parse.rows.map do |path|
       RepositoryFile.create(
                             github_url: "http://github.com/#{@username}/#{@repository}/blob/master/#{path[:file_path]}",
@@ -58,6 +57,26 @@ class RepositoriesController < ApplicationController
     end
 
     @rows = CodeReview.new(@repository, @username).rows.sort_by{|row_arr| -row_arr[:commits]}
+  end
+
+ def update
+      # repository = Repository.find_by(repo_uid: repo_uid)
+    username = params[:username]
+    repository = Repository.find_by(name: params[:repository], owner_name: username)
+    @rows = CodeReview.new(repository, username).rows
+
+    @rows.each do |repo_file|
+      if file = repository.repository_files.find_by(name: repo_file.name)
+        file.update(params)
+      else
+        repository.repository_files.create(params)
+          # FIGURE OUT DELETE of old/deleted files from repo
+      end
+    end
+  end
+
+  def destroy
+    repository.destroy
   end
 
   def change_branch

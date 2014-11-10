@@ -2,7 +2,7 @@ module GithubHelper
 	require 'json'
 
 	BASE_URI = "https://api.github.com"
-	CREDENTIALS = "?client_id=#{ENV['GITHUB_KEY']}&client_secret=#{ENV['GITHUB_SECRET']}"
+	CREDENTIALS = "\\?client_id\\=#{ENV['GITHUB_KEY']}\\&client_secret\\=#{ENV['GITHUB_SECRET']}"
 
 	def fetch_gh(path)
 		JSON.parse (`curl #{BASE_URI}/#{path}#{CREDENTIALS}`)
@@ -22,7 +22,7 @@ module GithubHelper
 		contributor_arr.map do |contributor|
 			contributor["login"]
 		end
-	end	
+	end
 
 	def fetch_contributor_email(username)
 		path = "users/#{username}"
