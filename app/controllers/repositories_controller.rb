@@ -52,7 +52,9 @@ class RepositoriesController < ApplicationController
   end
 
   def destroy
+    repository = Repository.find(params[:id])
     repository.destroy
+    redirect_to user_path(User.find(session[:user_id]))
   end
 
   def change_branch
