@@ -1,32 +1,39 @@
-<%= render partial: 'sidebar' %>
+<%= render partial: 'shared/sidebar' %>
 <section class="row">
 	<section class="col-md-3"></section>
-	<h3 class="col-md-6 page_titles"><%= @repository %></h3>
+	<h3 class="col-md-6 page_titles"><%= @repository.name %></h3>
 	<section class="col-md-3"></section>
 </section>
 <section class="container-fluid">
 	<table class="table table-bordered">
-<!-- Start branch selection -->
+		<!-- Start branch selection -->
 		<form action="/branch" method="GET">
 			<input type="hidden" name="user" value="<%= @username %>">
 			<input type="hidden" name="repo" value="<%= @repository %>">
 			<select>
-				<% @branches.each do |branch| %>
-				<option><%= branch %></option>
-				<% end %>
+				<%# @branches.each do |branch| %>
+				<!-- <option><%#= branch %></option> -->
+				<%# end %>
 			</select>
 			<input type="submit" value="Submit">
 		</form>
-<!-- End branch selection -->
+		<!-- End branch selection -->
 		<tr>
 			<a href="" id="column"><th>File Path</th></a>
 			<th>Commits</th>
-			<th>Contributers</th>
+			<th>Contributors</th>
 			<th>Insertions</th>
 			<th>Deletions</th>
 		</tr>
-		<% @rows.each do |row| %>
-		<%= render partial: 'file_path_row', locals: row %>
+		<% @repository.repository_files.each do |repository| %>
+		<tr>
+			<td><a href="http://github.com/<%= @username %>/<%= @repository %>/blob/master/<%= repository.name %>"><%= repository.name %></a></td>
+			<td><%= repository.commits %></td>
+			<td><% repository.contributors.html_safe %></td>
+			<td><%= repository.insertions %></td>
+			<td><%= repository.deletions %></td>
+		</tr>
+		<%#= render partial: 'repositories/file_path_row', locals: repository %>
 		<% end %>
 	</table>
 </section>

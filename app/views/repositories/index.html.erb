@@ -3,15 +3,14 @@
 		<h3 class="col-md-6 page_titles"><%= @user %>'s Repositories</h3>
 		<section class="col-md-3"></section>
 	</section>
-</section>
-
+</section> <!-- DO NOT REMOVE THIS CLOSING TAG -->
 
 <div id="body">
 	<div class="viewport">
 	  <div class="frame">
 	    <div id="menu" class="menu nav-collapse collapse width">
 	      <div id="side_bar_div" class="collapse-inner">
-	          <%= render partial: 'sidebar' %>
+	          <%= render partial: 'shared/sidebar' %>
 	      </div>
 	    </div>
 
@@ -23,18 +22,18 @@
 
 	      <div id="content">
 	      	<section class="container-fluid">
-					<table class="table table-bordered">
-						<tr>
-							<th>Repositories</th>
-						</tr>
-						<% @repositories.each do |repository| %>
+						<table class="table table-bordered">
 							<tr>
-								<td><a href="https://www.github.com/<%=@user%>/<%=repository["name"]%>"><%= repository["name"] %></a>
-						    <a href="/code-review?username=<%=@user%>&repo=<%=repository['name']%>" class="start-code-review-button"><button type="button" class="btn btn-primary">Start Code Review</button></a></td>
+								<th>Repositories</th>
 							</tr>
-						<% end %>
-					</table>
-			</section>
+							<% @repositories.each do |repository| %>
+								<tr>
+									<td><a href="https://www.github.com/<%=@user%>/<%=repository["name"]%>"><%= repository["name"] %></a>
+							    <a href="/code-review?username=<%=@user%>&repo=<%=repository['name']%>" class="start-code-review-button"><button type="button" class="btn btn-primary">Start Code Review</button></a></td>
+								</tr>
+							<% end %>
+						</table>
+					</section>
 
 
 	      </div>
