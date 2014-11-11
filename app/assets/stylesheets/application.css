@@ -14,8 +14,8 @@
  *= require_self
  */
 .page_titles {
-	text-align: center;
-	margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .start-code-review-button {
@@ -27,12 +27,51 @@
   font-size: .8em;
 }
 
+
+
+/*------Notes Button and Partial-----------*/
+
 .sidebar {
-  position: fixed;
-  width: 20%;
-  border: 1px solid #e1e1e8;
-  border-radius: 3px;
-  background: #f7f7f9;
+  /*display: none;*/
+  margin: 30px 0 0 0;
+  /*width: 20%;*/
+  /*height: 300px;*/
+  /*border: 1px solid #e1e1e8;*/
+  /*border-radius: 3px;*/
+  background: white;
+}
+
+#side_bar_div {
+  background: white;
+  border: 1px solid white;
+  margin: -10px 0 0;
+}
+
+.sidebar_toggle {
+  position: absolute;
+}
+
+#note_toggle_button {
+  margin: 0 0 0 -5px;
+}
+
+#note_toggle_button:focus {
+  outline: 0;
+}
+
+#note_toggle_button:hover {
+  /*background: white;*/
+  outline: 0;
+}
+
+#note_toggle_button:active {
+  /*background: white;*/
+  outline: 0;
+}
+
+.content_section {
+	width: 100%;
+	overflow: hidden;
 }
 
 .all-saved-repositories {
@@ -50,6 +89,119 @@
 
 .notes_label {
 	margin: 10px 10px 0;
+}
+
+.activated {
+	display: block;
+}
+
+/*----------Expandable Side Bar-----------------*/
+
+#body {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#body .viewport {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+#body .viewport .frame {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0; 
+}
+
+#body .viewport .frame .navbar .navbar-inner {
+  border-radius: 0;
+  padding-left: 5px; 
+}
+
+#body .viewport .frame .menu {
+  height: 100%;
+  /* background-color: #3D6AA2; */ 
+}
+
+#inner_nav_bar {
+  visibility: hidden;
+} 
+
+#body .viewport .frame .menu.collapse {
+  float: left;
+  height: 100% !important;
+  width: auto; 
+}
+
+#body .viewport .frame .menu.collapse.height {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  -webkit-transition: height 0.35s ease;
+  -moz-transition: height 0.35s ease;
+  -o-transition: height 0.35s ease;
+  transition: height 0.35s ease; 
+}
+
+#body .viewport .frame .menu.collapse.width {
+  position: relative;
+  width: 0;
+  overflow: hidden;
+  -webkit-transition: width 0.35s ease;
+  -moz-transition: width 0.35s ease;
+  -o-transition: width 0.35s ease;
+  transition: width 0.35s ease; 
+}
+
+#body .viewport .frame .menu.collapse.in.width {
+  width: auto; 
+}
+
+#body .viewport .frame .menu.collapse.in.height {
+  height: auto; 
+}
+
+#body .viewport .frame .menu .collapse-inner {
+  position: relative;
+  width: 250px;
+  height: 100%; 
+}
+
+#body .viewport .frame .menu .navbar .navbar-inner {
+  text-align: center;
+  color: grey;
+  font-size: 1.2em;
+  line-height: 38px; 
+}
+
+#body .viewport .frame .menu .nav-stacked {
+  padding: 0 10px; 
+}
+
+#body .viewport .frame .view {
+  width: 50%;
+  height: 100%;
+  overflow: hidden; 
+}
+
+#body .viewport .frame .view .navbar .navbar-inner .btn-navbar {
+  display: block;
+  float: left; 
+}
+
+#body .viewport .frame .view #content {
+  margin: auto 15px;
+  text-align: justify; 
 }
 
 
