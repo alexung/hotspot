@@ -6,7 +6,7 @@
 </section>
 <section class="container-fluid">
 	<table class="table table-bordered">
-<!-- Start branch selection -->
+		<!-- Start branch selection -->
 		<form action="/branch" method="GET">
 			<input type="hidden" name="user" value="<%= @username %>">
 			<input type="hidden" name="repo" value="<%= @repository %>">
@@ -17,7 +17,13 @@
 			</select>
 			<input type="submit" value="Submit">
 		</form>
-<!-- End branch selection -->
+		<!-- End branch selection -->
+
+		<!-- Begin Update -->
+		<%= form_for @repository, as: :post, url: repository_path(@repository), method: :patch, html: { class: "button" } do |f| %>
+		<%= f.submit %>
+		<% end %>
+		<!-- End Update -->
 		<tr>
 			<a href="" id="column"><th>File Path</th></a>
 			<th>Commits</th>

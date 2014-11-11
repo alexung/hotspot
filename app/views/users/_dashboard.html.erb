@@ -12,7 +12,7 @@
 <% @repositories.each do |repository| %>
 	<section class="row">
 		<section class="col-md-5"></section>
-		<a href="/code-review?username=<%=repository['repo_owner']%>&repo=<%=repository['name']%>" class="col-md-2 page_titles"><%= repository.name %></a>
+		<a href="/code-review?username=<%=repository['repo_owner']%>&repo=<%=repository['name']%>" class="col-md-2 page_titles"><%= repository.name %></a><%= repository['repo_owner'] %>
 		<section class="col-md-5"></section>
 	</section>
 <% end %>

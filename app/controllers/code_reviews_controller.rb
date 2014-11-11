@@ -17,7 +17,7 @@ class CodeReviewsController < ApplicationController
 		@rows.map do |repo_file|
 			RepositoryFile.create_repo_files(repo_file, @username, saved_repository)
 		end
-		@rows.sort_by{|row_arr| -row_arr[:commits]}
+		@repository = saved_repository.repository_files
 		render 'repositories/show'
 	end
 
