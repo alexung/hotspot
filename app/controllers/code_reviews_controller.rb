@@ -7,13 +7,12 @@ class CodeReviewsController < ApplicationController
 		@notes = Note.all
 		@username = params[:username]
 		@repository = params[:repo]
-		@branches = list_branches(@repository)
 		@username = params[:username]
-		repo = fetch_gh_repo(@username, @repository)
+		branches = list_branches(@repository)
 		repo_uid = params[:uid]
 		rows = CodeReview.new(@repository, @username).rows
 
-		saved_repository = Repository.save_repository_to_db(@username, @repository, repo_uid, session[:user_id])
+		saved_repository = Repository.save_repository_to_db(@username, @repository, repo_uid, session[:user_id], branches)
 		rows.map do |repo_file|
 			RepositoryFile.create_repo_files(repo_file, @username, saved_repository)
 		end

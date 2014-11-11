@@ -1,38 +1,49 @@
 <section class="row">
-		<section class="col-md-3"></section>
-		<section class="col-md-6" id="select_branch_section">
-			<h3 class="page_titles"><%= @repository.name %></h3>
-			<form id="select_branch" action="/branch" method="GET">
-				<input type="hidden" name="user" value="<%= @username %>">
-				<input type="hidden" name="repo" value="<%= @repository %>">
-				<select>
-					<option>branch</option>
-				</select>
-				<input type="submit" value="Submit">
-			</form>
-		</section>
-		<section class="col-md-3"></section>
+	<section class="col-md-3"></section>
+	<section class="col-md-6" id="select_branch_section">
+		<h3 class="page_titles"><%= @repository.name %></h3>
+		<form id="select_branch" action="/branch" method="GET">
+			<input type="hidden" name="user" value="<%= @username %>">
+			<input type="hidden" name="repo" value="<%= @repository %>">
+			<select>
+				<option>branch</option>
+			</select>
+			<input type="submit" value="Submit">
+		</form>
 	</section>
+	<section class="col-md-3"></section>
+</section>
 </section> <!-- DO NOT REMOVE THIS CLOSING TAG -->
 
 <div id="body">
 	<div class="viewport">
-	  <div class="frame">
-	    <div id="menu" class="menu nav-collapse collapse width">
-	      <div id="side_bar_div" class="collapse-inner">
-	          <%= render partial: 'shared/sidebar' %>
-	      </div>
-	    </div>
+		<div class="frame">
+			<div id="menu" class="menu nav-collapse collapse width">
+				<div id="side_bar_div" class="collapse-inner">
+					<%= render partial: 'shared/sidebar' %>
+				</div>
+			</div>
 
-	    <div class="view">
-        <button type="button" id="note_toggle_button" class="btn btn-primary btn-xs btn-navbar sidebar_toggle" data-toggle="collapse" data-target="#menu">
+			<div class="view">
+				<button type="button" id="note_toggle_button" class="btn btn-primary btn-xs btn-navbar sidebar_toggle" data-toggle="collapse" data-target="#menu">
 					Notes &gt;
-        </button>
-	      <div id="inner_nav_bar" class="navbar navbar-inverse"></div>
+				</button>
+				<div id="inner_nav_bar" class="navbar navbar-inverse"></div>
 
-	      <div id="content">
-	      	<section class="container-fluid">
+				<div id="content">
+					<section class="container-fluid">
+
 						<table class="table table-bordered">
+							<form action="/branch" method="GET">
+								<input type="hidden" name="user" value="<%= @username %>">
+								<input type="hidden" name="repo" value="<%= @repository %>">
+								<select>
+									<% @repository.branches.split(",").each do |branch| %>
+									<option><%= branch %></option>
+									<% end %>
+								</select>
+								<input type="submit" value="Submit">
+							</form>
 							<tr>
 								<a href="" id="column"><th>File Path</th></a>
 								<th>Commits</th>
@@ -51,14 +62,9 @@
 							<% end %>
 						</table>
 					</section>
-	      </div>
-	      
-	    </div>
-	  </div>
+				</div>
+
+			</div>
+		</div>
 	</div>
 </div>
-
-
-
-
-
