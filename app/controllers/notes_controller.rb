@@ -1,5 +1,9 @@
 class NotesController < ApplicationController
 
+  def show
+    @note = Note.find(params[:id])
+  end
+
   def new
     @note = Note.new
   end
@@ -12,7 +16,7 @@ class NotesController < ApplicationController
     @note.user_id = session[:user_id]
     @note.repository_id = @repo.id
     @note.save
-    redirect_to "/code-review?username=#{@username}&repo=#{@repository}"
+    redirect_to repository_path(Repository.find(@repo.id))
   end
 
   private

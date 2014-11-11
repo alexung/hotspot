@@ -3,6 +3,11 @@ class RepositoriesController < ApplicationController
   include ApplicationHelper
   include RepositoryHelper
 
+  def create
+    @notes = Note.find_by(repository_id: params[:repository_id])
+    redirect_to repository_path(1)
+  end
+
   def show
     @repository = Repository.find(params[:id])
     # @branches = list_branches(@repository.name)
