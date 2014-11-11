@@ -13,9 +13,30 @@
  *= require_tree .
  *= require_self
  */
+.logo {
+  font-size: 2em;
+}
+
+#navigation_search {
+  padding-right: 5px;
+}
+
+.navbar-brand {
+  padding: 10px 0 0 20px;
+}
+
 .page_titles {
   text-align: center;
   margin-bottom: 20px;
+  display: inline;
+}
+
+#select_branch {
+  display: inline;
+}
+
+#select_branch_section {
+  text-align: center;
 }
 
 .start-code-review-button {
@@ -33,7 +54,7 @@
 
 .sidebar {
   /*display: none;*/
-  margin: 30px 0 0 0;
+  margin: 75px 0 0 20px;
   /*width: 20%;*/
   /*height: 300px;*/
   /*border: 1px solid #e1e1e8;*/
@@ -75,7 +96,7 @@
 }
 
 .all-saved-repositories {
-	margin: 0 0 0 20px;
+	margin: 75px 0 0 20px;
 }
 
 .notes_textarea_div {
