@@ -3,7 +3,7 @@ class CodeReviewsController < ApplicationController
 	include CodeReviewHelper
 
 	def new_code_review
-		@individual_repo_banner = true
+		@notes_banner = true
 		@notes = Note.all
 		@username = params[:username]
 		@repository = params[:repo]

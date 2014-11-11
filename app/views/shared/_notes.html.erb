@@ -1,9 +1,10 @@
 <div class="notes">
-<!--   Need to make this display notes for this particular repo -->
-<%# binding.pry %>
-  <% if Repository.find(params["id"]).notes %>
-    <% Repository.find(params["id"]).notes.each do |note| %>
-      <%= note.content %><br><br>
-    <% end %>
+  <!--   Need to make this display notes for this particular repo -->
+  <%# binding.pry %>
+  <%# if Repository.find_by(repo_uid: params["uid"].to_i).notes || Repository.find(params["id"]).notes %>
+   <% if @repository.notes %>
+      <% @repository.notes.each do |note| %>
+        <%= note.content %><br><br>
+      <% end %>
   <% end %>
 </div>
