@@ -18,26 +18,31 @@
 
 			<div class="view">
 				<button type="button" id="note_toggle_button" class="btn btn-primary btn-xs btn-navbar sidebar_toggle" data-toggle="collapse" data-target="#menu">
-					Notes &gt;
+					Notes 
+					<i class="fa fa-bars"></i>
 				</button>
-				<div id="inner_nav_bar" class="navbar navbar-inverse"></div>
+				<div id="inner_nav_bar" class`="navbar navbar-inverse"></div>
 
 				<div id="content">
 					<section class="container-fluid">
-
-						<table class="table table-bordered">
-							<form action="/branch" method="GET">
-								<input type="hidden" name="user" value="<%= @username %>">
-								<input type="hidden" name="repo" value="<%= @repository %>">
-								<select>
-									<% @repository.branches.split(",").each do |branch| %>
-									<option><%= branch %></option>
-									<% end %>
-								</select>
-								<input type="submit" value="Submit">
-							</form>
+						<button type="button" id="update_button" class="btn btn-warning btn-xs btn-navbar" data-toggle="collapse" data-target="#menu">
+							<a href="/repositories/<%= @repository.id %>">Update <i class="fa fa-refresh"></i></a>
+						</button>
+						<table class="table table-bordered repo_table">
 							<tr>
-								<a href="" id="column"><th>File Path</th></a>
+								<th>
+									File Path
+									<form action="/branch" method="GET" id="branch_form">
+										<input type="hidden" name="user" value="<%= @username %>">
+										<input type="hidden" name="repo" value="<%= @repository %>">
+										<select>
+											<% @repository.branches.split(",").each do |branch| %>
+											<option><%= branch %></option>
+											<% end %>
+										</select>
+										<input type="submit" value="Submit">
+									</form>
+								</th>
 								<th>Commits</th>
 								<th>Contributors</th>
 								<th>Insertions</th>
