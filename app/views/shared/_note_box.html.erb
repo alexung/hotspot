@@ -13,6 +13,11 @@
 
   <%= f.hidden_field :reviewer_id, value: "#{session[:user_id]}" %>
 
+  <%= f.hidden_field :repository_id,
+  value: "#{@repository.id}" %>
+
+  <%# binding.pry %>
+
   <div class="form-group">
     <%= f.submit "Add Note", id: "submit-note", :class => "btn btn-default" %>
   </div>
