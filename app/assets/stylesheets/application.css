@@ -247,4 +247,14 @@
   display: none;
 }
 
+.delete_button {
+  display: block;
+  float: right;
+  margin: 0 0 0 5px;
+}
+
+
+
+
+
 
