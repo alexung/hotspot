@@ -14,7 +14,7 @@
 	<section class="row">
 		<section class="col-md-5"></section>
 		<%= link_to "#{repository.name}", repository_path(repository) %>&nbsp;&nbsp;&nbsp;<%= repository['repo_owner'] %>
-		<%= button_to "Destroy", repository_path(repository), confirm: "Are you sure you'd like to delete this repository and all it's associated notes?", method: :delete %>
+		<%= button_to "Destroy", repository_path(repository), {onclick: "return confirm('Are you sure you'd like to delete this repository and all it's associated notes?')", method: :delete } %>
 		<section class="col-md-5"></section>
 	</section>
 <% end %>

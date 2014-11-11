@@ -15,8 +15,8 @@ class RepositoriesController < ApplicationController
   end
 
   def update
-    repository = Repository.find_by(name: params[:repository], owner_name: params[:username])
-    rows = CodeReview.new(params[:repository], params[:username]).rows
+    repository = Repository.find(params["id"])
+    rows = CodeReview.new(repository.name, User.find(repository.user_id).name).rows
     rows.each do |repo_file|
       if file = repository.repository_files.find_by(name: repo_file.name)
         file.update(repo_file)
