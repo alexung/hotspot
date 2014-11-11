@@ -1,9 +1,7 @@
 <section class="row">
 	<section class="col-md-3"></section>
-	<section class="col-md-6" id="select_branch_section">
 		<h3 class="page_titles"><%= @repository.name %></h3>
 		<%= button_to "Destroy", @repository, confirm: "Are you sure you'd like to delete this repository and all it's associated notes?", method: :delete %>
-	</section>
 	<section class="col-md-3"></section>
 </section>
 </section> <!-- DO NOT REMOVE THIS CLOSING TAG -->
@@ -27,16 +25,6 @@
 					<section class="container-fluid">
 
 						<table class="table table-bordered">
-							<form action="/branch" method="GET">
-								<input type="hidden" name="username" value="<%= @username %>">
-								<input type="hidden" name="repository" value="<%= @repository.id %>">
-								<select name="branch">
-									<% @repository.branches.split(",").each do |branch| %>
-									<option value="<%= branch %>"><%= branch %></option>
-									<% end %>
-								</select>
-								<input type="submit" value="Submit">
-							</form>
 							<tr>
 								<a href="" id="column"><th>File Path</th></a>
 								<th>Commits</th>
