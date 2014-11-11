@@ -1,23 +1,53 @@
-<button type="button" class="btn btn-primary btn-xs sidebar_toggle">sidebar ></button>
-<%= render partial: 'sidebar' %>
-<section class="row">
-	<section class="col-md-3"></section>
-	<h3 class="col-md-6 page_titles"><%= @user %>'s Repositories</h3>
-	<section class="col-md-3"></section>
+	<section class="row">
+		<section class="col-md-3"></section>
+		<h3 class="col-md-6 page_titles"><%= @user %>'s Repositories</h3>
+		<section class="col-md-3"></section>
+	</section>
 </section>
-<section class="container-fluid">
-	<table class="table table-bordered">
 
-		<tr>
-			<th>Repositories</th>
-		</tr>
 
-		<% @repositories.each do |repository| %>
-			<tr>
-				<td><a href="https://www.github.com/<%=@user%>/<%=repository["name"]%>"><%= repository["name"] %></a>
-		    <a href="/code-review?username=<%=@user%>&repo=<%=repository['name']%>" class="start-code-review-button"><button type="button" class="btn btn-primary">Start Code Review</button></a></td>
-			</tr>
-		<% end %>
+<div id="body">
+	<div class="viewport">
+	  <div class="frame">
+	    <div id="menu" class="menu nav-collapse collapse width">
+	      <div class="collapse-inner">
+	        <!-- <div class="navbar navbar-inverse"> -->
+	          <div class="navbar-inner">
+	            Menu
+	          </div>
+	        <!-- </div> -->
+	          <%= render partial: 'sidebar' %>
+	      </div>
+	    </div>
 
-	</table>
-</section>
+	    <div class="view">
+	          <button type="button" id="note_toggle_button" class="btn btn-primary btn-xs btn-navbar sidebar_toggle" data-toggle="collapse" data-target="#menu">
+				sidebar &gt;
+	          </button>
+	      <div id="inner_nav_bar" class="navbar navbar-inverse">
+	        <!-- <div class="navbar-inner"> -->
+	        <!-- </div> -->
+	      </div>
+	      <div id="content">
+	        
+
+	      	<section class="container-fluid">
+				<table class="table table-bordered">
+					<tr>
+						<th>Repositories</th>
+					</tr>
+					<% @repositories.each do |repository| %>
+						<tr>
+							<td><a href="https://www.github.com/<%=@user%>/<%=repository["name"]%>"><%= repository["name"] %></a>
+					    <a href="/code-review?username=<%=@user%>&repo=<%=repository['name']%>" class="start-code-review-button"><button type="button" class="btn btn-primary">Start Code Review</button></a></td>
+						</tr>
+					<% end %>
+				</table>
+			</section>
+
+
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</div>
