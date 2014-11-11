@@ -1,9 +1,5 @@
 <div class="note-box">
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
 <%= form_for :note, :html => {id: "note-form"}, url: repository_notes_path(repository_id: @repository.id), method: :post, locals: {repository: @repository, username: @username} do |f| %>
 
   <div class="form-group">
@@ -11,21 +7,11 @@
     <%= f.text_area :content, :class => "form-control" %>
   </div>
 
-<<<<<<< HEAD
   <%= f.hidden_field :username, value: "#{@username}" %>
-  <%= f.hidden_field :repository_name, value: "#{@repository}" %>
-  <%= f.hidden_field :reviewer_id, value: "wow" %>
-=======
->>>>>>> origin/master
-  <%= f.hidden_field :username, value: "alexung" %>
-
-  <%#= f.hidden_field :username, value: "#{@username}" %>
 
   <%= f.hidden_field :repository_name, value: "#{@repository.name}" %>
 
   <%= f.hidden_field :reviewer_id, value: "#{session[:user_id]}" %>
-
-  <%# binding.pry %>
 
   <div class="form-group">
     <%= f.submit "Add Note", id: "submit-note", :class => "btn btn-default" %>
