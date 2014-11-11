@@ -14,8 +14,8 @@
  *= require_self
  */
 .page_titles {
-	text-align: center;
-	margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .start-code-review-button {
@@ -27,18 +27,46 @@
   font-size: .8em;
 }
 
-/*.sidebar {
-	display: none;
-	margin: 40px 0 0 0;
-  width: 20%;
-  height: 300px;
-  border: 1px solid #e1e1e8;
-  border-radius: 3px;
-  background: #f7f7f9;
-}*/
+
+
+/*------Notes Button and Partial-----------*/
+
+.sidebar {
+  /*display: none;*/
+  margin: 30px 0 0 0;
+  /*width: 20%;*/
+  /*height: 300px;*/
+  /*border: 1px solid #e1e1e8;*/
+  /*border-radius: 3px;*/
+  background: white;
+}
+
+#side_bar_div {
+  background: white;
+  border: 1px solid white;
+  margin: -10px 0 0;
+}
 
 .sidebar_toggle {
-	position: absolute;
+  position: absolute;
+}
+
+#note_toggle_button {
+  margin: 0 0 0 -5px;
+}
+
+#note_toggle_button:focus {
+  outline: 0;
+}
+
+#note_toggle_button:hover {
+  /*background: white;*/
+  outline: 0;
+}
+
+#note_toggle_button:active {
+  /*background: white;*/
+  outline: 0;
 }
 
 .content_section {
@@ -67,7 +95,7 @@
 	display: block;
 }
 
-/*----------Notes Stuff-----------------*/
+/*----------Expandable Side Bar-----------------*/
 
 #body {
   position: absolute;
@@ -176,9 +204,7 @@
   text-align: justify; 
 }
 
-#note_toggle_button {
-	margin: 0 0 0 30px;
-}
+
 
 
 
