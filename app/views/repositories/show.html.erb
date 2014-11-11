@@ -29,9 +29,9 @@
 							<form action="/branch" method="GET">
 								<input type="hidden" name="username" value="<%= @username %>">
 								<input type="hidden" name="repository" value="<%= @repository.id %>">
-								<select>
+								<select name="branch">
 									<% @repository.branches.split(",").each do |branch| %>
-									<option><%= branch %></option>
+									<option value="<%= branch %>"><%= branch %></option>
 									<% end %>
 								</select>
 								<input type="submit" value="Submit">
