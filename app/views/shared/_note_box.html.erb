@@ -1,6 +1,27 @@
-
-
 <div class="note-box">
+
+<%= form_for :note, :html => {id: "note-form"}, url: repository_notes_path(repository_id: @repository.id), method: :post, locals: {repository: @repository, username: @username} do |f| %>
+
+  <div class="form-group">
+    <%= f.label :content, "Notes", :class => "text_area_label" %>
+    <%= f.text_area :content, :class => "form-control" %>
+  </div>
+
+  <%= f.hidden_field :username, value: "#{@username}" %>
+
+  <%= f.hidden_field :repository_name, value: "#{@repository.name}" %>
+
+  <%= f.hidden_field :reviewer_id, value: "#{session[:user_id]}" %>
+
+  <div class="form-group">
+    <%= f.submit "Add Note", id: "submit-note", :class => "btn btn-default" %>
+  </div>
+
+<% end %>
+
+</div>
+
+<!-- <div class="note-box">
 
   <form role="form" action="/notes" method="post">
 
@@ -22,4 +43,4 @@
 
   </form>
 
-</div>
+</div> -->
