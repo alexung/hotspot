@@ -1,11 +1,7 @@
-<<<<<<< HEAD
 <%= render 'shared/sidebar' %>
-=======
-<%= render partial: 'shared/sidebar' %>
->>>>>>> origin
 <section class="row">
 	<section class="col-md-3"></section>
-	<h3 class="col-md-6 page_titles"><%= @repository %></h3>
+	<h3 class="col-md-6 page_titles"><%= @repository.name %></h3>
 	<section class="col-md-3"></section>
 </section>
 <section class="container-fluid">
@@ -15,9 +11,9 @@
 			<input type="hidden" name="user" value="<%= @username %>">
 			<input type="hidden" name="repo" value="<%= @repository %>">
 			<select>
-				<% @branches.each do |branch| %>
-				<option><%= branch %></option>
-				<% end %>
+				<%# @branches.each do |branch| %>
+				<option><%#= branch %></option>
+				<%# end %>
 			</select>
 			<input type="submit" value="Submit">
 		</form>
@@ -30,9 +26,17 @@
 			<th>Insertions</th>
 			<th>Deletions</th>
 		</tr>
-		<% @rows.each do |row| %>
-		<%= render partial: 'file_path_row', locals: {row: row} %>
-		<%#= render partial: 'repositories/file_path_row', locals: row %>
+		<% @repository.repository_files.each do |repository_file| %>
+					<%#= render 'repositories/file_path_row', locals: {repository_file: repository_file} %>
+					<tr>
+				<td><a href='http://github.com/<%= @username %>/<%= @repository %>/blob/master/<%= repository_file.name %>'><%= repository_file.name %></a></td>
+				<td><%= repository_file.commits %></td>
+				<td><%= repository_file.contributors.html_safe %></td>
+				 <%#= to_a.each.do |avatar| avatar.html_safe %>
+				<%# end %>
+				<td><%= repository_file.insertions %></td>
+				<td><%= repository_file.deletions %></td>
+			</tr>
 		<% end %>
 	</table>
 </section>

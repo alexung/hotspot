@@ -1,7 +1,7 @@
-<%= render partial: 'shared/sidebar' %>
+<%= render 'shared/sidebar' %>
 <section class="row">
 	<section class="col-md-3"></section>
-	<h3 class="col-md-6 page_titles"><%= @user %>'s Repositories</h3>
+	<h3 class="col-md-6 page_titles"><%= @user.capitalize %>'s Repositories</h3>
 	<section class="col-md-3"></section>
 </section>
 <section class="container-fluid">

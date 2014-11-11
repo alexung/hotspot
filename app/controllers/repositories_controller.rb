@@ -5,8 +5,7 @@ class RepositoriesController < ApplicationController
 
   def show
     @repository = Repository.find(params[:id])
-    @branches = list_branches(@repository)
-    @rows = @repository.repository_files
+    #@branches = list_branches(@repository)
   end
 
   def update

@@ -1,13 +1,13 @@
 <tr>
-	<td><a href='http://github.com/<%= @username %>/<%= @repository %>/blob/master/<%= row[:file_path] %>'><%= row[:file_path] %></a></td>
-	<td><%= row[:commits] %></td>
-	<td><%= row[:contributers] %></td>
+	<td><a href='http://github.com/<%= @username %>/<%= @repository %>/blob/master/<%= repository_file.name %>'><%= repository_file.name %></a></td>
+	<td><%= repository_file.commits %></td>
+	<td><%= repository_file.contributors %></td>
 	 <%#= to_a.each.do |avatar| avatar.html_safe %>
 	<%# end %>
-	<td><%= row[:insertions] %></td>
-	<td><%= row[:deletions] %></td>
+	<td><%= repository_file.insertions %></td>
+	<td><%= repository_file.deletions %></td>
 </tr>
-	<!-- <td><a href="http://github.com/<%#= @username %>/<%#= @repository %>/blob/master/<%#= file_path %>"><%= file_path %></a></td>
+	<!-- <td><a href="http://github.com/<%#= @username %>/<%#= @repository %>/blob/master/<%#= file_path %>"><%#= file_path %></a></td>
 	<td><%#= commits %></td>
 	<td><%# contributors.each do |avatar| %>
 	 <%#= avatar.html_safe %>

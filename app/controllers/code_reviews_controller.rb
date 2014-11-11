@@ -17,7 +17,7 @@ class CodeReviewsController < ApplicationController
 		@rows.map do |repo_file|
 			RepositoryFile.create_repo_files(repo_file, @username, saved_repository)
 		end
-		@repository = saved_repository.repository_files
+		@repository = saved_repository
 		render 'repositories/show'
 	end
 
