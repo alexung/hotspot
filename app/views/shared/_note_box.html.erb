@@ -1,17 +1,26 @@
 <div class="note-box">
 
-<%= form_for :note, :html => {id: "note-form"}, url: 'create_banana', method: :post do |f| %>
+
+<% @repository %>
+<% @repository.id %>
+<% @username %>
+<%# binding.pry %>
+<%= form_for :note, :html => {id: "note-form"}, url: repository_notes_path(repository_id: @repository.id), method: :post, locals: {repository: @repository, username: @username} do |f| %>
 
   <div>
     <%= f.label :content, "Notes" %>
     <%= f.text_area :content %>
   </div>
 
-  <%= f.hidden_field :username, value: "#{@username}" %>
+  <%= f.hidden_field :username, value: "alexung" %>
 
-  <%= f.hidden_field :repository_name, value: "#{@repository}" %>
+  <%#= f.hidden_field :username, value: "#{@username}" %>
 
-  <%= f.hidden_field :reviewer_id, value: "wow" %>
+  <%= f.hidden_field :repository_name, value: "#{@repository.name}" %>
+
+  <%= f.hidden_field :reviewer_id, value: "#{session[:user_id]}" %>
+
+  <%# binding.pry %>
 
   <div>
     <%= f.submit "Add Note", id: "submit-note" %>

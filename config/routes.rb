@@ -2,8 +2,9 @@
   get 'welcome/index'
 
   resources :users, only: [:show]
-  resources :repositories, except: [:edit]
-  resources :notes
+  resources :repositories, except: [:edit] do
+    resources :notes
+  end
 
 
   root "welcome#index"
