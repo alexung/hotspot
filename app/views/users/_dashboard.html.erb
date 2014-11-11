@@ -12,7 +12,7 @@
 <% @repositories.each do |repository| %>
 	<section class="row">
 		<section class="col-md-5"></section>
-		<%= link_to "#{repository.name}", repository_path(repository) %><%= repository['repo_owner'] %>
+		<%= link_to "#{repository.name}", repository_path(repository) %>&nbsp;&nbsp;&nbsp;<%= repository['repo_owner'] %>
 		<section class="col-md-5"></section>
 	</section>
 <% end %>
