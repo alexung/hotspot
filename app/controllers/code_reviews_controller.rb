@@ -8,11 +8,10 @@ class CodeReviewsController < ApplicationController
 		@username = params[:username]
 		@repository = params[:repo]
 		@username = params[:username]
-		branches = list_branches(@repository)
 		repo_uid = params[:uid]
 		rows = CodeReview.new(@repository, @username).rows
 
-		saved_repository = Repository.save_repository_to_db(@username, @repository, repo_uid, session[:user_id], branches)
+		saved_repository = Repository.save_repository_to_db(@username, @repository, repo_uid, session[:user_id])
 		rows.map do |repo_file|
 			RepositoryFile.create_repo_files(repo_file, @username, saved_repository)
 		end

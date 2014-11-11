@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 20141108230351) do
     t.string   "url"
     t.string   "repo_owner"
     t.integer  "repo_uid"
-    t.text     "branches"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
