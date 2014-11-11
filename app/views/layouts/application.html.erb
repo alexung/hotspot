@@ -7,6 +7,7 @@
   <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -24,9 +25,9 @@
 						<span class="icon-bar"></span>
 					</button>
 					<% if session[:user_id] %>
-					<%= link_to "Home", user_path(User.find(session[:user_id])), :class => "navbar-brand" %>
+					<%= link_to content_tag(:i,nil, :class=>"fa fa-github logo"), user_path(User.find(session[:user_id])), :class => "navbar-brand" %>
 					<% else %>
-					<%= link_to "Home", root_path, :class => "navbar-brand" %>
+					<%= link_to content_tag(:i,nil, :class=>"fa fa-github logo"), root_path, :class => "navbar-brand" %>
 					<% end %>
 				</div>
 
@@ -41,7 +42,7 @@
 						<% end %>
 					</ul>
 
-				<form class="nav navbar-form navbar-right" action="/search" role="search" method="get">
+				<form id="navigation_search" class="nav navbar-form navbar-right" action="/search" role="search" method="get">
 					<div class="form-group">
 						<input class="form-control" name="username" placeholder="search">
 					</div>
