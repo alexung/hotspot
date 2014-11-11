@@ -12,7 +12,6 @@
 <% @repositories.each do |repository| %>
 	<section class="row">
 		<section class="col-md-5"></section>
-	<!-- 	<a href="/show?username=<%#=repository['repo_owner']%>&repo=<%#=repository['name']%>" class="col-md-2 page_titles"><%#= repository.name %></a> -->
 		<%= link_to "#{repository.name}", repository_path(repository) %>
 		<section class="col-md-5"></section>
 	</section>
