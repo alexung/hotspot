@@ -1,11 +1,9 @@
 <div class="all-saved-repositories">
   <h4>Saved Repositories</h4>
 
-  <!-- Need to make this only saved repositories CHECK BABY SUCCESS-->
   <% Repository.all.each do |repository| %>
     <a href='/repositories/<%=repository.id%>'><%=repository.name%></a>
     <br><br>
   <% end %>
-
 
 </div>
