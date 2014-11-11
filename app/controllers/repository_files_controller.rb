@@ -1,2 +1,0 @@
-class RepositoryFiles < ApplicationController
-end
