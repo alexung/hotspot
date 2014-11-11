@@ -2,6 +2,7 @@
 	<section class="col-md-3"></section>
 	<section class="col-md-6" id="select_branch_section">
 		<h3 class="page_titles"><%= @repository.name %></h3>
+		<%= button_to "Destroy", @repository, confirm: "Are you sure you'd like to delete this repository and all it's associated notes?", method: :delete %>
 	</section>
 	<section class="col-md-3"></section>
 </section>
