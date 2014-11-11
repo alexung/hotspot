@@ -9,6 +9,7 @@ class RepositoriesController < ApplicationController
   end
 
   def show
+    @notes_banner = true
     @repository = Repository.find(params[:id])
     # @branches = list_branches(@repository.name)
   end

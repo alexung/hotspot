@@ -1,7 +1,7 @@
 class SearchesController < ApplicationController
 
 	include SearchHelper
-	
+
 	def index
 		@saved_repositories_banner = true
 		@notes = Note.all
