@@ -7,6 +7,7 @@ class SearchesController < ApplicationController
 		@notes = Note.all
 		@user = params[:username]
 		@repositories = fetch_gh_repos(@user)
+		@repo_uid = params[:uid]
 
 		if @repositories.class == Array
 			render 'repositories/index'

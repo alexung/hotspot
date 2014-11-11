@@ -2,9 +2,9 @@
 
 <%= form_for :note, :html => {id: "note-form"}, url: repository_notes_path(repository_id: @repository.id), method: :post, locals: {repository: @repository, username: @username} do |f| %>
 
-  <div>
-    <%= f.label :content, "Notes" %>
-    <%= f.text_area :content %>
+  <div class="form-group">
+    <%= f.label :content, "Notes", :class => "text_area_label" %>
+    <%= f.text_area :content, :class => "form-control" %>
   </div>
 
   <%= f.hidden_field :username, value: "alexung" %>
@@ -17,8 +17,8 @@
 
   <%# binding.pry %>
 
-  <div>
-    <%= f.submit "Add Note", id: "submit-note" %>
+  <div class="form-group">
+    <%= f.submit "Add Note", id: "submit-note", :class => "btn btn-default" %>
   </div>
 
 <% end %>

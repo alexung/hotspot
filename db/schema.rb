@@ -25,23 +25,24 @@ ActiveRecord::Schema.define(version: 20141108230351) do
   end
 
   create_table "repositories", force: true do |t|
+    t.integer  "user_id"
     t.string   "name"
     t.string   "url"
     t.string   "repo_owner"
     t.integer  "repo_uid"
-    t.integer  "user_id"
+    t.text     "branches"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "repository_files", force: true do |t|
+    t.integer  "repository_id"
     t.string   "github_url"
     t.string   "name"
-    t.integer  "repository_id"
     t.integer  "insertions"
     t.integer  "deletions"
-    t.text     "contributors"
     t.integer  "commits"
+    t.text     "contributors"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

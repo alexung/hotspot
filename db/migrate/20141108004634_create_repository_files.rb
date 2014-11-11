@@ -1,13 +1,13 @@
 class CreateRepositoryFiles < ActiveRecord::Migration
   def change
     create_table :repository_files do |t|
-    	t.string 			:github_url
-    	t.string 			:name
-    	t.belongs_to 	    :repository
-    	t.integer			:insertions
-    	t.integer			:deletions
-    	t.text     			:contributors
-    	t.integer			:commits
+    	t.belongs_to :repository
+        t.string   :github_url
+        t.string   :name
+    	t.integer  :insertions
+    	t.integer  :deletions
+    	t.integer  :commits
+        t.text     :contributors
 
     	t.timestamps
     end
