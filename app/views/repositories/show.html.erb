@@ -29,7 +29,7 @@
 		<tr>
 			<td><a href="http://github.com/<%= @username %>/<%= @repository %>/blob/master/<%= repository.name %>"><%= repository.name %></a></td>
 			<td><%= repository.commits %></td>
-			<td><% repository.contributors.html_safe %></td>
+			<td><%= repository.contributors.html_safe %></td>
 			<td><%= repository.insertions %></td>
 			<td><%= repository.deletions %></td>
 		</tr>
