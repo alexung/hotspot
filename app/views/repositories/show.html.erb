@@ -28,7 +28,7 @@
 						<table class="table table-bordered">
 							<form action="/branch" method="GET">
 								<input type="hidden" name="username" value="<%= @username %>">
-								<input type="hidden" name="repository" value="<%= @repository %>">
+								<input type="hidden" name="repository" value="<%= @repository.id %>">
 								<select>
 									<% @repository.branches.split(",").each do |branch| %>
 									<option><%= branch %></option>
