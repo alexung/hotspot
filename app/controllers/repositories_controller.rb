@@ -5,20 +5,17 @@ class RepositoriesController < ApplicationController
 
   def show
     @repository = Repository.find(params[:id])
-    @branches = list_branches(@repository.name)
-    @rows = @repository.repository_files
+    # @branches = list_branches(@repository.name)
   end
 
   def update
-    username = params[:username]
-    repository = Repository.find_by(name: params[:repository], owner_name: username)
-    @rows = CodeReview.new(repository, username).rows
-
-    @rows.each do |repo_file|
+    repository = Repository.find_by(name: params[:repository], owner_name: params[:username])
+    rows = CodeReview.new(params[:repository], params[:username]).rows
+    rows.each do |repo_file|
       if file = repository.repository_files.find_by(name: repo_file.name)
-        file.update(params)
+        file.update(repo_file)
       else
-        repository.repository_files.create(params)
+        repository.repository_files.create(repo_file)
       end
     end
   end

@@ -1,10 +1,7 @@
 <tr>
-	<td><a href="http://github.com/<%= @username %>/<%= @repository %>/blob/master/<%= file_path %>"><%= file_path %></a></td>
-	<td><%= commits %></td>
-	<td><% contributors.each do |avatar| %>
-	 <%= avatar.html_safe %>
-	<% end %>
-	</td>
-	<td><%= insertions %></td>
-	<td><%= deletions %></td>
+	<td><a href="http://github.com/<%= @username %>/<%= @repository %>/blob/master/<%= repository.name %>"><%= repository.name %></a></td>
+	<td><%= repository.commits %></td>
+	<td><% repository.contributors %></td>
+	<td><%= repository.insertions %></td>
+	<td><%= repository.deletions %></td>
 </tr>
