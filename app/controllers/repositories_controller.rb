@@ -25,22 +25,6 @@ class RepositoriesController < ApplicationController
     end
   end
 
-  def change_branch
-    if repository = Repository.find(params[:repository].to_i)
-      repo_name = repository.name
-      delete_repo(repository.name)
-      repository.destroy
-    end
-    rows = CodeReview.new(repo_name, params[:username], params[:branch]).rows
-    branches = list_branches(repo_name)
-    saved_repository = Repository.save_repository_to_db(params[:username], repo_name, params[:uid], session[:user_id], branches)
-    rows.map do |repo_file|
-      RepositoryFile.create_repo_files(repo_file, params[:username], saved_repository)
-    end
-    @repository = saved_repository
-    render 'repositories/show'
-  end
-
   def destroy
     repository = Repository.find(params[:id])
     delete_repo(repository.name)
