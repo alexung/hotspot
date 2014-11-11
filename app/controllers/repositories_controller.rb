@@ -27,7 +27,9 @@ class RepositoriesController < ApplicationController
 
   def change_branch
     repository = Repository.find_by(name: params[:repository], owner_name: params[:username])
-    saved_repository = Repository.save_repository_to_db(params[:username], repository, params[:uid], session[:user_id], branches)
+    delete_repo(repository.name)
+    repository.destroy
+    saved_repository = Repository.save_repository_to_db(params[:username], params[:repository], params[:uid], session[:user_id], branches)
     rows = CodeReview.new(repository, params[:username], params[:branch])
     rows.map do |repo_file|
       RepositoryFile.create_repo_files(repo_file, params[:username], saved_repository)
