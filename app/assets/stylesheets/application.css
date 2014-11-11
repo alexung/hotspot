@@ -225,6 +225,33 @@
   text-align: justify;
 }
 
+#update_button {
+  display: block;
+  float: right;
+}
+
+#update_button a {
+  text-decoration: none;
+  color: white;
+}
+
+.repo_table {
+  margin: 60px 0 0;
+}
+
+#branch_form {
+  display: inline;
+}
+
+#branch_form input {
+  display: none;
+}
+
+.delete_button {
+  display: block;
+  float: right;
+  margin: 0 0 0 5px;
+}
 
 
 
