@@ -4,7 +4,7 @@ module GithubHelper
   included do
     require 'json'
     BASE_URI = "https://api.github.com"
-    CREDENTIALS = "?client_id=#{ENV['GITHUB_KEY']}&client_secret=#{ENV['GITHUB_SECRET']}"
+    CREDENTIALS = "\\?client_id\\=#{ENV['GITHUB_KEY']}\\&client_secret\\=#{ENV['GITHUB_SECRET']}"
   end
 
 
