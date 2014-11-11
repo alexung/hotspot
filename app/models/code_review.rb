@@ -1,24 +1,15 @@
 class CodeReview
 	include GithubHelper
 	include ApplicationHelper
-	attr_reader :repo, :branch, :username
+	attr_reader :repo, :username
 
-	def initialize(repo, username, branch = "")
+	def initialize(repo, username)
 		@repo = repo
-		@branch = branch
 		@username = username
 		clone_repo(repo, username)
 		@starting_index = index_value
 		@contributor_hash = contributor_hash_builder(@username, @repo).first
 	end
-
- 	def index_value
- 		new_branch? ? 2 : 1
- 	end
-
- 	def new_branch?
- 		@branch != ""
- 	end
 
 	def rows
 		file_paths.map do |path|
