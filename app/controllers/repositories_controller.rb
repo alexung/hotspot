@@ -5,7 +5,6 @@ class RepositoriesController < ApplicationController
 
   def create
     @notes = Note.find_by(repository_id: params[:repository_id])
-    binding.pry
     redirect_to repository_path(1)
   end
 

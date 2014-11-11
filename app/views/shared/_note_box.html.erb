@@ -1,10 +1,5 @@
 <div class="note-box">
 
-
-<% @repository %>
-<% @repository.id %>
-<% @username %>
-<%# binding.pry %>
 <%= form_for :note, :html => {id: "note-form"}, url: repository_notes_path(repository_id: @repository.id), method: :post, locals: {repository: @repository, username: @username} do |f| %>
 
   <div>
