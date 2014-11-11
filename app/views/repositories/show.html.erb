@@ -3,14 +3,6 @@
 	<section class="col-md-3"></section>
 	<section class="col-md-6" id="select_branch_section">
 		<h3 class="page_titles"><%= @repository.name %></h3>
-		<form id="select_branch" action="/branch" method="GET">
-			<input type="hidden" name="user" value="<%= @username %>">
-			<input type="hidden" name="repo" value="<%= @repository %>">
-			<select>
-				<option>branch</option>
-			</select>
-			<input type="submit" value="Submit">
-		</form>
 	</section>
 	<section class="col-md-3"></section>
 </section>
