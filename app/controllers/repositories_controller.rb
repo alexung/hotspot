@@ -26,7 +26,7 @@ class RepositoriesController < ApplicationController
   end
 
   def change_branch
-    repository = Repository.find_by(name: params[:repository], owner_name: params[:username])
+    repository = Repository.find(params[:repository].id)
     delete_repo(repository.name)
     repository.destroy
     saved_repository = Repository.save_repository_to_db(params[:username], params[:repository], params[:uid], session[:user_id], branches)
