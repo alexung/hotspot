@@ -1,4 +1,8 @@
 <%= render 'shared/sidebar' %>
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 <section class="row">
 	<section class="col-md-3"></section>
 	<section class="col-md-6" id="select_branch_section">
@@ -39,9 +43,9 @@
 								<input type="hidden" name="user" value="<%= @username %>">
 								<input type="hidden" name="repo" value="<%= @repository %>">
 								<select>
-									<% @repository.branches.split(",").each do |branch| %>
-									<option><%= branch %></option>
-									<% end %>
+									<%# @repository.branches.split(",").each do |branch| %>
+									<option><%#= branch %></option>
+									<%# end %>
 								</select>
 								<input type="submit" value="Submit">
 							</form>
