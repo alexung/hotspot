@@ -32,17 +32,27 @@
 							</button> -->
 							<table class="table table-bordered repo_table">
 								<tr>
+									<th>Contributors</th>
 									<th>File Path</th>
 									<th>Commits</th>
-									<th>Contributors</th>
 									<th>Insertions</th>
 									<th>Deletions</th>
 								</tr>
 								<% @repository.repository_files.each do |repository| %>
 								<tr>
-									<td><a href="http://github.com/<%= @username %>/<%= @repository %>/blob/master/<%= repository.name %>"><%= repository.name %></a></td>
+										<td>
+										<% repository.contributors.each do |contributor| %>
+
+										<img height="10px" width="10px" src="<%= contributor.gravatar_url %>">
+										<% end %>
+									</td>
+									<td><a href="http://github.com/<%= @repository.repo_owner %>/<%= @repository.name %>/blob/master/<%= repository.name.slice(/^(.+)\//) %>"><%= repository.name.slice(/^(.+)\//) %></a><br>
+										<div class="big-link">
+										<a href="http://github.com/<%= @repository.repo_owner %>/<%= @repository.name %>/blob/master/<%= repository.name %>"><%=repository.name.split('/')[-1] %>
+										</div>
+										</a>
+									</td>
 									<td><%= repository.commits %></td>
-									<td><% repository.contributors %></td>
 									<td><%= repository.insertions %></td>
 									<td><%= repository.deletions %></td>
 								</tr>

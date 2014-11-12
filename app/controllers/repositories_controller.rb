@@ -20,18 +20,39 @@ class RepositoriesController < ApplicationController
 
   def update
     repository = Repository.find(params["id"])
-    # breaking directly below this line
-    rows = CodeReview.new(repository.name, User.find(repository.user_id).github_username).rows
+    username = repository.repo_owner
     ` cd /tmp && rm -rf #{repository.name} `
-    saved_repository = Repository.save_repository_to_db(repository.name, User.find(repository.user_id).github_username, repository.repo_uid, session[:user_id])
-    rows.each do |repo_file|
-        file = repository.repository_files.find_by(name: repo_file[:file_path])
-        file.destroy
-       # must have line here that removes it from tmp
-       # have line here that readds it to tmp
-        RepositoryFile.create(repository_id: params["id"], name: repo_file[:file_path], commits: repo_file[:commits].strip, insertions: repo_file[:insertions], deletions: repo_file[:deletions], contributors: repo_file[:contributors].to_s )
+    repository.destroy
+    rows = CodeReview.new(repository.name, username).rows
+    saved_repository = Repository.save_repository_to_db(
+      username, 
+      repository.name, 
+      repository.repo_uid, 
+      session[:user_id]
+      )
+    contributors = saved_repository.contributors.create(create_contributors_hash(saved_repository.name))
+
+    gh_contributors = fetch_gh_contributors(username, saved_repository.name)
+
+    contributors.map do |contributor|
+      if gh_contributors.select {|gh_contributor| fetch_contributor_email(gh_contributor["login"]) }.include?(contributor.email)
+        gh_info = gh_contributors.select {|gh_contributor| fetch_contributor_email(gh_contributor["login"]) == contributor.email }
+          contributor.create_github_user(
+            username: gh_info.first["login"], 
+            gh_avatar_url: gh_info.first["avatar_url"], 
+            gh_repo_url: gh_info.first["url"]
+          )
       end
-    redirect_to repository_path(repository)
+    end 
+
+    rows.map do |repo_file|
+      new_file =  RepositoryFile.create_repo_files(repo_file, username, saved_repository)
+      repo_file[:contributors].each do |email|
+        new_file.contributors << Contributor.find_by(email: email)
+      end
+    end
+    @repository = saved_repository
+    redirect_to repository_path(@repository)
   end
 
   def destroy

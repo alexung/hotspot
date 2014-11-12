@@ -28,6 +28,7 @@ module GithubHelper
 
   def fetch_contributor_username(contributor_arr)
     contributor_arr.map do |contributor|
+      binding.pry
       contributor["login"]
     end
   end
@@ -58,7 +59,6 @@ module GithubHelper
 
   def contributors_to(path)
     contributor_arr = ` cd /tmp/#{@repo} && git log --format=%ae #{path} | sort | uniq `.split("\n")
-    contributor_arr.map{ |email| "<a href='http://github.com/#{@contributor_hash[email]}'>" + "<img src='"+ avatar_url(email) + "'>" + "</a>" }
   end
 
   def insertions_and_deletions(path)
@@ -75,5 +75,23 @@ module GithubHelper
     insertions_and_deletions(path).map do |insertion_and_deletion|
       insertion_and_deletion[1].to_i
     end.reduce(:+)
+  end
+# Methods to build graph
+  def unix_time_first_commit(path)
+    ` cd /tmp/#{repo} && git log --format=%ct | tail -1 `
+  end
+
+  def unix_time_last_commit(path)
+    ` cd /tmp/#{repo} && git log --format=%ct | head -1 `
+  end
+
+  def total_elapsed_project_time(path)
+    unix_time_last_commit(path) - unix_time_first_commit(path)
+  end
+
+  def all_file_commits_data(path)
+    time = ` cd /tmp/#{@repo} && git log --format=%ct #{path} `.split("\n")
+    ins_del = ` cd /tmp/#{@repo} && git log --numstat --format=%h #{path} | grep #{path} `.split("\n").map{|line| line.split(" ")[0..1]}
+    time.zip(ins_del)
   end
 end
