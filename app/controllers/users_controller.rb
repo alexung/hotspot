@@ -6,13 +6,6 @@ class UsersController < ApplicationController
     @repositories = @user.repositories
   end
 
-  #  def destroy
-  #   @repositories = User.find(params["id"]).repositories
-  #   delete_repo(repository.name)
-  #   repository.destroy
-  #   redirect_to user_path(User.find(session[:user_id]))
-  # end
-
 	private
 
 	def user_params

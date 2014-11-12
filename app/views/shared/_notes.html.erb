@@ -1,5 +1,5 @@
 <div class="notes">
-  <!--   Need to make this display notes for this particular repo -->
+  <!--   Success! Made this display notes for this particular repo -->
    <% if Repository.find_by(repo_uid: @repository.repo_uid).notes %>
       <% Repository.find_by(repo_uid: @repository.repo_uid).notes.each do |note| %>
         <%= note.content %><br><br>

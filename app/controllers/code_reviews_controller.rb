@@ -12,8 +12,6 @@ class CodeReviewsController < ApplicationController
 
 		review = CodeReview.new(@repository, @username)
 		rows = review.rows
-		# create regular contributors
-
 		saved_repository = Repository.save_repository_to_db(@username, @repository, repo_uid, session[:user_id])
 		contributors = saved_repository.contributors.create(create_contributors_hash(saved_repository.name))
 
