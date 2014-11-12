@@ -7,7 +7,6 @@ class CodeReview
 		@repo = repo
 		@username = username
 		clone_repo(repo, username)
-		@contributor_hash = contributor_hash_builder(@username, @repo).first
 	end
 
 	def rows
