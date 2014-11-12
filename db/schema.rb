@@ -35,9 +35,9 @@ ActiveRecord::Schema.define(version: 20141112021317) do
   end
 
   create_table "notes", force: true do |t|
+    t.integer  "repo_uid"
     t.text     "content"
     t.integer  "user_id"
-    t.integer  "repository_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
