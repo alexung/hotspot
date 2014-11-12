@@ -1,3 +1,2 @@
-class GithubUser < AcitveRecord::Base
-	belongs_to :contributor
+class GithubUser < ActiveRecord::Base
 end
