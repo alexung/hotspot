@@ -23,7 +23,6 @@ class CodeReviewsController < ApplicationController
 		rows.map do |repo_file|
 			new_file =	RepositoryFile.create_repo_files(repo_file, @username, saved_repository)
 			repo_file[:contributors].each do |email|
-				binding.pry
 				new_file.contributors << Contributor.find_by(email: email)
 			end
 		end
