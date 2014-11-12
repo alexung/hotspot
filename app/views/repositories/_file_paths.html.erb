@@ -1,0 +1,10 @@
+<div class="top_row">
+	<a href="http://github.com/<%= @repository.repo_owner %>/<%= @repository.name %>/blob/master/<%= repository.name.slice(/^(.+)\//) %>" class="full_path">
+		<%= repository.name.slice(/^(.+)\//) %>
+	</a>
+</div>
+<div class="bottom_row">
+	<a href="http://github.com/<%= @repository.repo_owner %>/<%= @repository.name %>/blob/master/<%= repository.name %>">
+		<%=repository.name.split('/')[-1] %>
+	</a>
+</div>

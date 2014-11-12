@@ -1,15 +1,13 @@
-<section class="row">
-	<h3 class="col-md-3 page_titles">My Code Reviews</h3>
-	<section class="col-md-6"></section>
-	<section class="col-md-3"></section>
-</section>
-<section class="row">
-	<section class="col-md-3"></section>
-	<p class="col-md-6 page_titles">(This is the logged in users dashboard)</p>
-	<section class="col-md-3"></section>
-</section>
-<% unless @repositories.nil? %>
-	<% @repositories.each do |repository| %>
-		<%= render partial: 'users/dashboard_rows', locals: {repository: repository} %>
+<section class="container-fluid">
+	<section class="row">
+		<h3 id="my_code_reviews_header" class="col-md-3 page_titles">My Code Reviews</h3>
+		<section class="col-md-6"></section>
+		<section class="col-md-3"></section>
+	</section>
+	<section class="row"></section>
+	<% unless @repositories.nil? %>
+		<% @repositories.each do |repository| %>
+			<%= render partial: 'users/dashboard_rows', locals: {repository: repository} %>
+		<% end %>
 	<% end %>
-<% end %>
+</section>
