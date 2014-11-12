@@ -44,9 +44,11 @@
 								<tr>
 									<td><a href="http://github.com/<%= @username %>/<%= @repository %>/blob/master/<%= repository.name %>"><%= repository.name %></a></td>
 									<td><%= repository.commits %></td>
-									<td><% repository.contributors.each do |contributor| %>
-												<img height="10px" width="10px" src="<%= contributor.avatar %>">
-											<% end %>
+									<td>
+										<% repository.contributors.each do |contributor| %>
+
+											<img height="10px" width="10px" src="<%= contributor.gravatar_url %>">
+											<% end %> 
 									</td>
 									<td><%= repository.insertions %></td>
 									<td><%= repository.deletions %></td>
