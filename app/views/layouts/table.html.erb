@@ -7,16 +7,16 @@
 	<tr>
 		<td class="contributors_images">
 			<div class="top_row">
-				<div class="contributor_img"><img class="img-circle" src="https://avatars.githubusercontent.com/u/4869016?v=3" alt="steveono@gmail.com"></div>
-				<div class="contributor_img"><img class="img-circle" src="https://avatars.githubusercontent.com/u/4869016?v=3" alt="steveono@gmail.com"></div>
-				<div class="contributor_img"><img class="img-circle" src="https://avatars.githubusercontent.com/u/4869016?v=3" alt="steveono@gmail.com"></div>
-				<div class="contributor_img"><img class="img-circle" src="https://avatars.githubusercontent.com/u/4869016?v=3" alt="steveono@gmail.com"></div>
+				<%= render partial: 'repositories/contributor' %>
+				<%= render partial: 'repositories/contributor' %>
+				<%= render partial: 'repositories/contributor' %>
+				<%= render partial: 'repositories/contributor' %>
 			</div>
 			<div class="bottom_row">
-				<div class="contributor_img"><img class="img-circle" src="https://avatars.githubusercontent.com/u/4869016?v=3" alt="steveono@gmail.com"></div>
-				<div class="contributor_img"><img class="img-circle" src="https://avatars.githubusercontent.com/u/4869016?v=3" alt="steveono@gmail.com"></div>
-				<div class="contributor_img"><img class="img-circle" src="https://avatars.githubusercontent.com/u/4869016?v=3" alt="steveono@gmail.com"></div>
-				<div class="contributor_img"><img class="img-circle" src="https://avatars.githubusercontent.com/u/4869016?v=3" alt="steveono@gmail.com"></div>
+				<%= render partial: 'repositories/contributor' %>
+				<%= render partial: 'repositories/contributor' %>
+				<%= render partial: 'repositories/contributor' %>
+				<%= render partial: 'repositories/contributor' %>
 			</div>
 		</td>
 		<td>
@@ -29,21 +29,10 @@
 		</td>
 		<td>
 			<div class="graph_container">
-				<div class="graph_interval">
-					<div class="lines_added graph_segment"></div>
-					<div class="lines_deleted graph_segment"></div>
-					<div class="total_lines graph_segment"></div>
-				</div>
-				<div class="graph_interval">
-					<div class="lines_added graph_segment"></div>
-					<div class="lines_deleted graph_segment"></div>
-					<div class="total_lines graph_segment"></div>
-				</div>
-				<div class="graph_interval">
-					<div class="lines_added graph_segment"></div>
-					<div class="lines_deleted graph_segment"></div>
-					<div class="total_lines graph_segment"></div>
-				</div>
+				<%= render partial: 'repositories/graph_interval' %>
+				<%= render partial: 'repositories/graph_interval' %>
+				<%= render partial: 'repositories/graph_interval' %>
+				<%= render partial: 'repositories/graph_interval' %>
 			</div>
 		</td>
 	</tr>
