@@ -58,7 +58,6 @@ module GithubHelper
 
   def contributors_to(path)
     contributor_arr = ` cd /tmp/#{@repo} && git log --format=%ae #{path} | sort | uniq `.split("\n")
-    contributor_arr.map{ |email| "<a href='http://github.com/#{@contributor_hash[email]}'>" + "<img src='"+ avatar_url(email) + "'>" + "</a>" }
   end
 
   def insertions_and_deletions(path)
