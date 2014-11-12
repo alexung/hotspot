@@ -47,7 +47,6 @@ class RepositoriesController < ApplicationController
 
     rows.map do |repo_file|
       new_file =  RepositoryFile.create_repo_files(repo_file, username, saved_repository)
-      binding.pry
       repo_file[:contributors].each do |email|
         new_file.contributors << Contributor.find_by(email: email)
       end
