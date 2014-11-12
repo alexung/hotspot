@@ -11,10 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141108230351) do
+ActiveRecord::Schema.define(version: 20141112021317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contributions", force: true do |t|
+    t.integer "repository_file_id"
+    t.integer "contributor_id"
+  end
+
+  create_table "contributors", force: true do |t|
+    t.integer "repository_id"
+    t.string  "email"
+    t.string  "gravatar_url"
+  end
+
+  create_table "github_users", force: true do |t|
+    t.integer "contributor_id"
+    t.string  "username"
+    t.string  "gh_avatar_url"
+    t.string  "gh_repo_url"
+  end
 
   create_table "notes", force: true do |t|
     t.text     "content"
@@ -41,7 +59,6 @@ ActiveRecord::Schema.define(version: 20141108230351) do
     t.integer  "insertions"
     t.integer  "deletions"
     t.integer  "commits"
-    t.text     "contributors"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
