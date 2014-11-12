@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141108230351) do
+ActiveRecord::Schema.define(version: 20141112010517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contributions", force: true do |t|
+    t.integer "repository_file_id"
+    t.integer "contributor_id"
+  end
+
+  create_table "contributors", force: true do |t|
+    t.integer "repository_id"
+    t.string  "email"
+    t.string  "username"
+    t.string  "avatar"
+  end
 
   create_table "notes", force: true do |t|
     t.text     "content"
@@ -41,7 +53,6 @@ ActiveRecord::Schema.define(version: 20141108230351) do
     t.integer  "insertions"
     t.integer  "deletions"
     t.integer  "commits"
-    t.text     "contributors"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
