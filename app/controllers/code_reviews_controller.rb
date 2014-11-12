@@ -9,16 +9,27 @@ class CodeReviewsController < ApplicationController
 		@repository = params[:repo]
 		@username = params[:username]
 		repo_uid = params[:uid]
-		rows = CodeReview.new(@repository, @username).rows
 
-		contributors = fetch_gh_contributors(@username, @repository)
+		review = CodeReview.new(@repository, @username)
+		rows = review.rows
+		# create regular contributors
+
 		saved_repository = Repository.save_repository_to_db(@username, @repository, repo_uid, session[:user_id])
-		
+		contributors = saved_repository.contributors.create(create_contributors_hash(saved_repository.name))
+
+		gh_contributors = fetch_gh_contributors(@username, @repository)
+
 		contributors.map do |contributor|
-			saved_repository.contributors.create(username: contributor["login"], avatar: contributor["avatar_url"])
-		end.each do |contributor|
-			contributor.update(email: fetch_contributor_email(contributor.username))
-		end
+			if gh_contributors.select {|gh_contributor| fetch_contributor_email(gh_contributor["login"]) }.include?(contributor.email)
+				gh_info = gh_contributors.select {|gh_contributor| fetch_contributor_email(gh_contributor["login"]) == contributor.email }
+					contributor.create_github_user(
+						username: gh_info.first["login"], 
+						gh_avatar_url: gh_info.first["avatar_url"], 
+						gh_repo_url: gh_info.first["url"]
+					)
+			end
+		end	
+binding.pry
 
 		rows.map do |repo_file|
 			new_file =	RepositoryFile.create_repo_files(repo_file, @username, saved_repository)
@@ -31,3 +42,15 @@ class CodeReviewsController < ApplicationController
 	end
 
 end
+
+
+  def fetch_gh_contributors(user, repo)
+    path = "repos/#{user}/#{repo}/contributors"
+    fetch_gh(path)
+  end
+
+    def fetch_contributor_username(contributor_arr)
+    contributor_arr.map do |contributor|
+      contributor["login"]
+    end
+  end
