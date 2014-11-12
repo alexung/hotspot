@@ -2,6 +2,7 @@ class RepositoriesController < ApplicationController
   include GithubHelper
   include ApplicationHelper
   include RepositoryHelper
+  include CodeReviewHelper
 
   def create
     @notes = Note.find_by(repository_id: params[:repository_id])
@@ -17,13 +18,15 @@ class RepositoriesController < ApplicationController
     repository = Repository.find(params["id"])
     # breaking directly below this line
     rows = CodeReview.new(repository.name, User.find(repository.user_id).github_username).rows
+    ` cd /tmp && rm -rf #{repository.name} `
+    saved_repository = Repository.save_repository_to_db(repository.name, User.find(repository.user_id).github_username, repository.repo_uid, session[:user_id])
     rows.each do |repo_file|
-      if file = repository.repository_files.find_by(name: repo_file[:file_path])
-        file.update(name: repo_file[:file_path], commits: repo_file[:commits], insertions: repo_file[:insertions], deletions: repo_file[:deletions], contributors: repo_file[:contributors].to_s )
-      else
-        repository.repository_files.create(name: repo_file[:file_path], commits: repo_file[:commits], insertions: repo_file[:insertions], deletions: repo_file[:deletions], contributors: repo_file[:contributors].to_s)
+        file = repository.repository_files.find_by(name: repo_file[:file_path])
+        file.destroy
+       # must have line here that removes it from tmp
+       # have line here that readds it to tmp
+        RepositoryFile.create(repository_id: params["id"], name: repo_file[:file_path], commits: repo_file[:commits].strip, insertions: repo_file[:insertions], deletions: repo_file[:deletions], contributors: repo_file[:contributors].to_s )
       end
-    end
     redirect_to repository_path(repository)
   end
 
