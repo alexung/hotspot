@@ -6,7 +6,6 @@ class CreateRepositories < ActiveRecord::Migration
       t.string      :url
       t.string      :repo_owner
       t.integer     :repo_uid
-      t.text        :branches
 
       t.timestamps
     end

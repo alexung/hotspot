@@ -1,9 +1,8 @@
 <section class="row">
 	<section class="col-md-3"></section>
-	<section class="col-md-6" id="select_branch_section">
-		<h3 class="page_titles"><%= @repository.name %></h3>
-	</section>
-	<section class="col-md-3"></section>
+	<h3 class="page_titles"><%= @repository.name %></h3>
+</section>
+<section class="col-md-3"></section>
 </section>
 </section> <!-- DO NOT REMOVE THIS CLOSING TAG -->
 
@@ -25,30 +24,34 @@
 
 				<div id="content">
 					<section class="container-fluid">
-						<%= button_to "Destroy", @repository, :class => "btn btn-danger btn-xs delete_button", confirm: "Are you sure you'd like to delete this repository and all it's associated notes?", method: :delete %>
-						<button type="button" id="update_button" class="btn btn-warning btn-xs btn-navbar" data-toggle="collapse" data-target="#menu">
-							<a href="/repositories/<%= @repository.id %>">Update <i class="fa fa-refresh"></i></a>
-						</button>
-						<table class="table table-bordered repo_table">
-							<tr>
-								<th>Contributors</th>
-								<th>File Path / Name</th>
-								<th>Change Over Time</th>
-							</tr>
-							<% @repository.repository_files.each do |repository| %>
-							<tr>
-								<td><a href="http://github.com/<%= @username %>/<%= @repository %>/blob/master/<%= repository.name %>"><%= repository.name %></a></td>
-								<td><%= repository.commits %></td>
-								<td><%= repository.contributors.html_safe %></td>
-								<td><%= repository.insertions %></td>
-								<td><%= repository.deletions %></td>
-							</tr>
-							<% end %>
-						</table>
-					</section>
-				</div>
 
+						<table class="table table-bordered">
+							<%= button_to "Destroy", @repository, :class => "btn btn-danger btn-xs delete_button", confirm: "Are you sure you'd like to delete this repository and all it's associated notes?", method: :delete %>
+							<button type="button" id="update_button" class="btn btn-warning btn-xs btn-navbar" data-toggle="collapse" data-target="#menu">
+								<a href="/repositories/<%= @repository.id %>">Update <i class="fa fa-refresh"></i></a>
+							</button>
+							<table class="table table-bordered repo_table">
+								<tr>
+									<th>File Path</th>
+									<th>Commits</th>
+									<th>Contributors</th>
+									<th>Insertions</th>
+									<th>Deletions</th>
+								</tr>
+								<% @repository.repository_files.each do |repository| %>
+								<tr>
+									<td><a href="http://github.com/<%= @username %>/<%= @repository %>/blob/master/<%= repository.name %>"><%= repository.name %></a></td>
+									<td><%= repository.commits %></td>
+									<td><%= repository.contributors.html_safe %></td>
+									<td><%= repository.insertions %></td>
+									<td><%= repository.deletions %></td>
+								</tr>
+								<% end %>
+							</table>
+						</section>
+					</div>
+
+				</div>
 			</div>
 		</div>
 	</div>
-</div>

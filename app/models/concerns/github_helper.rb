@@ -49,20 +49,20 @@ module GithubHelper
   end
 
   def file_paths
-    ` cd /tmp/#{@repo} && git checkout #{@branch} && git ls-files `.split("\n")[@starting_index..-1]
+    ` cd /tmp/#{@repo} && git ls-files `.split("\n")
   end
 
   def commits_for(path)
-    ` cd /tmp/#{@repo} && git checkout #{@branch} && git log --format=%H #{path} | wc -l `.split("\n")[@starting_index].to_i
+    ` cd /tmp/#{@repo} && git log --format=%H #{path} | wc -l `
   end
 
   def contributors_to(path)
-    contributor_arr = ` cd /tmp/#{@repo} && git checkout #{@branch} && git log --format=%ae #{path} | sort | uniq `.split("\n")[@starting_index..-1]
+    contributor_arr = ` cd /tmp/#{@repo} && git log --format=%ae #{path} | sort | uniq `.split("\n")
     contributor_arr.map{ |email| "<a href='http://github.com/#{@contributor_hash[email]}'>" + "<img src='"+ avatar_url(email) + "'>" + "</a>" }
   end
 
   def insertions_and_deletions(path)
-    ` cd /tmp/#{@repo} && git checkout #{@branch} && git log --numstat --format=%h #{path} | grep #{path} `.split("\n")[@starting_index..-1].map{|line| line.split(" ")}
+    ` cd /tmp/#{@repo} && git log --numstat --format=%h #{path} | grep #{path} `.split("\n").map{|line| line.split(" ")}
   end
 
   def insertions_to(path)
