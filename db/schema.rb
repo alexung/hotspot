@@ -24,14 +24,14 @@ ActiveRecord::Schema.define(version: 20141112021317) do
   create_table "contributors", force: true do |t|
     t.integer "repository_id"
     t.string  "email"
-    t.string  "username"
     t.string  "gravatar_url"
   end
 
   create_table "github_users", force: true do |t|
-    t.string "username"
-    t.string "gh_avatar_url"
-    t.string "gh_repo_url"
+    t.integer "contributor_id"
+    t.string  "username"
+    t.string  "gh_avatar_url"
+    t.string  "gh_repo_url"
   end
 
   create_table "notes", force: true do |t|
