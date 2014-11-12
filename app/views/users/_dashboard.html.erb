@@ -4,10 +4,8 @@
 		<section class="col-md-6"></section>
 		<section class="col-md-3"></section>
 	</section>
-	<section class="row"></section>
-	<% unless @repositories.nil? %>
-		<% @repositories.each do |repository| %>
-			<%= render partial: 'users/dashboard_rows', locals: {repository: repository} %>
-		<% end %>
+<% unless @repositories.nil? %>
+	<% @repositories.each do |repository| %>
+		<%= render partial: 'users/dashboard_rows', locals: {repository: repository} %>
 	<% end %>
-</section>
+<% end %>
