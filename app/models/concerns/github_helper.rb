@@ -76,8 +76,22 @@ module GithubHelper
       insertion_and_deletion[1].to_i
     end.reduce(:+)
   end
+# Methods to build graph
+  def unix_time_first_commit(path)
+    ` cd /tmp/#{repo} && git log --format=%ct | tail -1 `
+  end
 
+  def unix_time_last_commit(path)
+    ` cd /tmp/#{repo} && git log --format=%ct | head -1 `
+  end
 
-  #contributor creation
+  def total_elapsed_project_time(path)
+    unix_time_last_commit(path) - unix_time_first_commit(path)
+  end
 
+  def all_file_commits_data(path)
+    time = ` cd /tmp/#{@repo} && git log --format=%ct #{path} `.split("\n")
+    ins_del = ` cd /tmp/#{@repo} && git log --numstat --format=%h #{path} | grep #{path} `.split("\n").map{|line| line.split(" ")[0..1]}
+    time.zip(ins_del)
+  end
 end
