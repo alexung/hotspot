@@ -1,42 +1,22 @@
-	<section class="row">
-		<section class="col-md-3"></section>
-		<h3 class="col-md-6 page_titles"><%= @user %>'s Repositories</h3>
-		<section class="col-md-3"></section>
+<section class="row">
+	<section class="col-md-3"></section>
+	<h3 class="col-md-6 page_titles"><%= @user %>'s Repositories</h3>
+	<section class="col-md-3"></section>
+</section>
+<div id="content">
+	<section class="container-fluid">
+		<table class="table table-bordered">
+		<tr>
+			<th>Repositories</th>
+		</tr>
+		<% @repositories.each do |repository| %>
+			<tr>
+				<td>
+					<a href="https://www.github.com/<%=@user%>/<%=repository["name"]%>"><%= repository["name"] %></a>
+					<a href="/code-review?username=<%=@user%>&repo=<%=repository['name']%>&uid=<%= repository["id"] %>" class="start-code-review-button"><button type="button" class="btn btn-primary">Start Code Review</button></a>
+				</td>
+			</tr>
+		<% end %>
+		</table>
 	</section>
-</section> <!-- DO NOT REMOVE THIS CLOSING TAG -->
-
-<div id="body">
-	<div class="viewport">
-	  <div class="frame">
-	    <div id="menu" class="menu nav-collapse collapse width">
-	      <div id="side_bar_div" class="collapse-inner">
-	          <%= render partial: 'shared/all_saved_repositories' %>
-	      </div>
-	    </div>
-
-	    <div class="view">
-        <button type="button" id="note_toggle_button" class="btn btn-primary btn-xs btn-navbar sidebar_toggle" data-toggle="collapse" data-target="#menu">
-					Recent &gt;
-        </button>
-	      <div id="inner_nav_bar" class="navbar navbar-inverse"></div>
-
-	      <div id="content">
-	      	<section class="container-fluid">
-						<table class="table table-bordered">
-							<tr>
-								<th>Repositories</th>
-							</tr>
-							<% @repositories.each do |repository| %>
-								<tr>
-									<td><a href="https://www.github.com/<%=@user%>/<%=repository["name"]%>"><%= repository["name"] %></a>
-							    <a href="/code-review?username=<%=@user%>&repo=<%=repository['name']%>&uid=<%= repository["id"] %>" class="start-code-review-button"><button type="button" class="btn btn-primary">Start Code Review</button></a></td>
-								</tr>
-							<% end %>
-						</table>
-					</section>
-	      </div>
-	      
-	    </div>
-	  </div>
-	</div>
 </div>
