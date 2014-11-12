@@ -24,10 +24,10 @@ module CodeReviewHelper
     end
   end
 
-    def fetch_gh_contributors(user, repo)
-      path = "repos/#{user}/#{repo}/contributors"
-      fetch_gh(path)
-    end
+  def fetch_gh_contributors(user, repo)
+    path = "repos/#{user}/#{repo}/contributors"
+    fetch_gh(path)
+  end
 
   def fetch_contributor_email(username)
     path = "users/#{username}"
