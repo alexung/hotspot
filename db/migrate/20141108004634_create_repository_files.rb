@@ -7,7 +7,6 @@ class CreateRepositoryFiles < ActiveRecord::Migration
     	t.integer  :insertions
     	t.integer  :deletions
     	t.integer  :commits
-        t.text     :contributors
 
     	t.timestamps
     end

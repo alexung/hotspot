@@ -13,12 +13,15 @@ class CodeReview
 	def rows
 		file_paths.map do |path|
 			{
-    	file_path: path,
-    	commits: commits_for(path),
-    	contributors: contributors_to(path),
-    	insertions: insertions_to(path),
-    	deletions: deletions_of(path)
-    }
+				file_path: path,
+				commits: commits_for(path),
+				contributors: contributors_to(path),
+				insertions: insertions_to(path),
+				deletions: deletions_of(path)
+			}
 		end
 	end
+
+
+
 end
