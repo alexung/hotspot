@@ -13,17 +13,99 @@
  *= require_tree .
  *= require_self
  */
+
+/*-----------------LOGO-----------------*/
+
 .logo {
   font-size: 2em;
-}
-
-#navigation_search {
-  padding-right: 5px;
+  margin: 2px 0 0 10px;
 }
 
 .navbar-brand {
-  padding: 10px 0 0 20px;
+  padding: 7px 0 0 20px;
 }
+
+
+/*-----------------SEARCH BAR-----------------*/
+
+#navigation_search {
+  display: block;
+  float: right;
+  padding-right: 6px;
+  width: 30%;
+}
+
+#navigation_search_button {
+  display: none;
+}
+
+.input-group {
+  width: 100%;
+}
+
+#github_login {
+  margin: 0;
+}
+
+#github_login span {
+  margin: 0 5px 0 0;
+}
+
+.navbar-form .input-group .input-group-addon {
+ width: 20px;
+ font-size: 1.4em;
+}
+
+.navbar-form .input-group .input-group-addon a {
+ color: black;
+}
+
+
+/*-----------------USER DROPDOWN MENU -----------------*/
+
+#user_menu img {
+  margin: 0 0 0 3px;
+}
+
+.btn .caret {
+  margin: 0 5px 0 2px;
+}
+
+#profile_button {
+  background: #eee;
+}
+
+#login_logout {
+  display: block;
+  float: right;
+  margin: 8px 10px 0 0;
+}
+
+#login_logout a {
+  padding: 6px 5px 5px 10px;
+}
+
+#login_logout {
+  background: #f8f8f8;
+}
+
+a.login_logout {
+  margin-top: 5px;
+}
+
+
+/*-----------------NAVBAR STYLING-----------------*/
+
+.navbar {
+  border-radius: 0;
+}
+
+#bs-example-navbar-collapse-1 {
+  padding: 0;
+}
+
+
+/*-----------------TABLE STYLING-----------------*/
 
 .page_titles {
   text-align: center;
@@ -47,7 +129,6 @@
 .start-code-review-button button {
   font-size: .8em;
 }
-
 
 
 /*------Notes Button and Partial-----------*/
