@@ -75,4 +75,8 @@ module GithubHelper
       insertion_and_deletion[1].to_i
     end.reduce(:+)
   end
+
+
+  #contributor creation
+
 end
