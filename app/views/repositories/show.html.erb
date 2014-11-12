@@ -31,23 +31,9 @@
 						</button>
 						<table class="table table-bordered repo_table">
 							<tr>
-								<th>
-									File Path
-									<form action="/branch" method="GET" id="branch_form">
-										<input type="hidden" name="user" value="<%= @username %>">
-										<input type="hidden" name="repo" value="<%= @repository %>">
-										<select>
-											<% @repository.branches.split(",").each do |branch| %>
-											<option><%= branch %></option>
-											<% end %>
-										</select>
-										<input type="submit" value="Submit">
-									</form>
-								</th>
-								<th>Commits</th>
 								<th>Contributors</th>
-								<th>Insertions</th>
-								<th>Deletions</th>
+								<th>File Path / Name</th>
+								<th>Change Over Time</th>
 							</tr>
 							<% @repository.repository_files.each do |repository| %>
 							<tr>
