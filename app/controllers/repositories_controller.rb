@@ -19,6 +19,7 @@ class RepositoriesController < ApplicationController
     # breaking directly below this line
     rows = CodeReview.new(repository.name, User.find(repository.user_id).github_username).rows
     ` cd /tmp && rm -rf #{repository.name} `
+    repository.repository_files.destroy
     saved_repository = Repository.save_repository_to_db(repository.name, User.find(repository.user_id).github_username, repository.repo_uid, session[:user_id])
     rows.each do |repo_file|
         file = repository.repository_files.find_by(name: repo_file[:file_path])
