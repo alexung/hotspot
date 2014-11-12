@@ -4,7 +4,7 @@ class CreateContributors < ActiveRecord::Migration
       t.belongs_to :repository
       t.string :email
       t.string :username
-      t.string :avatar
+      t.string :gravatar_url
     end
   end
 end
