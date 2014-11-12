@@ -1,5 +1,7 @@
 class RepositoryFile < ActiveRecord::Base
 	belongs_to :repository
+	has_many :contributions
+	has_many :contributors, through: :contributions
 
 	 validates :name, uniqueness: { scope: :repository,
     message: "File paths within a repository should be unique" }
