@@ -29,7 +29,6 @@ class CodeReviewsController < ApplicationController
 					)
 			end
 		end	
-binding.pry
 
 		rows.map do |repo_file|
 			new_file =	RepositoryFile.create_repo_files(repo_file, @username, saved_repository)
@@ -42,15 +41,3 @@ binding.pry
 	end
 
 end
-
-
-  def fetch_gh_contributors(user, repo)
-    path = "repos/#{user}/#{repo}/contributors"
-    fetch_gh(path)
-  end
-
-    def fetch_contributor_username(contributor_arr)
-    contributor_arr.map do |contributor|
-      contributor["login"]
-    end
-  end

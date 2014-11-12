@@ -33,4 +33,5 @@ module CodeReviewHelper
     path = "users/#{username}"
     fetch_gh(path)["email"]
   end
+
 end
