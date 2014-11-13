@@ -27,7 +27,7 @@
 						</button>
 						<% if session[:user_id] %>
 						<%= link_to content_tag(:i,nil, :class=>"fa fa-bar-chart logo"), user_path(User.find(session[:user_id])), :class => "navbar-brand" %>
-						<%= link_to "hotspot", root_path, :class => "logo_text" %>
+						<%= link_to "hotspot", user_path(User.find(session[:user_id])), :class => "logo_text" %>
 						<% else %>
 						<%= link_to content_tag(:i,nil, :class=>"fa fa-bar-chart logo"), root_path, :class => "navbar-brand" %>
 						<%= link_to "hotspot", root_path, :class => "logo_text" %>
@@ -50,7 +50,7 @@
 									</a>
 									<ul class="dropdown-menu" role="menu">
 										<li><a href="http://github.com/<%= current_user.github_username %>">Github Profile</a></li>
-										<li><a href="#">Dashboard</a></li>
+										<li><%= link_to "Dashboard", user_path(User.find(session[:user_id])) %></li>
 										<li><a href="/sessions/destroy">Logout</a></li>
 									</ul>
 								</li>
