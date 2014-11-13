@@ -19,12 +19,31 @@
 .logo {
   font-size: 2em;
   margin: 2px 0 0 10px;
+  color: #34495E;
 }
 
 .navbar-brand {
   padding: 7px 0 0 20px;
 }
 
+.logo_text {
+  margin: 1px 0 0 -1px;
+  display: block;
+  padding-top: 5px;
+  font-size: 2em;
+  font-weight: bold;
+  text-decoration: none;
+  color: #34495E;
+}
+
+.logo_text:hover {
+  text-decoration: none;
+  color: black;
+}
+
+.navbar-header {
+  width: 250px;
+}
 
 /*-----------------SEARCH BAR-----------------*/
 
@@ -110,6 +129,10 @@ a.login_logout {
 
 #bs-example-navbar-collapse-1 {
   padding: 0;
+}
+
+#navigation_bar {
+  margin-bottom: 0;
 }
 
 
@@ -262,6 +285,7 @@ a.login_logout {
   width: 20%;
 }
 
+
 #change_over_time {
   width: 60%;
 }
@@ -329,7 +353,7 @@ a.login_logout {
   /*background: rgba(0,0,0,.04);*/
   /*border-left: 2px solid #6A8DBC;*/
   margin: 0 0 2px 0;
-  border-bottom: 1px solid rgba(0,0,0,.08);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .repo_name {
@@ -390,6 +414,7 @@ a.login_logout {
 
 
 /*----------GRAPH LIBRARY-----------------*/
+
 .segment_height_0 {
   height: 0px;
 }
@@ -445,6 +470,70 @@ a.login_logout {
 .unchanged {
   background: #E8E8E8 ;
 }
+
+
+/*----------SPLASH PAGE-----------------*/
+
+.upper_row {
+  height: 60px;
+  background-image: url("splash_img_top.jpg");
+  background-repeat: repeat;
+  text-align: center;
+  color: white;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.tagline {
+  font-size: 2.5em;
+  margin-top: 40px;
+  position: relative;
+  z-index: 1;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, .1);
+}
+
+.splash_image_row {
+  margin-top: 0;
+}
+
+.splash_image_section {
+  background-image: url("splash_img_left.jpg");
+  background-repeat: repeat-x;
+  height: 500px;
+  max-height: 500px;
+}
+
+.splash_img {
+  height: 100%;
+  display: block;
+  margin: auto;
+}
+
+.splash_quadrants {
+  height: 100px;
+  text-align: center;
+  margin: 60px 0 100px;
+}
+
+.bar_chart {
+  font-size: 4em;
+}
+
+.fa-align-left {
+  font-size: 4em; 
+}
+
+footer {
+  background: #555;
+  height: 125px;
+}
+
+.image_sides {
+  background-image: url("splash_img_left.jpg");
+  background-repeat: repeat-x;
+  height: 557px;
+}
+
+
 
 
 
