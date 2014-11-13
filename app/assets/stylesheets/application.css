@@ -258,11 +258,21 @@ a.login_logout {
   width: 60%;
 }
 
-.graph_interval {
-  width: 100%;
+.graph_container {
+  /*display: flex;*/
   height: 30px;
+}
+
+.graph_interval {
+  display: inline-block;
   margin: 0;
   padding: 0;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.graph_segment {
+  width: 3px;
 }
 
 .lines_added {
@@ -288,14 +298,6 @@ a.login_logout {
   background: #7F8C8D;
 }
 
-.graph_segment {
-  width: 3px;
-}
-
-.graph_container {
-  display: flex;
-}
-
 .contributor_email {
   display: none;
 }
@@ -311,10 +313,11 @@ a.login_logout {
 .delete_button {
   display: block;
   float: right;
+  font-size: 1.1em;
 }
 
 #my_code_reviews_header {
-  font-size: 1.6em;
+  font-size: 1.6em; 
 }
 
 .my_repo_row {
@@ -328,7 +331,7 @@ a.login_logout {
 .repo_name {
   /*background: #f7d9d9;*/
   height: 100%;
-  padding-top: 12px;
+  padding-top: 14px;
 }
 
 .repo_owner_name {
@@ -337,7 +340,7 @@ a.login_logout {
 
 .repo_name a {
   color: #1F2648;
-  font-size: 1.6em;
+  font-size: 1.4em;
 }
 
 .delete_button {
@@ -367,12 +370,59 @@ a.login_logout {
 }
 
 
+/*----------GRAPH LIBRARY-----------------*/
 
+.segment_height_10 {
+  height: 10%;
+}
 
+.segment_height_20 {
+  height: 20%;
+}
 
+.segment_height_30 {
+  height: 30%;
+}
 
+.segment_height_40 {
+  height: 40%;
+}
 
+.segment_height_50 {
+  height: 50%;
+}
 
+.segment_height_60 {
+  height: 60%;
+}
+
+.segment_height_70 {
+  height: 70%;
+}
+
+.segment_height_80 {
+  height: 80%;
+}
+
+.segment_height_90 {
+  height: 90%;
+}
+
+.segment_height_100 {
+  height: 100%;
+}
+
+.additions {
+  background: green;
+}
+
+.deletions {
+  background: red;
+}
+
+.unchanged {
+  background: gray;
+}
 
 
 
