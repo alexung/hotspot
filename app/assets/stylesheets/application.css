@@ -47,6 +47,10 @@
   margin: 0;
 }
 
+.login_button {
+  font-size: .9em;
+}
+
 #github_login span {
   margin: 0 5px 0 0;
 }
@@ -65,6 +69,10 @@
 
 #user_menu img {
   margin: 0 0 0 3px;
+}
+
+img.profile_img {
+  border: 1px solid rgba(0,0,0,.25);
 }
 
 .btn .caret {
@@ -311,11 +319,6 @@ a.login_logout {
 
 /*----------DASHBOARD-----------------*/
 
-.delete_button {
-  display: block;
-  float: right;
-  font-size: 1.1em;
-}
 
 #my_code_reviews_header {
   font-size: 1.6em;
@@ -324,9 +327,9 @@ a.login_logout {
 .my_repo_row {
   height: 60px;
   /*background: rgba(0,0,0,.04);*/
-  margin: 0 0 2px 0;
   /*border-left: 2px solid #6A8DBC;*/
-  border-bottom: 1px solid rgba(0,0,0,.04);
+  margin: 0 0 2px 0;
+  border-bottom: 1px solid rgba(0,0,0,.08);
 }
 
 .repo_name {
@@ -336,20 +339,12 @@ a.login_logout {
 }
 
 .repo_owner_name {
-  padding-top: 20px;
+  padding-top: 19px;
 }
 
 .repo_name a {
   color: #1F2648;
   font-size: 1.4em;
-}
-
-.delete_button {
-  display: block;
-  float: right;
-  margin: 0 0 0 5px;
-  padding-top: 20px;
-  color: black;
 }
 
 .inner_container {
@@ -368,6 +363,29 @@ a.login_logout {
 
 .my_code_review_row {
   margin: 20px 0 25px;
+}
+
+.date {
+  float: right;
+  margin: 18px 0 25px;
+}
+
+.fa-clock-o {
+  float: right;
+  margin: 21px 5px 25px;
+}
+
+.delete_button_section {
+  float: right;
+}
+
+.delete_button {
+  display: block;
+  float: right;
+  font-size: 1.2em;
+  margin: 0 0 0 40px;
+  padding-top: 15px;
+  color: black;
 }
 
 

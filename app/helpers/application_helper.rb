@@ -19,10 +19,18 @@
     link_to title, sort: column, direction: direction
   end
 
+  def last_checked(repository)
+    if repository.updated_at
+      repository.updated_at
+    else
+      repository.created_at
+    end
+  end
+
   def render_seg(lines, adds, dels)
     [
-      (lines - dels).abs,
-      adds.abs,
+      lines - dels,
+      adds,
       dels,
     ]
   end
