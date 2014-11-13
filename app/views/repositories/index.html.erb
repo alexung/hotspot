@@ -1,22 +1,31 @@
-<section class="row">
-	<section class="col-md-3"></section>
-	<h3 class="col-md-6 page_titles"><%= @user %>'s Repositories</h3>
-	<section class="col-md-3"></section>
-</section>
-<div id="content">
-	<section class="container-fluid">
-		<table class="table table-bordered">
-		<tr>
-			<th>Repositories</th>
-		</tr>
-		<% @repositories.each do |repository| %>
-			<tr>
-				<td>
-					<a href="https://www.github.com/<%=@user%>/<%=repository["name"]%>"><%= repository["name"] %></a>
-					<a href="/code-review?username=<%=@user%>&repo=<%=repository['name']%>&uid=<%= repository["id"] %>" class="start-code-review-button"><button type="button" class="btn btn-primary">Start Code Review</button></a>
-				</td>
-			</tr>
-		<% end %>
-		</table>
+<section class="container-fluid inner_container">
+	<section class="row my_code_review_row">
+		<section class="col-md-5 col-sm-6 col-xs-12">
+			<h3 id="my_code_reviews_header" class="page_titles">
+				<i class="fa fa-user"></i>
+				<%= @user %>'s Repositories
+			</h3>
+		</section>
+		<section class="col-md-5 col-sm-3 col-xs-0"></section>
+		<section class="col-md-2 col-sm-3 col-xs-0"></section>
 	</section>
-</div>
+
+<% @repositories.each do |repository| %>
+	<section class="my_repo_row row">
+		<section class="col-md-6 col-sm-4 col-xs-5 repo_name">
+			<i class="fa fa-folder-open"></i>
+			<a href="/code-review?username=<%=@user%>&repo=<%=repository['name']%>&uid=<%= repository["id"] %>"><%= repository["name"] %></a>
+		</section>
+		<section class="col-md-6 col-sm-4 col-xs-4 repo_name">
+			<a href="https://www.github.com/<%=@user%>/<%=repository["name"]%>" class="start-code-review-button"><i class="fa fa-github"></i></a>
+		</section>
+	</section>
+<% end %>
+
+</section>
+
+
+
+
+
+
