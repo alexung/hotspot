@@ -1,8 +1,17 @@
-<section class="col-md-3"></section>
-<section class="col-md-6">
-	<h3 class="page_titles"><%= @repository.name %></h3>
+<section class="container-fluid inner_container">
+	<section class="row my_code_review_row">
+		<section class="col-md-5 col-sm-6 col-xs-12">
+			<h3 id="my_code_reviews_header" class="page_titles">
+				<i class="fa fa-folder-open"></i>
+				@repository.name
+			</h3>
+		</section>
+		<section class="col-md-5 col-sm-3 col-xs-0"></section>
+		<section class="col-md-2 col-sm-3 col-xs-0"></section>
+	</section>
 </section>
-<section class="col-md-3"></section>
+
+
 
 	<section class="container-fluid">
 		<table class="table table-bordered">
