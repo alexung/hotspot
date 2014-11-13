@@ -326,9 +326,9 @@ a.login_logout {
 .my_repo_row {
   height: 60px;
   /*background: rgba(0,0,0,.04);*/
-  margin: 0 0 2px 0;
   /*border-left: 2px solid #6A8DBC;*/
-  border-bottom: 1px solid rgba(0,0,0,.04);
+  margin: 0 0 2px 0;
+  border-bottom: 1px solid rgba(0,0,0,.08);
 }
 
 .repo_name {
