@@ -3,6 +3,8 @@ class RepositoriesController < ApplicationController
   include ApplicationHelper
   include RepositoryHelper
   include CodeReviewHelper
+  helper_method :sort_column, :sort_direction
+
 
   def test
     render 'layouts/table'
@@ -13,7 +15,9 @@ class RepositoriesController < ApplicationController
   end
 
   def show
+    params[:sort] ||= "commits"
     @repository = Repository.find(params[:id])
+    @repository_order = @repository.repository_files.order(sort_column + " " + sort_direction)
   end
 
   def update
@@ -23,9 +27,9 @@ class RepositoriesController < ApplicationController
     repository.destroy
     rows = CodeReview.new(repository.name, username).rows
     saved_repository = Repository.save_repository_to_db(
-      username, 
-      repository.name, 
-      repository.repo_uid, 
+      username,
+      repository.name,
+      repository.repo_uid,
       session[:user_id]
       )
     contributors = saved_repository.contributors.create(create_contributors_hash(saved_repository.name))
@@ -36,12 +40,12 @@ class RepositoriesController < ApplicationController
       if gh_contributors.select {|gh_contributor| fetch_contributor_email(gh_contributor["login"]) }.include?(contributor.email)
         gh_info = gh_contributors.select {|gh_contributor| fetch_contributor_email(gh_contributor["login"]) == contributor.email }
           contributor.create_github_user(
-            username: gh_info.first["login"], 
-            gh_avatar_url: gh_info.first["avatar_url"], 
+            username: gh_info.first["login"],
+            gh_avatar_url: gh_info.first["avatar_url"],
             gh_repo_url: gh_info.first["url"]
           )
       end
-    end 
+    end
 
     rows.map do |repo_file|
       new_file =  RepositoryFile.create_repo_files(repo_file, @username, saved_repository)
@@ -59,4 +63,15 @@ class RepositoriesController < ApplicationController
     repository.destroy
     redirect_to user_path(User.find(session[:user_id]))
   end
+
+  private
+
+  def sort_column
+    RepositoryFile.column_names.include?(params[:sort]) ? params[:sort] : "commits"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+  end
+
 end

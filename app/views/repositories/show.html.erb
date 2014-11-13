@@ -13,11 +13,11 @@
 					<th>Contributors</th>
 					<th>File Path</th>
 					<th>Chart</th>
-					<th>Commits</th>
+					<th><%= sortable "commits", "Commits" %></th>
 					<th>Insertions</th>
 					<th>Deletions</th>
 				</tr>
-				<% @repository.repository_files.each do |repository| %>
+				<% @repository_order.each do |repository| %>
 				<tr>
 					<%= render partial: 'repositories/file_row', locals: {repository: repository} %>
 				</tr>
@@ -25,10 +25,3 @@
 			</table>
 		</section>
 	</div>
-
-
-
-
-
-
-
