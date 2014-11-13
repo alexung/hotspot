@@ -101,8 +101,10 @@ module GithubHelper
   end
 
   def add_changes_to_graph_arr(graph_arr, index, change_values)
+    unless change_values.nil? || index.nil? || graph_arr.nil? || index > 19
       graph_arr[index][0] += change_values[0]
       graph_arr[index][1] += change_values[1]
+    end
   end
 
   def create_graph_arr(commit_times_and_values, unit_size, project_time, initial_commit)
