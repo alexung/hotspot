@@ -305,7 +305,7 @@ a.login_logout {
 }
 
 .graph_segment {
-  width: 0.5em;
+  width: 0.8em;
 }
 
 .lines_added {
@@ -460,15 +460,15 @@ a.login_logout {
 }
 
 .additions {
-  background: green;
+  background: #00CC33;
 }
 
 .deletions {
-  background: red;
+  background: #FF3333;
 }
 
 .unchanged {
-  background: #999;
+  background: #E8E8E8 ;
 }
 
 
