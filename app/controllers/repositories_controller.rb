@@ -9,12 +9,10 @@ class RepositoriesController < ApplicationController
   end
 
   def create
-    @notes = Note.find_by(repository_id: params[:repository_id])
     redirect_to repository_path(params[:repository_id])
   end
 
   def show
-    @notes_banner = true
     @repository = Repository.find(params[:id])
   end
 

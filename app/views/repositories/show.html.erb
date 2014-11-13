@@ -1,4 +1,3 @@
-
 <section class="col-md-3"></section>
 <section class="col-md-6">
 	<h3 class="page_titles"><%= @repository.name %></h3>
@@ -9,35 +8,18 @@
 		<table class="table table-bordered">
 			<%= button_to "Destroy", @repository, :class => "btn btn-danger btn-xs delete_button", confirm: "Are you sure you'd like to delete this repository and all it's associated notes?", method: :delete %>
 			<%= button_to "Update Repository", @repository, method: :patch, action: "update", class: "btn btn-warning btn-xs btn_navbar", locals: { repository: @repository }%>
-			<!-- <button type="button" id="update_button" class="btn btn-warning btn-xs btn-navbar" data-toggle="collapse" data-target="#menu">
-				<a href="/repositories/<%= @repository.id %>">Update <i class="fa fa-refresh"></i></a>
-			</button> -->
 			<table class="table table-bordered repo_table">
 				<tr>
 					<th>Contributors</th>
 					<th>File Path</th>
+					<th>Chart</th>
 					<th>Commits</th>
 					<th>Insertions</th>
 					<th>Deletions</th>
 				</tr>
 				<% @repository.repository_files.each do |repository| %>
 				<tr>
-					<td>
-						<% repository.contributors.each do |contributor| %>
-						<img height="10px" width="10px" src="<%= contributor.gravatar_url %>">
-						<% end %>
-					</td>
-					<td>
-						<a href="http://github.com/<%= @repository.repo_owner %>/<%= @repository.name %>/blob/master/<%= repository.name.slice(/^(.+)\//) %>">
-							<%= repository.name.slice(/^(.+)\//) %>
-						</a>
-						<div class="big-link">
-							<a href="http://github.com/<%= @repository.repo_owner %>/<%= @repository.name %>/blob/master/<%= repository.name %>">
-								<%=repository.name.split('/')[-1] %>
-							</a>
-						</div>
-					</td>
-					<td><%= repository.commits %></td>
+					<%= render partial: 'repositories/file_row', locals: {repository: repository} %>
 				</tr>
 				<% end %>
 			</table>
