@@ -70,6 +70,6 @@
       current_count << render_seg(lines, adds, dels)
       lines = (lines + adds) - dels
     end
-    current_count.reverse.shift[0]
+    current_count.reverse.shift[0].abs
   end
 end

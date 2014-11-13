@@ -336,6 +336,11 @@ a.login_logout {
   height: 12px;
 }
 
+.column_head {
+  text-decoration: none;
+  color: black;
+}
+
 .start_project {
   height: 20px;
   width: 5px;
