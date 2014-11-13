@@ -108,7 +108,7 @@ a.login_logout {
 /*-----------------TABLE STYLING-----------------*/
 
 .page_titles {
-  text-align: center;
+  /*text-align: center;*/
   margin-bottom: 20px;
   display: inline;
 }
@@ -314,7 +314,9 @@ a.login_logout {
   float: right;
 }
 
-
+#my_code_reviews_header {
+  font-size: 1.5em;
+}
 
 
 
