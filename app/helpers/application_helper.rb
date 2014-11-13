@@ -1,4 +1,6 @@
  module ApplicationHelper
+  require 'json'
+
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
@@ -17,35 +19,45 @@
     link_to title, sort: column, direction: direction
   end
 
-  # def example_bar_graph_method(type, total_scale)
-  #   tuple_value = find the value of the tuple
-  #   find the type of tuple (addition, subtraction, or unchanged)
-  #   tuple % = divide the tuple_value by the total_scale
-  #   tuple % ends up assigning a css class based on outcome(i.e. additions-10, deletions-30, unchanged-40)
-  # end
-  # [[1,2],[2,3],[3,4]]
+  # ----- BELOW IS THE GRAPH CODE ----------
 
-  # def additions(value, total_scale)
-  #   tuple_value = find the value of the tuple
-  #   tuple % = divide the tuple_value by the total_scale
-  #   #tuple % ends up assigning a green css class based on outcome(i.e. additions-10, deletions-30, unchanged-40)
-  # end
+# vals = [
+#   [2,0], # adds, dels
+#   [1,0],
+#   [0,0],
+#   [0,1],
+#   [5,0],
+#   [0,0],
+#   [2,6],
+#   [1,0],
+#   [15,0],
+#   [0,3]
+# ]
 
-  # def deletions(value, total_scale)
-  #   tuple_value = find the value of the tuple
-  #   tuple_% = divide the tuple_value by the total_scale
-  #   #tuple % ends up assigning a red css class based on outcome(i.e. additions-10, deletions-30, unchanged-40)
-  # end
+def render_seg(lines, adds, dels)
+  [
+    lines - dels,
+    adds,
+    dels,
+  ]
+end
 
-  # def unchanged(unchanged_argument, total_scale)
-  #   tuple_value = find the value of the tuple
-  #   unchanged_argument - (additions + subtractions)
-  #   tuple_% = divide the unchanged_argument by the total_scale
-  #   #tuple % ends up assigning a black css class based on outcome(i.e. additions-10, deletions-30, unchanged-40)
-  # end
+def parse_css_perc(graph_arr)
+  lines = 0
+  max_lines = 0
+  rendered_segments = []
 
-  # def unchanged_argument
-  #   add the additions & deletions from the last commit
-  # end
+  graph_arr.each do |adds, dels|
+    rendered_segments << render_seg(lines, adds, dels)
+    lines = (lines + adds) - dels
+    max_lines = lines if lines > max_lines
+  end
+  rendered_segments.reverse
+end
 
+
+# puts ([render_seg(lines, 0,0)]  + rendered_segments.reverse)
+#parse_css_perc(vals)
+
+# puts "max lines", max_lines
 end

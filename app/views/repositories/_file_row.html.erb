@@ -20,8 +20,20 @@
 			</div>
 		</div>
 	</td>
+	<%# require 'json' %>
+	<%# @repo_graphs = repository. %>
 	<td><%= repository.commits %></td>
-	<td><%= repository.graph_arr%></td>
+	<td>
+		<% parse_css_perc(JSON.parse(repository.graph_arr)).each do |values| %>
+			<%#= render partial: "graph", locals: {additions_deletions: additions_deletions} %>
+		<section>
+	    <%#= binding.pry%>
+	    <div class="additions segment_height_<%= values[1] %>"></div>
+	     <div class="deletions segment_height_<%= values[2] %>"></div>
+	    <div class="unchanged segment_height_<%= values[0] %>"></div>
+		</section>
+		<% end %>
+	</td>
 </tr>
 
 
