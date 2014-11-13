@@ -13,20 +13,110 @@
  *= require_tree .
  *= require_self
  */
+
+/*-----------------LOGO-----------------*/
+
 .logo {
   font-size: 2em;
-}
-
-#navigation_search {
-  padding-right: 5px;
+  margin: 2px 0 0 10px;
 }
 
 .navbar-brand {
-  padding: 10px 0 0 20px;
+  padding: 7px 0 0 20px;
 }
 
+
+/*-----------------SEARCH BAR-----------------*/
+
+#navigation_search {
+  display: block;
+  float: right;
+  padding-right: 6px;
+  width: 30%;
+}
+
+#navigation_search_button {
+  display: none;
+}
+
+.input-group {
+  width: 100%;
+}
+
+#github_login {
+  margin: 0;
+}
+
+.login_button {
+  font-size: .9em;
+}
+
+#github_login span {
+  margin: 0 5px 0 0;
+}
+
+.navbar-form .input-group .input-group-addon {
+ width: 20px;
+ font-size: 1.4em;
+}
+
+.navbar-form .input-group .input-group-addon a {
+ color: black;
+}
+
+
+/*-----------------USER DROPDOWN MENU -----------------*/
+
+#user_menu img {
+  margin: 0 0 0 3px;
+}
+
+img.profile_img {
+  border: 1px solid rgba(0,0,0,.25);
+}
+
+.btn .caret {
+  margin: 0 5px 0 2px;
+}
+
+#profile_button {
+  background: #eee;
+}
+
+#login_logout {
+  display: block;
+  float: right;
+  margin: 8px 10px 0 0;
+}
+
+#login_logout a {
+  padding: 6px 5px 5px 10px;
+}
+
+#login_logout {
+  background: #f8f8f8;
+}
+
+a.login_logout {
+  margin-top: 5px;
+}
+
+
+/*-----------------NAVBAR STYLING-----------------*/
+
+.navbar {
+  border-radius: 0;
+}
+
+#bs-example-navbar-collapse-1 {
+  padding: 0;
+}
+
+
+/*-----------------TABLE STYLING-----------------*/
+
 .page_titles {
-  text-align: center;
+  /*text-align: center;*/
   margin-bottom: 20px;
   display: inline;
 }
@@ -47,7 +137,6 @@
 .start-code-review-button button {
   font-size: .8em;
 }
-
 
 
 /*------Notes Button and Partial-----------*/
@@ -116,114 +205,6 @@
 	display: block;
 }
 
-/*----------Expandable Side Bar-----------------*/
-
-#body {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-#body .viewport {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-}
-
-#body .viewport .frame {
-  position: absolute;
-  width: 200%;
-  height: 100%;
-  top: 0;
-  bottom: 0;
-  left: 0;
-}
-
-#body .viewport .frame .navbar .navbar-inner {
-  border-radius: 0;
-  padding-left: 5px;
-}
-
-#body .viewport .frame .menu {
-  height: 100%;
-  /* background-color: #3D6AA2; */
-}
-
-#inner_nav_bar {
-  visibility: hidden;
-}
-
-#body .viewport .frame .menu.collapse {
-  float: left;
-  height: 100% !important;
-  width: auto;
-}
-
-#body .viewport .frame .menu.collapse.height {
-  position: relative;
-  height: 0;
-  overflow: hidden;
-  -webkit-transition: height 0.35s ease;
-  -moz-transition: height 0.35s ease;
-  -o-transition: height 0.35s ease;
-  transition: height 0.35s ease;
-}
-
-#body .viewport .frame .menu.collapse.width {
-  position: relative;
-  width: 0;
-  overflow: hidden;
-  -webkit-transition: width 0.35s ease;
-  -moz-transition: width 0.35s ease;
-  -o-transition: width 0.35s ease;
-  transition: width 0.35s ease;
-}
-
-#body .viewport .frame .menu.collapse.in.width {
-  width: auto;
-}
-
-#body .viewport .frame .menu.collapse.in.height {
-  height: auto;
-}
-
-#body .viewport .frame .menu .collapse-inner {
-  position: relative;
-  width: 250px;
-  height: 100%;
-}
-
-#body .viewport .frame .menu .navbar .navbar-inner {
-  text-align: center;
-  color: grey;
-  font-size: 1.2em;
-  line-height: 38px;
-}
-
-#body .viewport .frame .menu .nav-stacked {
-  padding: 0 10px;
-}
-
-#body .viewport .frame .view {
-  width: 50%;
-  height: 100%;
-  overflow: hidden;
-}
-
-#body .viewport .frame .view .navbar .navbar-inner .btn-navbar {
-  display: block;
-  float: left;
-}
-
-#body .viewport .frame .view #content {
-  margin: auto 15px;
-  text-align: justify;
-}
 
 #update_button {
   display: block;
@@ -236,6 +217,7 @@
 }
 
 .repo_table {
+  width: 100%;
   margin: 60px 0 0;
 }
 
@@ -247,13 +229,222 @@
   display: none;
 }
 
-.delete_button {
-  display: block;
-  float: right;
-  margin: 0 0 0 5px;
+.contributor_img {
+  display: inline;
+  height: 20px;
+  width: 20px;
+}
+
+.contributor_img img {
+  height: 20px;
+  width: 20px;
+}
+
+.full_path {
+  font-size: .8em;
+  margin-bottom: 0;
+  display: inline;
+}
+
+.file_name {
+  font-size: 1.2em;
+  margin-bottom: 0;
+  display: inline;
+  font-weight: bold;
+  color: #2980B9;
+}
+
+#contributors {
+  width: 20%;
+}
+
+#file_path {
+  width: 20%;
+}
+
+#change_over_time {
+  width: 60%;
+}
+
+.graph_container {
+  /*display: flex;*/
+  height: 30px;
+  display: inline-block;
+
+}
+
+.graph_interval {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  vertical-align: bottom; 
+}
+
+.graph_segment {
+  width: 0.5em;
+}
+
+.lines_added {
+  background: #AEE239;
+  height: 6px;
+  margin-bottom: 1px;
+}
+
+.lines_deleted {
+  background: #FF6B6B;
+  height: 4px;
+  margin-bottom: 1px;
+}
+
+.total_lines {
+  background: #7F8C8D;
+  height: 12px;
+}
+
+.start_project {
+  height: 20px;
+  width: 5px;
+  background: #7F8C8D;
+}
+
+.contributor_email {
+  display: none;
+}
+
+.big-link {
+  font-size: 20px
 }
 
 
+
+/*----------DASHBOARD-----------------*/
+
+
+#my_code_reviews_header {
+  font-size: 1.6em;
+}
+
+.my_repo_row {
+  height: 60px;
+  /*background: rgba(0,0,0,.04);*/
+  /*border-left: 2px solid #6A8DBC;*/
+  margin: 0 0 2px 0;
+  border-bottom: 1px solid rgba(0,0,0,.08);
+}
+
+.repo_name {
+  /*background: #f7d9d9;*/
+  height: 100%;
+  padding-top: 14px;
+}
+
+.repo_owner_name {
+  padding-top: 19px;
+}
+
+.repo_name a {
+  color: #1F2648;
+  font-size: 1.4em;
+}
+
+.inner_container {
+  /*background: red;*/
+}
+
+.code_icon {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.fa-folder-open {
+  font-size: 1.2em;
+  margin-right: 5px;
+}
+
+.my_code_review_row {
+  margin: 20px 0 25px;
+}
+
+.date {
+  float: right;
+  margin: 18px 0 25px;
+}
+
+.fa-clock-o {
+  float: right;
+  margin: 21px 5px 25px;
+}
+
+.delete_button_section {
+  float: right;
+}
+
+.delete_button {
+  display: block;
+  float: right;
+  font-size: 1.2em;
+  margin: 0 0 0 40px;
+  padding-top: 15px;
+  color: black;
+}
+
+
+/*----------GRAPH LIBRARY-----------------*/
+.segment_height_0 {
+  height: 0px;
+}
+
+.segment_height_1 {
+  height: 10px;
+}
+
+.segment_height_2 {
+  height: 20px;
+}
+
+.segment_height_3 {
+  height: 30px;
+}
+
+.segment_height_4 {
+  height: 40px;
+}
+
+.segment_height_5 {
+  height: 50px;
+}
+
+.segment_height_6 {
+  height: 60px;
+}
+
+.segment_height_7 {
+  height: 70px;
+}
+
+.segment_height_8 {
+  height: 80px;
+}
+
+.segment_height_9 {
+  height: 90px;
+}
+
+.segment_height_10 {
+  height: 100px;
+}
+
+.additions {
+  background: green;
+}
+
+.deletions {
+  background: red;
+}
+
+.unchanged {
+  background: #999;
+}
 
 
 

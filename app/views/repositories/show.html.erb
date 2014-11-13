@@ -1,59 +1,25 @@
-<section class="row">
-	<section class="col-md-3"></section>
+<section class="col-md-3"></section>
+<section class="col-md-6">
 	<h3 class="page_titles"><%= @repository.name %></h3>
 </section>
 <section class="col-md-3"></section>
-</section>
-</section> <!-- DO NOT REMOVE THIS CLOSING TAG -->
 
-<div id="body">
-	<div class="viewport">
-		<div class="frame">
-			<div id="menu" class="menu nav-collapse collapse width">
-				<div id="side_bar_div" class="collapse-inner">
-					<%= render 'shared/sidebar' %>
-				</div>
-			</div>
-
-			<div class="view">
-				<button type="button" id="note_toggle_button" class="btn btn-primary btn-xs btn-navbar sidebar_toggle" data-toggle="collapse" data-target="#menu">
-					Notes
-					<i class="fa fa-bars"></i>
-				</button>
-				<div id="inner_nav_bar" class`="navbar navbar-inverse"></div>
-
-				<div id="content">
-					<section class="container-fluid">
-						<table class="table table-bordered">
-							<%= button_to "Destroy", @repository, :class => "btn btn-danger btn-xs delete_button", confirm: "Are you sure you'd like to delete this repository and all it's associated notes?", method: :delete %>
-							<%= button_to "Update Repository", @repository, method: :patch, action: "update", class: "btn btn-warning btn-xs btn_navbar", locals: { repository: @repository } %>
-							<!-- <button type="button" id="update_button" class="btn btn-warning btn-xs btn-navbar" data-toggle="collapse" data-target="#menu">
-								<a href="/repositories/<%= @repository.id %>">Update <i class="fa fa-refresh"></i></a>
-							</button> -->
-							<table class="table table-bordered repo_table">
-								<tr>
-									<th>
-										File Path
-									</th>
-									<th>Commits</th>
-									<th>Contributors</th>
-									<th>Insertions</th>
-									<th>Deletions</th>
-								</tr>
-								<% @repository.repository_files.each do |repository| %>
-								<tr>
-									<td><a href="http://github.com/<%= @username %>/<%= @repository %>/blob/master/<%= repository.name %>"><%= repository.name %></a></td>
-									<td><%= repository.commits %></td>
-									<td><% repository.contributors %></td>
-									<td><%= repository.insertions %></td>
-									<td><%= repository.deletions %></td>
-								</tr>
-								<% end %>
-							</table>
-						</section>
-					</div>
-
-				</div>
-			</div>
-		</div>
+	<section class="container-fluid">
+		<table class="table table-bordered">
+			<%= button_to "Destroy", @repository, :class => "btn btn-danger btn-xs delete_button", confirm: "Are you sure you'd like to delete this repository and all it's associated notes?", method: :delete %>
+			<%= button_to "Update Repository", @repository, method: :patch, action: "update", class: "btn btn-warning btn-xs btn_navbar", locals: { repository: @repository }%>
+			<table class="table table-bordered repo_table">
+				<tr>
+					<th>Contributors</th>
+					<th>File Path</th>
+					<th>Changes Over Time</th>
+					<th><%= sortable "commits", "Commits" %></th>
+				</tr>
+				<% @repository_order.each do |repository| %>
+				<tr>
+					<%= render partial: 'repositories/file_row', locals: {repository: repository} %>
+				</tr>
+				<% end %>
+			</table>
+		</section>
 	</div>

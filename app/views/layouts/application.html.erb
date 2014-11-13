@@ -17,46 +17,66 @@
 
 		<nav class="navbar navbar-default" role="navigation">
 			<div class="container-fluid">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<% if session[:user_id] %>
-					<%= link_to content_tag(:i,nil, :class=>"fa fa-github logo"), user_path(User.find(session[:user_id])), :class => "navbar-brand" %>
-					<% else %>
-					<%= link_to content_tag(:i,nil, :class=>"fa fa-github logo"), root_path, :class => "navbar-brand" %>
-					<% end %>
-				</div>
-
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<% if current_user %>
-							<li><a href="/sessions/destroy">Logout</a></li>
-							<li><a href="http://github.com/<%= current_user.github_username %>"><img src="<%= current_user.avatar_url%>" width="24" height="24"></a></li>
+				<div class="row">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<% if session[:user_id] %>
+						<%= link_to content_tag(:i,nil, :class=>"fa fa-github logo"), user_path(User.find(session[:user_id])), :class => "navbar-brand" %>
 						<% else %>
-							<li><a href="/auth/github/">Login</a></li>
+						<%= link_to content_tag(:i,nil, :class=>"fa fa-github logo"), root_path, :class => "navbar-brand" %>
 						<% end %>
-					</ul>
-
-				<form id="navigation_search" class="nav navbar-form navbar-right" action="/search" role="search" method="get">
-					<div class="form-group">
-						<input class="form-control" name="username" placeholder="search">
 					</div>
-					<button type="submit" class="btn btn-default">Submit</button>
-				</form>
 
+					<!-- Collect the nav links, forms, and other content for toggling -->
+
+
+
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul id="login_logout" class="nav navbar-nav navbar-right">
+							<% if current_user %>
+
+								<li class="dropdown">
+									<a href="#" id="profile_button" class="dropdown-toggle btn btn-default" data-toggle="dropdown">
+										<img class="img-circle profile_img" src="<%= current_user.avatar_url%>" width="20">
+										<span class="caret"></span>
+										<!-- <i class="fa fa-bars"></i> -->
+									</a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="http://github.com/<%= current_user.github_username %>">Github Profile</a></li>
+										<li><a href="#">Dashboard</a></li>
+										<li><a href="/sessions/destroy">Logout</a></li>
+									</ul>
+								</li>
+							
+						</ul>
+
+						<form id="navigation_search" class="nav navbar-form" action="/search" role="search" method="get">
+							<div class="input-group">
+								<div class="input-group-addon"><a href="#"><i class="fa fa-github"></i></a></div>
+								<input class="form-control" name="username" placeholder="Search Github">
+							</div>
+							<button id="navigation_search_button" type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+						</form>
+
+						<% else %>
+							<a id="github_login" class="login_logout btn btn-default" href="/auth/github/">
+								<i class="fa fa-github"></i>
+								<span class="login_button">Github Login</span>
+							</a>
+						<% end %>
+
+					</div>
 				</div>
 			</div>
 		</nav>
 
 	</header>
 	<section class="container-fluid">
-		<section class="row">
-			<section class="col-md-12">
 
 			<% if flash[:error] %>
 				<%= flash[:error] %>
@@ -64,8 +84,6 @@
 
 			<%= yield %>
 
-			</section>
-	</section>
 </section>
 
 </body>

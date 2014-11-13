@@ -4,10 +4,8 @@ class CreateRepositoryFiles < ActiveRecord::Migration
     	t.belongs_to :repository
         t.string   :github_url
         t.string   :name
-    	t.integer  :insertions
-    	t.integer  :deletions
-    	t.integer  :commits
-        t.text     :contributors
+        t.integer  :commits
+        t.text     :graph_arr
 
     	t.timestamps
     end
