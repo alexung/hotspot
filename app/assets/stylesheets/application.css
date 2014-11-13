@@ -357,6 +357,15 @@ a.login_logout {
   font-size: 1.1em;
 }
 
+.fa-folder-open {
+  font-size: 1.2em;
+  margin-right: 5px;
+}
+
+.my_code_review_row {
+  margin: 20px 0 25px;
+}
+
 
 
 
