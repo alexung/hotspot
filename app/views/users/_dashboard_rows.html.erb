@@ -1,8 +1,10 @@
-<setion class="row">
-	<section class="col-md-3"></section>
-	<section class="col-md-6">
-	<%= link_to "#{repository.name}", repository_path(repository) %>&nbsp;&nbsp;&nbsp;<%= repository['repo_owner'] %>
-	<%= button_to "Destroy", repository_path(repository), {onclick: "return confirm('Are you sure you'd like to delete this repository and all it's associated notes?')", method: :delete, :class => "btn btn-danger delete_button" } %>
+<section class="my_repo_row row">
+	<section class="col-md-3 col-sm-4 col-xs-7 repo_name">
+		<i class="fa fa-folder-open"></i>
+		<%= link_to "#{repository.name}", repository_path(repository) %>
 	</section>
-	<section class="col-md-3"></section>
+	<section class="col-md-8 col-sm-4 col-xs-3 repo_owner_name"><%= repository['repo_owner'] %></section>
+	<section class="col-md-1 col-sm-4 col-xs-2">
+		<%= link_to content_tag(:i,nil, :class=>"fa fa-trash"), repository_path(repository), {onclick: "return confirm('Are you sure you'd like to delete this repository and all it's associated notes?')", method: :delete, :class => "delete_button" } %>
+	</section>
 </section>

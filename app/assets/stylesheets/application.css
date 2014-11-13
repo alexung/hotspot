@@ -221,12 +221,6 @@ a.login_logout {
   display: none;
 }
 
-.delete_button {
-  display: block;
-  float: right;
-  margin: 0 0 0 5px;
-}
-
 .contributor_img {
   display: inline;
   height: 20px;
@@ -264,14 +258,23 @@ a.login_logout {
   width: 60%;
 }
 
+.graph_container {
+  /*display: flex;*/
+  height: 30px;
+}
+
 .graph_interval {
   display: inline-block;
-  width: 100%;
-  height: 30px;
   margin: 0;
   padding: 0;
+  display: inline-block;
+  vertical-align: bottom;
 }
-ƒ
+
+.graph_segment {
+  width: 3px;
+}
+
 .lines_added {
   background: #AEE239;
   height: 6px;
@@ -289,12 +292,10 @@ a.login_logout {
   height: 12px;
 }
 
-.graph_segment {
+.start_project {
+  height: 20px;
   width: 5px;
-}
-
-.graph_container {
-  display: flex;
+  background: #7F8C8D;
 }
 
 .contributor_email {
@@ -312,13 +313,116 @@ a.login_logout {
 .delete_button {
   display: block;
   float: right;
+  font-size: 1.1em;
 }
 
 #my_code_reviews_header {
-  font-size: 1.5em;
+  font-size: 1.6em; 
+}
+
+.my_repo_row {
+  height: 60px;
+  /*background: rgba(0,0,0,.04);*/
+  margin: 0 0 2px 0;
+  /*border-left: 2px solid #6A8DBC;*/
+  border-bottom: 1px solid rgba(0,0,0,.04);
+}
+
+.repo_name {
+  /*background: #f7d9d9;*/
+  height: 100%;
+  padding-top: 14px;
+}
+
+.repo_owner_name {
+  padding-top: 20px;
+}
+
+.repo_name a {
+  color: #1F2648;
+  font-size: 1.4em;
+}
+
+.delete_button {
+  display: block;
+  float: right;
+  margin: 0 0 0 5px;
+  padding-top: 20px;
+  color: black;
+}
+
+.inner_container {
+  /*background: red;*/
+}
+
+.code_icon {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.fa-folder-open {
+  font-size: 1.2em;
+  margin-right: 5px;
+}
+
+.my_code_review_row {
+  margin: 20px 0 25px;
 }
 
 
+/*----------GRAPH LIBRARY-----------------*/
+
+.segment_height_10 {
+  height: 10%;
+}
+
+.segment_height_20 {
+  height: 20%;
+}
+
+.segment_height_30 {
+  height: 30%;
+}
+
+.segment_height_40 {
+  height: 40%;
+}
+
+.segment_height_50 {
+  height: 50%;
+}
+
+.segment_height_60 {
+  height: 60%;
+}
+
+.segment_height_70 {
+  height: 70%;
+}
+
+.segment_height_80 {
+  height: 80%;
+}
+
+.segment_height_90 {
+  height: 90%;
+}
+
+.segment_height_100 {
+  height: 100%;
+}
+
+.additions {
+  background: green;
+}
+
+.deletions {
+  background: red;
+}
+
+.unchanged {
+  background: gray;
+}
 
 
 
