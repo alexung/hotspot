@@ -317,7 +317,7 @@ a.login_logout {
 }
 
 #my_code_reviews_header {
-  font-size: 1.6em; 
+  font-size: 1.6em;
 }
 
 .my_repo_row {
@@ -371,6 +371,9 @@ a.login_logout {
 
 
 /*----------GRAPH LIBRARY-----------------*/
+.segment_height_0 {
+  height: 0%;
+}
 
 .segment_height_1 {
   height: 10%;
