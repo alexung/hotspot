@@ -113,7 +113,7 @@ module GithubHelper
       position_index = return_section_for_changes(project_time, initial_commit, unit_size, commit[0])
       add_changes_to_graph_arr(graph_arr, position_index, commit[1])
     end
-    graph_arr.to_s
+    graph_arr.to_json
   end
 
 end
