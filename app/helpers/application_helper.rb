@@ -19,6 +19,15 @@
     link_to title, sort: column, direction: direction
   end
 
+  def last_checked(repository)
+    if repository.updated_at
+      repository.updated_at
+    else
+      repository.created_at
+    end
+  end
+
+
   # ----- BELOW IS THE GRAPH CODE ----------
 
 # vals = [
