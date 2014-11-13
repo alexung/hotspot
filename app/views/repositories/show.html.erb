@@ -12,7 +12,8 @@
 				<tr>
 					<th>Contributors</th>
 					<th>File Path</th>
-					<th>Changes Over Time</th>
+					<th>Line Count</th>
+					<th>Changes between <%=Time.at(@repository.last_commit)%> - <%= Time.at(@repository.first_commit) %></th>
 					<th><%= sortable "commits", "Commits" %></th>
 				</tr>
 				<% @repository_order.each do |repository| %>

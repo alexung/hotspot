@@ -62,4 +62,14 @@
     set_value_against_max(rendered_segments, max_line).reverse
   end
 
+  def total_current_line_count(graph_arr)
+    lines = 0
+    current_count = []
+
+    graph_arr.each do |adds, dels|
+      current_count << render_seg(lines, adds, dels)
+      lines = (lines + adds) - dels
+    end
+    current_count.reverse.shift[0]
+  end
 end
