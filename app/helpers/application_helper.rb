@@ -29,20 +29,21 @@
 
   def render_seg(lines, adds, dels)
     [
-      lines - dels,
+      lines,
       adds,
       dels,
     ]
   end
 
-  def set_value_against_max(rendered_segments)
+  def set_value_against_max(rendered_segments, max_line)
     rendered_segments.each do |triple|
-      sum_lines = triple.reduce(:+)
+      # sum_lines = triple.reduce(:+)
       triple.map! do |value|
-        if sum_lines == 0
+        if max_line == 0
           0
         else
-          ((value/sum_lines.to_f)*10).to_i.abs
+          num = ((value/max_line.to_f)*10).to_i
+          num < 0 ? 0 : num
         end
       end
     end
@@ -57,7 +58,8 @@
       rendered_segments << render_seg(lines, adds, dels)
       lines = (lines + adds) - dels
     end
-    set_value_against_max(rendered_segments).reverse
+    max_line = rendered_segments.map {|segment| segment.reduce(:+)}.max
+    set_value_against_max(rendered_segments, max_line).reverse
   end
 
 end
