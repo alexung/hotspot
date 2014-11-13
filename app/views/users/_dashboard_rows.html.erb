@@ -1,0 +1,8 @@
+<setion class="row">
+	<section class="col-md-3"></section>
+	<section class="col-md-6">
+	<%= link_to "#{repository.name}", repository_path(repository) %>&nbsp;&nbsp;&nbsp;<%= repository['repo_owner'] %>
+	<%= button_to "Destroy", repository_path(repository), {onclick: "return confirm('Are you sure you'd like to delete this repository and all it's associated notes?')", method: :delete, :class => "btn btn-danger delete_button" } %>
+	</section>
+	<section class="col-md-3"></section>
+</section>

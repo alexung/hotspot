@@ -11,13 +11,11 @@ class RepositoriesController < ApplicationController
   end
 
   def create
-    @notes = Note.find_by(repository_id: params[:repository_id])
     redirect_to repository_path(params[:repository_id])
   end
 
   def show
     params[:sort] ||= "commits"
-    @notes_banner = true
     @repository = Repository.find(params[:id])
     @repository_order = @repository.repository_files.order(sort_column + " " + sort_direction)
   end
