@@ -7,6 +7,8 @@ class CodeReview
 		@repo = repo
 		@username = username
 		clone_repo(repo, username)
+		@project_time = total_elapsed_project_time
+		@initial_commit = unix_time_first_commit
 	end
 
 	def rows
@@ -15,8 +17,9 @@ class CodeReview
 				file_path: path,
 				commits: commits_for(path),
 				contributors: contributors_to(path),
-				insertions: insertions_to(path),
-				deletions: deletions_of(path)
+				graph_arr: all_file_commits_data(path),
+				project_time: @project_time,
+				initial_commit: @initial_commit
 			}
 		end
 	end

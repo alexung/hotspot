@@ -56,9 +56,8 @@ ActiveRecord::Schema.define(version: 20141112021317) do
     t.integer  "repository_id"
     t.string   "github_url"
     t.string   "name"
-    t.integer  "insertions"
-    t.integer  "deletions"
     t.integer  "commits"
+    t.text     "graph_arr"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
