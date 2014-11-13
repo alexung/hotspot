@@ -221,12 +221,6 @@ a.login_logout {
   display: none;
 }
 
-.delete_button {
-  display: block;
-  float: right;
-  margin: 0 0 0 5px;
-}
-
 .contributor_img {
   display: inline;
   height: 20px;
@@ -320,8 +314,54 @@ a.login_logout {
 }
 
 #my_code_reviews_header {
-  font-size: 1.5em;
+  font-size: 1.6em;
 }
+
+.my_repo_row {
+  height: 60px;
+  /*background: rgba(0,0,0,.04);*/
+  margin: 0 0 2px 0;
+  /*border-left: 2px solid #6A8DBC;*/
+  border-bottom: 1px solid rgba(0,0,0,.04);
+}
+
+.repo_name {
+  /*background: #f7d9d9;*/
+  height: 100%;
+  padding-top: 12px;
+}
+
+.repo_owner_name {
+  padding-top: 20px;
+}
+
+.repo_name a {
+  color: #1F2648;
+  font-size: 1.6em;
+}
+
+.delete_button {
+  display: block;
+  float: right;
+  margin: 0 0 0 5px;
+  padding-top: 20px;
+  color: black;
+}
+
+.inner_container {
+  /*background: red;*/
+}
+
+.code_icon {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+
+
+
+
+
 
 
 
