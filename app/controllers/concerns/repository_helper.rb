@@ -39,5 +39,13 @@ module RepositoryHelper
     path = "users/#{username}"
     fetch_gh(path)["email"]
   end
+
+  def unix_time_first_commit
+    ` cd /tmp/#{@repo} && git log --format=%ct | tail -1 `.to_i
+  end
+
+  def unix_time_last_commit
+    ` cd /tmp/#{@repo} && git log --format=%ct | head -1 `.to_i
+  end
 end
 

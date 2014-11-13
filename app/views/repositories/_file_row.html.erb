@@ -9,6 +9,9 @@
 	<td>
 		<%= render partial: 'repositories/file_paths',locals: {repository: repository} %>
 	</td>
+	<td>
+		<%= total_current_line_count(JSON.parse(repository.graph_arr)) %>
+	</td>
 	<%# require 'json' %>
 	<td>
 		<section class="graph_container">

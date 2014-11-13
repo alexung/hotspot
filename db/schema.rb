@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 20141112021317) do
     t.string   "url"
     t.string   "repo_owner"
     t.integer  "repo_uid"
+    t.integer  "first_commit"
+    t.integer  "last_commit"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

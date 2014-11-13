@@ -13,7 +13,7 @@ class CodeReviewsController < ApplicationController
 
 		review = CodeReview.new(@repository, @username)
 		rows = review.rows
-		saved_repository = Repository.save_repository_to_db(@username, @repository, repo_uid, session[:user_id])
+		saved_repository = Repository.save_repository_to_db(@username, @repository, repo_uid, session[:user_id], rows.first[:initial_commit], rows.first[:last_commit])
 		@repository_order = saved_repository.repository_files.order(sort_column + " " + sort_direction)
 
 		contributors = saved_repository.contributors.create(create_contributors_hash(saved_repository.name))

@@ -30,7 +30,9 @@ class RepositoriesController < ApplicationController
       username,
       repository.name,
       repository.repo_uid,
-      session[:user_id]
+      session[:user_id],
+      rows.first[:initial_commit], 
+      rows.first[:last_commit]
       )
     contributors = saved_repository.contributors.create(create_contributors_hash(saved_repository.name))
 
@@ -48,7 +50,7 @@ class RepositoriesController < ApplicationController
     end
 
     rows.map do |repo_file|
-      graph_arr = create_graph_arr(repo_file[:graph_arr], 20, repo_file[:project_time], repo_file[:initial_commit])
+      graph_arr = create_graph_arr(repo_file[:graph_arr], 30, repo_file[:project_time], repo_file[:initial_commit])
       new_file =  RepositoryFile.create_repo_files(repo_file, @username, saved_repository, graph_arr)
       repo_file[:contributors].each do |email|
         new_file.contributors << Contributor.find_by(email: email)
