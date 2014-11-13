@@ -15,7 +15,7 @@
 <body>
 	<header>
 
-		<nav class="navbar navbar-default" role="navigation">
+		<nav id="navigation_bar" class="navbar navbar-default" role="navigation">
 			<div class="container-fluid">
 				<div class="row">
 					<!-- Brand and toggle get grouped for better mobile display -->
@@ -26,9 +26,11 @@
 							<span class="icon-bar"></span>
 						</button>
 						<% if session[:user_id] %>
-						<%= link_to content_tag(:i,nil, :class=>"fa fa-github logo"), user_path(User.find(session[:user_id])), :class => "navbar-brand" %>
+						<%= link_to content_tag(:i,nil, :class=>"fa fa-bar-chart logo"), user_path(User.find(session[:user_id])), :class => "navbar-brand" %>
+						<%= link_to "hotspot", root_path, :class => "logo_text" %>
 						<% else %>
-						<%= link_to content_tag(:i,nil, :class=>"fa fa-github logo"), root_path, :class => "navbar-brand" %>
+						<%= link_to content_tag(:i,nil, :class=>"fa fa-bar-chart logo"), root_path, :class => "navbar-brand" %>
+						<%= link_to "hotspot", root_path, :class => "logo_text" %>
 						<% end %>
 					</div>
 
