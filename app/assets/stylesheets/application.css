@@ -262,50 +262,6 @@ a.login_logout {
   width: 20%;
 }
 
-#change_over_time {
-  width: 60%;
-}
-
-.graph_container {
-  /*display: flex;*/
-  height: 30px;
-}
-
-.graph_interval {
-  display: inline-block;
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-  vertical-align: bottom;
-}
-
-.graph_segment {
-  width: 3px;
-}
-
-.lines_added {
-  background: #AEE239;
-  height: 6px;
-  margin-bottom: 1px;
-}
-
-.lines_deleted {
-  background: #FF6B6B;
-  height: 4px;
-  margin-bottom: 1px;
-}
-
-.total_lines {
-  background: #7F8C8D;
-  height: 12px;
-}
-
-.start_project {
-  height: 20px;
-  width: 5px;
-  background: #7F8C8D;
-}
-
 .contributor_email {
   display: none;
 }
@@ -328,7 +284,7 @@ a.login_logout {
   /*background: rgba(0,0,0,.04);*/
   /*border-left: 2px solid #6A8DBC;*/
   margin: 0 0 2px 0;
-  border-bottom: 1px solid rgba(0,0,0,.08);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .repo_name {
@@ -389,6 +345,7 @@ a.login_logout {
 
 
 /*----------GRAPH LIBRARY-----------------*/
+
 .segment_height_0 {
   height: 0%;
 }
@@ -444,6 +401,83 @@ a.login_logout {
 .unchanged {
   background: gray;
 }
+
+
+
+
+/*----------OLD GRAPH CSS-----------------*/
+
+#change_over_time {
+  width: 60%;
+}
+
+.graph_container {
+  /*display: flex;*/
+  height: 30px;
+}
+
+.graph_interval {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.graph_segment {
+  width: 3px;
+}
+
+.lines_added {
+  background: #AEE239;
+  height: 6px;
+  margin-bottom: 1px;
+}
+
+.lines_deleted {
+  background: #FF6B6B;
+  height: 4px;
+  margin-bottom: 1px;
+}
+
+.total_lines {
+  background: #7F8C8D;
+  height: 12px;
+}
+
+.start_project {
+  height: 20px;
+  width: 5px;
+  background: #7F8C8D;
+}
+
+
+/*----------SPLASH PAGE-----------------*/
+
+.splash_img {
+  width: 100%;
+}
+
+.splash_quadrants {
+  height: 100px;
+  text-align: center;
+  margin: 60px 0 100px;
+}
+
+.fa-bar-chart {
+  font-size: 4em;
+}
+
+.fa-align-left {
+  font-size: 4em; 
+}
+
+footer {
+  background: #555;
+  height: 125px;
+}
+
+
 
 
 
