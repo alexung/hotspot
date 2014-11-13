@@ -71,6 +71,10 @@
   margin: 0 0 0 3px;
 }
 
+img.profile_img {
+  border: 1px solid rgba(0,0,0,.25);
+}
+
 .btn .caret {
   margin: 0 5px 0 2px;
 }
@@ -368,7 +372,6 @@ a.login_logout {
 .fa-clock-o {
   float: right;
   margin: 21px 5px 25px;
-  font-weight: bold;
 }
 
 .delete_button_section {
