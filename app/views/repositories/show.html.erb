@@ -1,13 +1,26 @@
-<section class="col-md-3"></section>
-<section class="col-md-6">
-	<h3 class="page_titles"><%= @repository.name %></h3>
-</section>
-<section class="col-md-3"></section>
+<section class="container-fluid inner_container">
+	<section class="row my_code_review_row">
+		<section class="col-md-8 col-sm-6 col-xs-12">
+			<h3 id="my_code_reviews_header" class="page_titles">
+				<i class="fa fa-folder-open"></i>
+				<%= @repository.name %>
+			</h3>
+		</section>
+		<section class="col-md-1 col-sm-3 col-xs-0">
+		</section>
+		<section class="col-md-3 col-sm-3 col-xs-0">
+			<%= button_to "Destroy", @repository, :class => "btn btn-danger btn-xs destroy_button", confirm: "Are you sure you'd like to delete this repository and all it's associated notes?", method: :delete %>
+			<%= button_to "Update Repository", @repository, method: :patch, action: "update", class: "btn btn-warning btn-xs btn_navbar repo_update_button", locals: { repository: @repository }%>
+		</section>
+	</section>
+
+
+
 
 	<section class="container-fluid">
 		<table class="table table-bordered">
-			<%= button_to "Destroy", @repository, :class => "btn btn-danger btn-xs delete_button", confirm: "Are you sure you'd like to delete this repository and all it's associated notes?", method: :delete %>
-			<%= button_to "Update Repository", @repository, method: :patch, action: "update", class: "btn btn-warning btn-xs btn_navbar", locals: { repository: @repository }%>
+			
+			
 			<table class="table table-bordered repo_table">
 				<tr>
 					<th>Contributors</th>
@@ -23,4 +36,8 @@
 				<% end %>
 			</table>
 		</section>
-	</div>
+</section>
+
+
+
+

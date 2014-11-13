@@ -161,6 +161,17 @@ a.login_logout {
   font-size: .8em;
 }
 
+.repo_update_button {
+  float: right;
+  margin-top: 4px;
+}
+
+.destroy_button {
+  float: right;
+  margin-left: 5px;
+  margin-top: 4px;
+}
+
 
 /*------Notes Button and Partial-----------*/
 
