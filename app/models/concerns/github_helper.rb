@@ -97,7 +97,11 @@ module GithubHelper
   def return_section_for_changes(project_time, initial_commit, unit_size, utc)
     section_size = project_time/unit_size
     time_from_first_commit = utc - initial_commit
-    index_position = time_from_first_commit/section_size
+      if section_size == 0
+        0
+      else
+        index_position = time_from_first_commit/section_size
+    end
   end
 
   def add_changes_to_graph_arr(graph_arr, index, change_values)
