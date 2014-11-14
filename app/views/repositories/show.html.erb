@@ -13,21 +13,14 @@
 			<%= button_to "Update Repository", @repository, method: :patch, action: "update", class: "btn btn-warning btn-xs btn_navbar repo_update_button", locals: { repository: @repository }%>
 		</section>
 	</section>
-
-
-
-
 	<section class="container-fluid">
-		<table class="table table-bordered">
-			
-			
-			<table class="table table-bordered repo_table">
+			<table class="table repo_table">
 				<tr>
 					<th>Contributors</th>
 					<th>File Path</th>
 					<th>Line Count</th>
 					<th>Changes between <%=Time.at(@repository.last_commit).strftime("%m/%d/%Y at %I:%M %p")%></strong> to <strong><%= Time.at(@repository.first_commit).strftime("%m/%d/%Y at %I:%M %p") %></strong></th>
-					<th><%= sortable "commits", "Commits" %></th>
+					<th>Commits</th>
 				</tr>
 				<% @repository_order.each do |repository| %>
 				<tr>

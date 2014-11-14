@@ -9,8 +9,8 @@
 	<td>
 		<%= render partial: 'repositories/file_paths',locals: {repository: repository} %>
 	</td>
-	<td>
-		<%= total_current_line_count(JSON.parse(repository.graph_arr)) %>
+	<td class="centered_td">
+		<%= total_current_line_count(JSON.parse(repository.graph_arr)) %>&nbsp;&nbsp;
 	</td>
 	<%# require 'json' %>
 	<td>
@@ -21,7 +21,7 @@
 			<% end %>
 		</section>
 	</td>
-	<td><%= repository.commits %></td>
+	<td class="centered_td"><%= repository.commits %>&nbsp;&nbsp;</td>
 </tr>
 
 

@@ -549,11 +549,9 @@ footer {
   height: 557px;
 }
 
-.splash-page-background {
-  background: #629DD0;
+.centered_td {
+  text-align: center;
 }
-
-
 
 
 
