@@ -312,7 +312,7 @@ a.login_logout {
   margin: 0;
   padding: 0;
   display: inline-block;
-  vertical-align: bottom; 
+  vertical-align: bottom;
 }
 
 .graph_segment {
@@ -535,7 +535,7 @@ a.login_logout {
 }
 
 .fa-align-left {
-  font-size: 4em; 
+  font-size: 4em;
 }
 
 footer {
@@ -547,6 +547,10 @@ footer {
   background-image: url("splash_img_left.jpg");
   background-repeat: repeat-x;
   height: 557px;
+}
+
+.splash-page-background {
+  background-color: #629DD0;
 }
 
 
