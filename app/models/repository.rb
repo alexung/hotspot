@@ -3,9 +3,6 @@ class Repository < ActiveRecord::Base
 	has_many :contributors, dependent: :destroy
 	belongs_to :user
 	
-	# validates :name, uniqueness: true
-	# validates :url, uniqueness: true
-
 	def self.save_repository_to_db(username, repository, repo_uid, current_user, first_commit, last_commit)
 		self.find_or_create_by(
 			user_id: 		current_user,
