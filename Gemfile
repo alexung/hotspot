@@ -5,11 +5,11 @@ source 'https://rubygems.org'
 
 gem 'jquery-rails'
 
-group :development do
+#group :development do
 	gem 'byebug'
 	gem 'pry'
 	gem 'faker'
-end
+#end
 
 # .ENV
 gem 'dotenv-rails'
@@ -49,14 +49,14 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 # Test group
-group :test do
+#group :test do
 	gem "rspec-rails"
 	gem "factory_girl_rails"
 	gem "capybara"
 	gem 'shoulda-matchers', require: false
-end
+#end
 
-group :production do
+#group :production do
 	gem 'rails_12factor'
-end
+#end
 

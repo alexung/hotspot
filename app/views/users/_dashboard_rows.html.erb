@@ -8,7 +8,7 @@
 		<%= repository['repo_owner'] %>
 	</section>
 	<section class="col-md-2 col-sm-4 col-xs-4">
-		<%= link_to content_tag(:i,nil, :class=>"fa fa-trash delete_button"), repository_path(repository), method: :delete %>
+		<%= button_to "Delete", repository_path(repository), method: :delete, class: "delete-from-dashboard" %>
 		<span class="date"><%= last_checked(repository).strftime("%b %d") %></span>
 		<i class="fa fa-clock-o"></i>
 	</section>
