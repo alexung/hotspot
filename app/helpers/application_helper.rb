@@ -37,12 +37,13 @@
 
   def set_value_against_max(rendered_segments, max_line)
     rendered_segments.each do |triple|
-      # sum_lines = triple.reduce(:+)
       triple.map! do |value|
         if max_line == 0
           0
+        elsif triple[1] == 0 && triple[2] == 0
+          0
         else
-          num = ((value/max_line.to_f)*10).to_i
+          num = ((value/max_line.to_f)*10).ceil
           num < 0 ? 0 : num
         end
       end
